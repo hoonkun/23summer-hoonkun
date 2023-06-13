@@ -1,6 +1,8 @@
+import "./../lib/ktn"
 import './globals.css'
+import React from "react"
 import { Inter } from 'next/font/google'
-import StyledComponentsRegistry from "@/lib/styled-registry";
+import StyledComponentsRegistry from "@/lib/styled/styled-registry"
 
 const inter = Inter({ subsets: ['latin'] })
 

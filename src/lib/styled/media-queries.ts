@@ -1,0 +1,1 @@
+export const Select = (min: number, max: number = 9999) => `@media only screen and (max-width: ${max}px) and (min-width: ${min}px)`
