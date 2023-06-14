@@ -167,13 +167,23 @@ export const MotdText = styled.div`
   margin-left: 20px;
 `
 
-export const PostsGrid = styled.div`
-  margin: 50px auto 0 auto;
+export const PostsRoot = styled.div`
+  margin: 20px auto 0 auto;
+  padding-bottom: 25px;
   width: 80%;
+
   ${Select(0, 500)} {
     width: calc(100% - 15px);
   }
-  
+`
+
+export const PostsTitle = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  padding: 30px;
+`
+
+export const PostsGrid = styled.div`
   flex-grow: 1;
   display: grid;
   grid-template-rows: auto;

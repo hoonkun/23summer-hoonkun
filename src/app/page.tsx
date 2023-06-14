@@ -7,7 +7,7 @@ import {
   PostPreviewContent, PostPreviewExcerpt, PostPreviewImage,
   PostPreviewImageContainer,
   PostPreviewTitle,
-  PostsGrid
+  PostsGrid, PostsRoot, PostsTitle
 } from "@/app/_styled"
 
 export default function Home() {
@@ -18,9 +18,12 @@ export default function Home() {
 
   return (
     <HomeClient die={die} rotation={rotation}>
-      <PostsGrid>
-        {posts.map(it => <PostItem key={it.key} post={it}/>)}
-      </PostsGrid>
+      <PostsRoot>
+        <PostsTitle>기록</PostsTitle>
+        <PostsGrid>
+          {posts.map(it => <PostItem key={it.key} post={it}/>)}
+        </PostsGrid>
+      </PostsRoot>
     </HomeClient>
   )
 }
