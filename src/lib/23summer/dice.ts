@@ -1,9 +1,9 @@
-type Random = {
+export type Die = {
   text: string
   image: string
 }
 
-const Randoms: Random[] = [
+const Randoms: Die[] = [
   { text: "이전에 힘 92짜리 계정 데이터를\n한 번 날린 적이 있었습니다.", image: "dungeons-data-loss.png" },
   { text: "도전과제는 귀찮은 것이에요.", image: "dungeons-achievements.png" },
   { text: "난 네가 싫어.", image: "dungeons-i-hate-you-1.png" },

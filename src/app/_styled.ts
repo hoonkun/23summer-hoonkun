@@ -3,11 +3,14 @@
 import styled, { css } from "styled-components";
 import { Select } from "@/lib/styled/media-queries"
 
+type CanBlur = { blur: number }
+type CanOpacity = { opacity: number }
+
 export const HomeRoot = styled.div`
   width: 100%; height: 100%;
 `
 
-export const BackgroundContainer = styled.div`
+export const BackgroundContainer = styled.div.attrs<CanBlur>(props => ({ style: { filter: `blur(${props.blur}px)` } }))`
   position: absolute;
   width: 100%; height: 100%;
 
@@ -39,7 +42,7 @@ export const Scrollable = styled.div`
   overflow-y: auto;
 `
 
-export const StickyArea = styled.div`
+export const StickyArea = styled.div.attrs<CanBlur & CanOpacity>(props => ({ style: { filter: `blur(${props.blur}px)`, opacity: props.opacity } }))`
   position: sticky; top: 0;
   width: 100%; height: 100%;
   z-index: 0;
