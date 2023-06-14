@@ -2,6 +2,7 @@
 
 import styled, { css } from "styled-components";
 import { Select } from "@/lib/styled/media-queries"
+import { PostExpand } from "@/lib/23summer/post"
 
 type CanBlur = { blur: number }
 type CanOpacity = { opacity: number }
@@ -58,12 +59,6 @@ export const StickyArea = styled.div.attrs<CanBlur & CanOpacity>(props => ({ sty
   }
 `
 
-export const ContentArea = styled.div`
-  position: relative;
-  width: 100%; height: 100%;
-  z-index: 1;
-`
-
 export const TitleText = styled.div`
   display: flex;
   align-items: center;
@@ -73,6 +68,10 @@ export const TitleText = styled.div`
   
   > span {
     text-shadow: #ffffff80 0 0 10px;
+  }
+  
+  ${Select(0, 500)} {
+    font-size: 40px;
   }
 `
 
@@ -111,12 +110,6 @@ export const GlowText = styled.span`
   }
 `
 
-const VerticalDividerNarrowCollapse = (margin: number) => css`
-  ${Select(1000, 1150)} {
-    margin: 0 ${margin / 1.5}px;
-  }
-`
-
 export const NameDivider = styled.div`
   width: 0; height: 25px;
   margin: 0 30px;
@@ -146,6 +139,10 @@ export const TitleContent = styled.div`
   a {
     color: #639aff;
   }
+  
+  ${Select(0, 500)} {
+    font-size: 13px;
+  }
 `
 
 export const ContentHeader = styled.div`
@@ -166,4 +163,162 @@ export const MotdImage = styled.img<{ rotate: number }>`
 
 export const MotdText = styled.div`
   margin-left: 20px;
+`
+
+export const PostsGrid = styled.div`
+  margin: 50px auto 0 auto;
+  width: 80%;
+  ${Select(0, 500)} {
+    width: 100%;
+  }
+  
+  flex-grow: 1;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  grid-row-gap: 10px;
+  
+  ${Select(750)} {
+    grid-template-rows: unset;
+    grid-auto-rows: 250px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+  
+  ${Select(900)} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  ${Select(750, 900)} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ${Select(0, 750)} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  ${Select(750, 1400)} {
+    grid-auto-rows: 200px;
+  }
+`
+
+export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+  align-self: center;
+  justify-self: stretch;
+  
+  width: 100%;
+  height: 100%;
+  
+  position: relative;
+  
+  ${Select(500, 750)} {
+    height: 300px;
+  }
+  ${Select(0, 500)} {
+    height: 200px;
+  }
+  ${Select(750)} {
+    &:hover {
+      transform: scale(1.05);
+      z-index: 100;
+    }
+  }
+  ${Select(900)} {
+    ${({ expand }) => expand ? css`grid-column: span ${expand.by3.columns};grid-row: span ${expand.by3.rows};` : ""}
+  }
+  ${Select(750, 900)} {
+    ${({ expand }) => expand ? css`grid-column: span ${expand.by2.columns};grid-row: span ${expand.by2.rows};` : ""}
+  }
+
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+`
+
+export const PostPreviewImageContainer = styled.div`
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  
+  overflow: hidden;
+  
+  & img {
+    filter: brightness(0.5) blur(5px);
+    scale: 1.2;
+  }
+`
+
+export const PostPreviewContent = styled.div`
+  position: relative;
+  width: 100%; height: 100%;
+  z-index: 1;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const PostPreviewTitle = styled.div<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+  ${Select(1000)} {
+    font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 18}px;
+  }
+  ${Select(900, 1000)} {
+    font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 14}px;
+  }
+  ${Select(825, 900)} {
+    font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 18}px;
+  }
+  ${Select(750, 825)} {
+    font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 14}px;
+  }
+  ${Select(500, 750)} {
+    font-size: 20px;
+  }
+  ${Select(0, 500)} {
+    font-size: 16px;
+  }
+  ${Select(1000)} {
+    margin: 0 25px;
+  }
+  ${Select(900, 1000)} {
+    margin: 0 15px;
+  }
+  ${Select(750, 900)} {
+    margin: 0 25px;
+  }
+  ${Select(0, 750)} {
+    margin: 0 50px;
+  }
+  font-weight: bold;
+  text-align: center;
+  word-break: keep-all;
+`
+
+export const PostPreviewImage = styled.img`
+  width: 100%; height: 100%;
+  object-fit: cover;
+`
+
+export const PostPreviewExcerpt = styled.div`
+  ${Select(1400)} {
+    font-size: 14px;
+    margin: 15px 40px 0 40px;
+  }
+  ${Select(1000, 1400)} {
+    font-size: 12px;
+    margin: 15px 40px 0 40px;
+  }
+  ${Select(750, 1000)} {
+    font-size: 12px;
+    margin: 15px 20px 0 20px;
+  }
+  ${Select(500, 750)} {
+    font-size: 14px;
+    margin: 15px 40px 0 40px;
+  }
+  ${Select(0, 500)} {
+    font-size: 12px;
+    margin: 15px 40px 0 40px;
+  }
+  
+  opacity: 0.75;
+  text-align: center;
+  word-break: keep-all;
 `

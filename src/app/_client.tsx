@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useState } from "react"
+import React, { PropsWithChildren, useState } from "react"
 import {
   BackgroundContainer,
-  BackgroundImage, ContentArea, ContentHeader,
+  BackgroundImage, ContentHeader,
   GlowText, HomeRoot, MotdContent, MotdImage, MotdText,
   NameDivider,
   Scrollable, SectionDivider,
@@ -14,12 +14,12 @@ import MainBackground from "@/resources/main_bg.jpg"
 import Spacer from "@/components/Spacer"
 import { Die } from "@/lib/23summer/dice"
 
-type HomeClientProps = {
+type HomeClientProps = PropsWithChildren<{
   die: Die,
   rotation: number
-}
+}>
 
-export const HomeClient: React.FC<HomeClientProps> = ({ die, rotation }) => {
+export const HomeClient: React.FC<HomeClientProps> = ({ die, rotation, children }) => {
 
   const [blurRadius, setBlurRadius] = useState(0)
   const [opacity, setOpacity] = useState(1)
@@ -58,7 +58,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({ die, rotation }) => {
               <li>🔭 현재는 <a href={"https://unstabler.pl"}>팀 언스테이블러즈</a>에 속해있어요!</li>
               <li>🌱 최근에는 Jetpack Compose에 대해 공부 중이에요!</li>
               <li>🥝 주로 개인 프로젝트를 통해 공부하고 있어요.</li>
-              <li>📫 인터넷에서는 트위터(<a href={"https://twitter.com/arctic_apteryx"}>@arctic_apteryx</a>)에 주로 상주 중이에요!</li>
+              <li>📫 트위터(<a href={"https://twitter.com/arctic_apteryx"}>@arctic_apteryx</a>)에 주로 상주 중이에요!</li>
               <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/>&nbsp;&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;</small>같이 할 사람 절찬리에 모집 중! (??)</li>
             </ul>
             <Spacer height={15}/>
@@ -69,9 +69,7 @@ export const HomeClient: React.FC<HomeClientProps> = ({ die, rotation }) => {
             </MotdContent>
           </TitleContent>
         </StickyArea>
-        <ContentArea>
-          {/* TODO */}
-        </ContentArea>
+        {children}
       </Scrollable>
     </HomeRoot>
   )
