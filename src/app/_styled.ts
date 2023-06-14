@@ -44,7 +44,9 @@ export const Scrollable = styled.div`
 `
 
 export const StickyArea = styled.div.attrs<CanBlur & CanOpacity>(props => ({ style: { filter: `blur(${props.blur}px)`, opacity: props.opacity } }))`
-  position: sticky; top: 0;
+  ${Select(500)} {
+    position: sticky; top: 0;
+  }
   width: 100%; height: 100%;
   z-index: 0;
   
@@ -169,7 +171,7 @@ export const PostsGrid = styled.div`
   margin: 50px auto 0 auto;
   width: 80%;
   ${Select(0, 500)} {
-    width: 100%;
+    width: calc(100% - 15px);
   }
   
   flex-grow: 1;
@@ -237,11 +239,6 @@ export const PostPreviewImageContainer = styled.div`
   z-index: 0;
   
   overflow: hidden;
-  
-  & img {
-    filter: brightness(0.5) blur(5px);
-    scale: 1.2;
-  }
 `
 
 export const PostPreviewContent = styled.div`
@@ -294,6 +291,9 @@ export const PostPreviewTitle = styled.div<{ expand?: { by2: PostExpand, by3: Po
 export const PostPreviewImage = styled.img`
   width: 100%; height: 100%;
   object-fit: cover;
+
+  filter: brightness(0.5) blur(5px);
+  scale: 1.2;
 `
 
 export const PostPreviewExcerpt = styled.div`
