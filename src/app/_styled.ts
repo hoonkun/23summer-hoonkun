@@ -9,13 +9,13 @@ export const HomeRoot = styled.div`
 `
 
 export const BackgroundContainer = styled.div`
-  position: absolute;
-  width: 100%; height: 100%;
+  position: fixed;
+  width: 100vw; height: 100vh;
 
-  z-index: 0;
+  z-index: -2;
 `
 
-export const BackgroundImage = styled.img`
+export const BackgroundImage = styled.img<{ darker?: string }>`
   width: 100%; height: 100%;
   display: block;
   
@@ -23,27 +23,18 @@ export const BackgroundImage = styled.img`
   object-position: 30% 50%;
   image-rendering: pixelated;
   
-  ${Select(0, 1150)} {
-    filter: brightness(0.3);
-  }
-  ${Select(1150)} {
-    filter: brightness(0.75);
-  }
-`
-
-export const Scrollable = styled.div`
-  position: relative;
-  width: 100%; height: 100%;
-  z-index: 1;
-  
-  overflow-x: hidden;
-  overflow-y: auto;
+  ${({ darker }) => darker === "true" ? css`
+    ${Select(0, 1150)} {
+      filter: brightness(0.3);
+    }
+    ${Select(1150)} {
+      filter: brightness(0.75);
+    }
+  ` : ""}
 `
 
 export const ContentArea = styled.div`
-  ${Select(500)} {
-    position: sticky; top: 0;
-  }
+  position: relative;
   width: 100%; height: 100%;
   z-index: 0;
   
@@ -166,19 +157,59 @@ export const MotdText = styled.div`
 `
 
 export const PostsRoot = styled.div`
-  margin: 20px auto 0 auto;
-  padding-bottom: 25px;
-  width: 80%;
-
-  ${Select(0, 500)} {
-    width: calc(100% - 15px);
-  }
+  position: relative;
+  width: 100%;
+  z-index: 0;
 `
 
 export const PostsTitle = styled.div`
-  font-size: 30px;
+  position: sticky; top: 0;
+  height: 400px;
+  z-index: 0;
+  padding: 10px calc(10% + 15px) 10px 10%;
+  background-color: #00000040;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  
+  font-size: 40px;
   font-weight: bold;
-  padding: 30px;
+  text-shadow: #ffffff80 0 0 10px;
+  
+  ${Select(0, 500)} {
+    height: 315px;
+    font-size: 33px;
+    padding: 10px 25px 10px 0;
+  }
+`
+
+export const PostsCategories = styled.ul`
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: normal;
+  opacity: 0.75;
+  color: white;
+  
+  ${Select(0, 500)} {
+    font-size: 12px;
+  }
+  
+  & > li {
+    display: inline-block;
+    padding-inline-start: 0;
+  }
+  & > li:nth-of-type(n+2):before {
+    content: "|";
+    margin: 0 16px;
+    font-size: 85%;
+    opacity: 0.4;
+
+    ${Select(0, 500)} {
+      margin: 0 12px;
+    }
+  }
 `
 
 export const PostsGrid = styled.div`
@@ -187,12 +218,24 @@ export const PostsGrid = styled.div`
   grid-template-rows: auto;
   grid-template-columns: 100%;
   grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
   
+  background-color: black;
+  
+  padding: 30px 10%;
+  ${Select(0, 500)} {
+    padding: 20px 15px;
+  }
+
   ${Select(750)} {
     grid-template-rows: unset;
     grid-auto-rows: 250px;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
   }
   
   ${Select(900)} {
@@ -224,6 +267,7 @@ export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: Po
   }
   ${Select(0, 500)} {
     height: 200px;
+    border: 5px solid white;
   }
   ${Select(750)} {
     &:hover {

@@ -19,13 +19,12 @@ html { color-scheme: dark; background-color: black; }
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
   width: 100vw;
   height: 100%;
 }
 
 body {
-
+  overflow-x: hidden;
 }
 
 a {

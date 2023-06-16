@@ -5,8 +5,8 @@ import {
   HomeRoot, MotdContent, MotdImage, MotdText, NameDivider,
   SectionDivider, TitleContent, TitleText
 } from "@/app/_styled"
-import MainBackground from "@/resources/main_bg.jpg"
 import Spacer from "@/components/Spacer"
+import { Background } from "@/components/Background"
 
 export default function Home() {
   const die = dice()
@@ -14,12 +14,7 @@ export default function Home() {
 
   return (
     <HomeRoot>
-      <BackgroundContainer>
-        <BackgroundImage
-          src={MainBackground.src}
-          alt={"Minecraft screenshot with moon setting in y=-59"}
-        />
-      </BackgroundContainer>
+      <Background darker={true}/>
       <ContentArea>
         <TitleText>
           <span>HoonKun</span>
