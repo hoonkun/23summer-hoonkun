@@ -1,8 +1,10 @@
 import React, { createElement, Fragment } from "react"
-import { Posts, PostWithContent } from "@/lib/23summer/post"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
+import { Metadata } from "next"
 
+import { Post, Posts, PostWithContent } from "@/lib/23summer/post"
 import { InlineCode, PostContent, PostRoot } from "@/app/post/[key]/_styled"
 import { Highlighter } from "@/app/post/[key]/Highlighter"
 
@@ -16,12 +18,12 @@ import rehypeKatex from "rehype-katex"
 import rehypeRaw from "rehype-raw"
 import rehypeStringify from "rehype-stringify"
 import rehypeReact from "rehype-react"
-import { Metadata } from "next"
 
 import "@/lib/katex/styles.css"
-import { notFound } from "next/navigation"
 
-export default async function Page({ params }: { params: { key: string } }) {
+export type PostParams = { key: string }
+
+export default async function Page({ params }: { params: PostParams }) {
   const post = Posts.retrieve<PostWithContent>(params.key, true)
 
   if (!post) notFound()
@@ -55,11 +57,30 @@ export default async function Page({ params }: { params: { key: string } }) {
   )
 }
 
-export const metadata: Metadata = {
+export async function generateMetadata({ params }: { params: PostParams }): Promise<Metadata> {
+  const post = Posts.retrieve<Post>(params.key, false)
 
+  if (!post) return { };
+
+  const title = `${post.data.title} | 키위새의 아무말 저장소`
+
+  return {
+    title,
+    description: post.excerpt,
+    openGraph: {
+      title,
+      description: post.excerpt
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: post.excerpt,
+      site: "arctic_apteryx"
+    }
+  }
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<PostParams[]> {
   return Posts.list().map(it => ({ key: it.key }))
 }
 
