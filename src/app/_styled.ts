@@ -183,6 +183,14 @@ export const PostsTitle = styled.div`
     font-size: 33px;
     padding: 10px 25px 10px 0;
   }
+  
+  ${Select(900)} {
+    font-size: 50px;
+  }
+  ${Select(1150)} {
+    font-size: 60px;
+    height: 450px;
+  }
 `
 
 export const PostsCategories = styled.ul`
@@ -194,6 +202,13 @@ export const PostsCategories = styled.ul`
   
   ${Select(0, 500)} {
     font-size: 12px;
+  }
+
+  ${Select(900)} {
+    font-size: 16px;
+  }
+  ${Select(1150)} {
+    font-size: 20px;
   }
   
   & > li {
@@ -283,6 +298,11 @@ export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: Po
   }
 
   transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+`
+
+export const PostItemLinkChild = styled.div`
+  width: 100%;
+  height: 100%;
 `
 
 export const PostPreviewImageContainer = styled.div`

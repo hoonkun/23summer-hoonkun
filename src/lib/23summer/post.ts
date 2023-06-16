@@ -47,7 +47,7 @@ export class Posts {
 
     return Posts.queryset
       .let(it => page ? it.slice((page - 1) * config.blog.page_size, page * config.blog.page_size) : it)
-      .map(key => Posts.retrieve<RawPost>(key))
+      .map(key => Posts.retrieve<RawPost>(key)!)
       .let(it => expand ? Posts.withExpand(it) : it)
   }
 
@@ -114,15 +114,22 @@ export class Posts {
     return posts.map(postsMapper)
   }
 
-  static retrieve<T extends RawPost>(key: string, content: boolean = false): T {
+  static retrieve<T extends RawPost>(key: string, content: boolean = false): T | null {
     const categories = Categories.list()
 
-    return fs.readFileSync(`./__posts__/${key}/_post.markdown`, { encoding: "utf8" })
-      .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
-      .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
-      .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand"))
-      .let(it => ({ ...it, excerpt: it.excerpt?.replace(/^> .+$/gm, ""), key }) as T)
-      .let(it => ({ ...it, category: [categories.find(category => it.data.categories[0] === category.name), categories.find(category => it.data.categories[1] === category.name)] }))
+    try {
+      return fs.readFileSync(`./__posts__/${key}/_post.markdown`, { encoding: "utf8" })
+        .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
+        .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
+        .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand"))
+        .let(it => ({ ...it, excerpt: it.excerpt?.replace(/^> .+$/gm, ""), key }) as T)
+        .let(it => ({
+          ...it,
+          category: [categories.find(category => it.data.categories[0] === category.name), categories.find(category => it.data.categories[1] === category.name)]
+        }))
+    } catch (e) {
+      return null
+    }
   }
 
   static next(key: string): Post | null {
