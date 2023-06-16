@@ -4,14 +4,11 @@ import styled, { css } from "styled-components";
 import { Select } from "@/lib/styled/media-queries"
 import { PostExpand } from "@/lib/23summer/post"
 
-type CanBlur = { blur: number }
-type CanOpacity = { opacity: number }
-
 export const HomeRoot = styled.div`
   width: 100%; height: 100%;
 `
 
-export const BackgroundContainer = styled.div.attrs<CanBlur>(props => ({ style: { filter: `blur(${props.blur}px)` } }))`
+export const BackgroundContainer = styled.div`
   position: absolute;
   width: 100%; height: 100%;
 
@@ -43,7 +40,7 @@ export const Scrollable = styled.div`
   overflow-y: auto;
 `
 
-export const StickyArea = styled.div.attrs<CanBlur & CanOpacity>(props => ({ style: { filter: `blur(${props.blur}px)`, opacity: props.opacity } }))`
+export const ContentArea = styled.div`
   ${Select(500)} {
     position: sticky; top: 0;
   }
@@ -165,6 +162,7 @@ export const MotdImage = styled.img<{ rotate: number }>`
 
 export const MotdText = styled.div`
   margin-left: 20px;
+  white-space: pre-wrap;
 `
 
 export const PostsRoot = styled.div`

@@ -38,6 +38,10 @@ export class Posts {
     return Posts.queryset.length
   }
 
+  static get pages() {
+    return Math.ceil(Posts.queryset.length / config.blog.page_size)
+  }
+
   static list(page?: number, expand?: boolean): Post[] {
     if (page === 0) throw Error("invalid page: 0. page must be bigger than zero.")
 
