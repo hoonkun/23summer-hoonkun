@@ -5,7 +5,14 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
 import { Post, Posts, PostWithContent } from "@/lib/23summer/post"
-import { InlineCode, PostContent, PostRoot } from "@/app/post/[key]/_styled"
+import {
+  InlineCode,
+  MainImageContainer,
+  PostContent,
+  PostMetadata,
+  PostRoot, PostTag, PostTags,
+  PostTitleArea
+} from "@/app/post/[key]/_styled"
 import { Highlighter } from "@/app/post/[key]/Highlighter"
 
 import { unified } from "unified"
@@ -20,6 +27,8 @@ import rehypeStringify from "rehype-stringify"
 import rehypeReact from "rehype-react"
 
 import "@/lib/katex/styles.css"
+import { Background } from "@/components/Background"
+import { Categories } from "@/lib/23summer/category"
 
 export type PostParams = { key: string }
 
@@ -48,9 +57,20 @@ export default async function Page({ params }: { params: PostParams }) {
     )
     .process(post.content)
 
+  const mainImage = await import(`$/__posts__/${post.key}/main.png`)
+
   return (
     <PostRoot>
+      <Background/>
+      <PostTitleArea>
+        <PostTags>{ post.data.categories.map(it => Categories.retrieve(it)).filter(it => !!it).map(it => <PostTag key={it!.name} color={it!.color.bright}>{ it!.display }</PostTag>) }</PostTags>
+        {post.data.title}
+        <PostMetadata>{ post.data.date } | { post.data.author.replace("GoHoon", "HoonKun") }</PostMetadata>
+      </PostTitleArea>
       <PostContent>
+        <MainImageContainer style={{ width: "min(700px, 100%)", aspectRatio: `${mainImage.default.width / mainImage.default.height}` }}>
+          <Image src={mainImage.default} alt={`${post.data.title}`} fill sizes={"(min-width: 850px) 800px, 100vw"} style={{ objectFit: "cover" }}/>
+        </MainImageContainer>
         {content.result}
       </PostContent>
     </PostRoot>

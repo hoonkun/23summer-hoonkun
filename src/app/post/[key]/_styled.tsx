@@ -2,11 +2,9 @@
 
 import React from "react"
 import styled from "styled-components"
+import { Select } from "@/lib/styled/media-queries"
 
 export const PostRoot = styled.div`
-  overflow-y: auto;
-  overflow-x: hidden;
-  
   line-height: 225%;
   
   display: flex;
@@ -15,8 +13,109 @@ export const PostRoot = styled.div`
   
   font-family: "IBM Plex Sans KR", sans-serif;
   
+  position: relative;
+`
+
+export const PostTitleArea = styled.div`
+  position: sticky; top: 0;
+  height: 325px; width: calc(100%); max-width: 700px;
+  z-index: 0;
+
+  text-align: right;
+  word-break: keep-all;
+  padding: 0 25px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  
+  font-size: 30px;
+  font-weight: bold;
+  
+  line-height: 120%;
+
+  transform: translateY(calc(-150px / 2));
+
+  ${Select(0, 500)} {
+    height: 300px;
+    font-size: 25px;
+    padding: 0 25px;
+  }
+
+  ${Select(900, 1150)} {
+    font-size: 35px;
+  }
+  ${Select(1150)} {
+    font-size: 40px;
+    height: 350px;
+  }
+`
+
+export const PostTags = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+
+  ${Select(0, 500)} {
+    margin-bottom: 4px;
+  }
+`
+
+export const PostTag = styled.div<{ color: string }>`
+  background-color: ${({ color }) => color}40;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-left: 4px;
+  
+  font-size: 12px;
+  line-height: 100%;
+  color: white;
+  text-shadow: none;
+  
+  ${Select(0, 500)} {
+    font-size: 10px;
+  }
+`
+
+export const PostMetadata = styled.div`
+  font-size: 20px;
+  font-weight: normal;
+  color: #ffffff80;
+  text-shadow: none;
+  margin-top: 12px;
+  line-height: 100%;
+  
+  ${Select(0, 500)} {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  ${Select(500, 900)} {
+    font-size: 16px;
+  }
+`
+
+export const MainImageContainer = styled.div`
+  position: relative;
+  margin-top: -150px;
+  margin-bottom: 25px;
+`
+
+export const PostContent = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 0 max((100% - 700px) / 2, 15px);
+  font-size: 16px;
+  
+  position: relative;
+  z-index: 2;
+
   background-color: #181c22;
   
+  overflow-wrap: break-word;
+
   p {
     margin: 20px 0;
   }
@@ -62,11 +161,12 @@ export const PostRoot = styled.div`
     text-align: center;
     color: #FFFFFF90;
     font-size: 14px;
-    margin-top: -10px;
+    margin-top: -20px;
     background-color: transparent;
     border-left: none;
-    line-height: 150%;
+    line-height: 100%;
     word-break: keep-all;
+    padding: 0;
   }
 
   code {
@@ -74,7 +174,7 @@ export const PostRoot = styled.div`
     font-size: 13px;
     line-height: 150%;
   }
-  
+
   pre:has(+ blockquote) > pre {
     margin: 0 !important;
     border-radius: 5px 5px 0 0;
@@ -82,11 +182,11 @@ export const PostRoot = styled.div`
     font-family: "JetBrains Mono", sans-serif;
     background-color: rgb(43, 43, 43);
   }
-  
+
   pre:has( > pre) {
     margin: 20px 0 0 0;
   }
-  
+
   pre:has(> pre):not(:has(+ blockquote)) > pre {
     margin: 0 !important;
     border-radius: 5px;
@@ -104,6 +204,7 @@ export const PostRoot = styled.div`
     font-family: "JetBrains Mono", sans-serif;
     border-radius: 0 0 5px 5px;
     border-left: none;
+    line-height: 150%;
   }
 
   a {
@@ -121,7 +222,7 @@ export const PostRoot = styled.div`
     border-left: 5px solid #78a718;
     border-radius: 5px;
   }
-  
+
   .hljs {
     display: block;
     overflow-x: auto;
@@ -129,7 +230,7 @@ export const PostRoot = styled.div`
     border-radius: 5px 5px 0 0;
     background: #00000020;
   }
-  
+
   .hljs {
     color: #bababa;
   }
@@ -169,14 +270,6 @@ export const PostRoot = styled.div`
   .hljs-comment, .hljs-deletion, .hljs-meta {
     color: #7f7f7f;
   }
-`
-
-export const PostContent = styled.div`
-  width: 100%;
-  height: 100%;
-  max-width: 800px;
-  padding: 0 15px;
-  font-size: 16px;
 `
 
 export const InlineCode = styled.code`

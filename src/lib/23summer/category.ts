@@ -17,4 +17,8 @@ export class Categories {
       .let(it => JSON.parse(it) as unknown as Category[])
   }
 
+  static retrieve(name: string) {
+    return this.list().find(it => it.name === name)
+  }
+
 }

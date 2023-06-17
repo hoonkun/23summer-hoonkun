@@ -2,7 +2,7 @@
 
 import React from "react"
 import { BackgroundContainer, BackgroundImage } from "@/app/_styled"
-import MainBackground from "@/resources/main_bg.jpg"
+import MainBackground from "@/resources/main_bg_crop.jpg"
 
 export const Background: React.FC<{ darker?: boolean }> = ({ darker }) => {
   return (

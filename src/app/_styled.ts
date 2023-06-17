@@ -164,10 +164,10 @@ export const PostsRoot = styled.div`
 
 export const PostsTitle = styled.div`
   position: sticky; top: 0;
-  height: 400px;
+  height: 325px;
   z-index: 0;
   padding: 10px calc(10% + 15px) 10px 10%;
-  background-color: #00000040;
+  /*background-color: #00000040;*/
   
   display: flex;
   flex-direction: column;
@@ -176,10 +176,10 @@ export const PostsTitle = styled.div`
   
   font-size: 40px;
   font-weight: bold;
-  text-shadow: #ffffff80 0 0 10px;
+  text-shadow: #ffffff60 0 0 10px;
   
   ${Select(0, 500)} {
-    height: 315px;
+    height: 235px;
     font-size: 33px;
     padding: 10px 25px 10px 0;
   }
@@ -189,7 +189,7 @@ export const PostsTitle = styled.div`
   }
   ${Select(1150)} {
     font-size: 60px;
-    height: 450px;
+    height: 375px;
   }
 `
 
@@ -281,8 +281,7 @@ export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: Po
     height: 300px;
   }
   ${Select(0, 500)} {
-    height: 200px;
-    border: 5px solid white;
+    height: 175px;
   }
   ${Select(750)} {
     &:hover {
