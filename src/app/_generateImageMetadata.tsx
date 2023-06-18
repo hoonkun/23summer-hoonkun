@@ -8,6 +8,8 @@ export const size = { width: 1200, height: 630 }
 
 export const contentType = "image/png"
 
+export const runtime = 'edge'
+
 // 그래서 이게 뭔데... 어디다가 집어넣어도 Cannot resolve module 던지거나 Invalid URL 뜨는데 어쩌라는거임
 // const interSemiBold = fetch(
 //   new URL('./Inter-SemiBold.ttf', import.meta.url)
