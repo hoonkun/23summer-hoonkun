@@ -4,7 +4,7 @@
 import Link from "next/link"
 import styled from "styled-components"
 
-import { Select } from "@/lib/styled/media-queries"
+import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 
 export const BackgroundOverlay = styled.div`
   position: absolute; left: 0; top: 0;
@@ -25,7 +25,7 @@ export const BlogFooterAreaBase = styled.div`
   align-items: center;
   justify-content: space-between;
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     height: 100px;
   }
 `
@@ -39,7 +39,7 @@ export const BlogFooterAreaLeft = styled.div`
     display: flex;
     align-items: center;
     
-    ${Select(500)} {
+    ${WhenWidthLeast(500)} {
       font-size: 26px;
     }
   }
@@ -52,10 +52,10 @@ export const BlogFooterDescription = styled.ul`
   opacity: 0.75;
   color: white;
 
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 12px;
   }
-  ${Select(900)} {
+  ${WhenWidthLeast(900)} {
     font-size: 16px;
   }
 
@@ -69,7 +69,7 @@ export const BlogFooterDescription = styled.ul`
     font-size: 85%;
     opacity: 0.4;
 
-    ${Select(0, 500)} {
+    ${WhenWidthMost(500)} {
       margin: 0 8px;
     }
   }
@@ -86,7 +86,7 @@ export const PostItemRootBase = styled(Link)`
   
   transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
   
-  ${Select(750)} {
+  ${WhenWidthLeast(750)} {
     &:hover {
       transform: scale(1.05);
       z-index: 100;

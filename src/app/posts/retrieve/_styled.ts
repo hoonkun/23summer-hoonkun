@@ -2,7 +2,7 @@
 
 import styled, { css } from "styled-components"
 
-import { Select } from "@/lib/styled/media-queries"
+import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 
 import {
   BlogFooterAreaBase, PostItemContentBase,
@@ -43,16 +43,16 @@ export const PostTitleArea = styled.div`
 
   transform: translateY(calc(-150px / 2));
 
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     height: 300px;
     font-size: 25px;
     padding: 0 25px;
   }
 
-  ${Select(900, 1150)} {
+  ${WhenWidthIn(900, 1150)} {
     font-size: 35px;
   }
-  ${Select(1150)} {
+  ${WhenWidthLeast(1150)} {
     font-size: 40px;
     height: 350px;
   }
@@ -65,7 +65,7 @@ export const PostTags = styled.div`
   justify-content: flex-end;
   margin-bottom: 8px;
 
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     margin-bottom: 4px;
   }
 `
@@ -81,7 +81,7 @@ export const PostTag = styled.div<{ color: string }>`
   color: white;
   text-shadow: none;
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 10px;
   }
 `
@@ -94,11 +94,11 @@ export const PostMetadata = styled.div`
   margin-top: 12px;
   line-height: 100%;
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 12px;
     margin-top: 4px;
   }
-  ${Select(500, 900)} {
+  ${WhenWidthIn(500, 900)} {
     font-size: 16px;
   }
 `
@@ -303,7 +303,7 @@ export const PostBelowArea = styled.div`
 `
 
 const PostBelowGrid = css`
-  ${Select(750)} {
+  ${WhenWidthLeast(750)} {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
@@ -330,7 +330,7 @@ export const PostContentDivider = styled.div`
   height: 0;
   border-bottom: 1px solid #ffffff40;
   margin: 50px 0;
-  ${Select(500)} {
+  ${WhenWidthLeast(500)} {
     margin: 75px 0;
   }
 `
@@ -338,10 +338,10 @@ export const PostContentDivider = styled.div`
 export const PostItemRoot = styled(PostItemRootBase)`
   margin: 15px 0;
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     height: 150px;
   }
-  ${Select(500)} {
+  ${WhenWidthLeast(500)} {
     height: 200px;
   }
 `
@@ -351,11 +351,11 @@ export const PostItemContent = styled(PostItemContentBase)``
 export const PostItemImageContainer = styled(PostItemImageContainerBase)``
 
 export const PostItemExcerpt = styled(PostItemExcerptBase)`
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 12px;
     margin: 15px 20px 0 20px;
   }
-  ${Select(500)} {
+  ${WhenWidthLeast(500)} {
     font-size: 16px;
     margin: 15px 25px 0 25px;
   }
@@ -366,11 +366,11 @@ export const BlogFooterArea = styled(BlogFooterAreaBase)`
 `
 
 export const PostItemTitle = styled(PostItemTitleBase)`
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 16px;
     margin: 0 30px;
   }
-  ${Select(500)} {
+  ${WhenWidthLeast(500)} {
     font-size: 20px;
     margin: 0 20px;
   }

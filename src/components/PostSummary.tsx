@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react"
 import styled from "styled-components"
-import { Select } from "@/lib/styled/media-queries"
+import { WhenWidthIn, WhenWidthMost } from "@/lib/styled/media-queries"
 import "@/lib/ktn"
 
 export type PostSummary = {
@@ -43,7 +43,7 @@ const Root = styled.div`
   
   transform: translateX(calc(375px + 100%));
   
-  ${Select(0, 1250)} {
+  ${WhenWidthMost(1250)} {
     display: none;
   }
   

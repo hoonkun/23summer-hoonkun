@@ -2,7 +2,7 @@
 
 import React, { PropsWithChildren } from "react"
 import MainBackground from "@/resources/main_bg_crop.jpg"
-import { Select } from "@/lib/styled/media-queries"
+import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
 
 export const Background: React.FC<PropsWithChildren<{ darker?: boolean }>> = ({ darker, children }) => {
@@ -34,10 +34,10 @@ export const BackgroundImage = styled.img<{ darker?: string }>`
   image-rendering: pixelated;
   
   ${({ darker }) => darker === "true" ? css`
-    ${Select(0, 1150)} {
+    ${WhenWidthMost(1150)} {
       filter: brightness(0.3);
     }
-    ${Select(1150)} {
+    ${WhenWidthLeast(1150)} {
       filter: brightness(0.75);
     }
   ` : ""}

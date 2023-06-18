@@ -1,8 +1,7 @@
 'use client'
 
-import styled, { css } from "styled-components";
-import { Select } from "@/lib/styled/media-queries"
-import { PostExpand } from "@/lib/23summer/post"
+import styled from "styled-components";
+import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 
 export const HomeRoot = styled.div`
   width: 100%; height: 100%;
@@ -19,7 +18,7 @@ export const ContentArea = styled.div`
 
   overflow-x: hidden;
 
-  ${Select(0, 1150)} {
+  ${WhenWidthMost(1150)} {
     flex-direction: column;
   }
 `
@@ -40,10 +39,10 @@ export const TitleArea = styled.div`
     
     color: #ffffff90;
     
-    ${Select(0, 500)} {
+    ${WhenWidthMost(500)} {
       font-size: 14px;
     }
-    ${Select(1350)} {
+    ${WhenWidthLeast(1350)} {
       font-size: 20px;
     }
   }
@@ -64,7 +63,7 @@ export const TitleText = styled.div`
     text-shadow: #ffffff80 0 0 10px;
   }
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 40px;
     
     > span {
@@ -72,7 +71,7 @@ export const TitleText = styled.div`
     }
   }
 
-  ${Select(1350)} {
+  ${WhenWidthLeast(1350)} {
     font-size: 75px;
   }
   
@@ -88,7 +87,7 @@ export const GlowText = styled.span`
     filter: blur(45px);
     transform: translateZ(0);
     
-    ${Select(0, 1150)} {
+    ${WhenWidthMost(1150)} {
       opacity: 0.6;
     }
   }
@@ -122,12 +121,12 @@ export const NameDivider = styled.div`
 `
 
 export const SectionDivider = styled.div`
-  ${Select(1150)} {
+  ${WhenWidthLeast(1150)} {
     width: 0; height: 250px;
     border-right: 2px solid #ffffff;
     margin: 0 75px;
   }
-  ${Select(0, 1150)} {
+  ${WhenWidthMost(1150)} {
     height: 60px;
   }
   
@@ -143,11 +142,11 @@ export const TitleContent = styled.div`
     color: #639aff;
   }
   
-  ${Select(0, 500)} {
+  ${WhenWidthMost(500)} {
     font-size: 13px;
   }
 
-  ${Select(1350)} {
+  ${WhenWidthLeast(1350)} {
     font-size: 24px;
   }
 `
@@ -157,7 +156,7 @@ export const ContentHeader = styled.div`
   opacity: 0.45;
   margin-bottom: 15px;
 
-  ${Select(1350)} {
+  ${WhenWidthLeast(1350)} {
     font-size: 16px;
   }
 `
@@ -180,7 +179,7 @@ export const MotdImage = styled.img<{ rotate: number }>`
   border: 3px solid white;
   rotate: ${({ rotate }) => rotate}deg;
   
-  ${Select(1350)} {
+  ${WhenWidthLeast(1350)} {
     width: 85px; height: 85px;
   }
 `
