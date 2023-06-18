@@ -155,16 +155,23 @@ export const TitleContent = styled.div`
 export const ContentHeader = styled.div`
   font-size: 12px;
   opacity: 0.45;
-
+  margin-bottom: 15px;
 
   ${Select(1350)} {
     font-size: 16px;
   }
 `
 
+export const Comment = styled.b`
+  margin-bottom: 15px;
+`
+
+export const ReadMe = styled.ul`
+  margin-bottom: 15px;
+`
+
 export const MotdContent = styled.div`
   display: flex; align-items: center;
-  margin-top: 15px;
 `
 
 export const MotdImage = styled.img<{ rotate: number }>`
