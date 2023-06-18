@@ -3,7 +3,7 @@ import { PostParams } from "@/app/posts/retrieve/[key]/page"
 import { Post, Posts } from "@/lib/23summer/post"
 import config from "@/config"
 
-export const alt = "Title Image of HoonKun.kiwi"
+export const alt = ""
 export const size = { width: 1200, height: 630 }
 
 export const contentType = "image/png"
