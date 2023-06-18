@@ -133,7 +133,7 @@ export default async function Page({ params }: { params: PostParams }) {
       <BlogFooterArea>
         <BlogFooterAreaLeft>
           <Link href={"/posts/list/1"}>키위새의 아무말 저장소</Link>
-          <BlogFooterDescription>
+          <BlogFooterDescription as={"ul"}>
             <li>개발</li>
             <li>마인크래프트</li>
             <li>생명과학II</li>
@@ -190,19 +190,15 @@ const PostItem: React.FC<{ post: Post }> = async ({ post }) => {
 
   return (
     <PostItemRoot href={`/posts/retrieve/${post.key}`}>
-      <PostItemImageContainer>
-        <Image
-          src={preview.default}
-          alt={`preview image of ${post.key}`}
-          sizes={"(max-width: 900px) 66vw, 100vw"}
-          style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
-          fill
-        />
-      </PostItemImageContainer>
-      <PostItemContent>
-        <PostItemTitle>{post.data.title}</PostItemTitle>
-        <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
-      </PostItemContent>
+      <PostItemImageContainer
+        src={preview.default}
+        alt={`preview image of ${post.key}`}
+        sizes={"(max-width: 900px) 66vw, 100vw"}
+        style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
+        fill
+      />
+      <PostItemTitle>{post.data.title}</PostItemTitle>
+      <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
     </PostItemRoot>
   )
 }

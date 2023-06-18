@@ -1,7 +1,6 @@
 import React from "react"
 
 import Link from "next/link"
-import Image from "next/image"
 import { notFound } from "next/navigation"
 
 import { Post, Posts } from "@/lib/23summer/post"
@@ -68,20 +67,16 @@ const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, pri
 
   return (
     <PostItemRoot expand={post.expand} href={`/posts/retrieve/${post.key}`}>
-      <PostItemImageContainer>
-        <Image
-          src={preview.default}
-          alt={`preview image of ${post.key}`}
-          sizes={"(max-width: 900px) 66vw, 100vw"}
-          style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
-          priority={priority}
-          fill
-        />
-      </PostItemImageContainer>
-      <PostItemContent>
-        <PostItemTitle expand={post.expand}>{post.data.title}</PostItemTitle>
-        <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
-      </PostItemContent>
+      <PostItemImageContainer
+        src={preview.default}
+        alt={`preview image of ${post.key}`}
+        sizes={"(max-width: 900px) 66vw, 100vw"}
+        style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
+        priority={priority}
+        fill
+      />
+      <PostItemTitle expand={post.expand}>{post.data.title}</PostItemTitle>
+      <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
     </PostItemRoot>
   )
 }

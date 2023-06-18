@@ -2,6 +2,7 @@
 
 
 import Link from "next/link"
+import Image from "next/image"
 import styled from "styled-components"
 
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
@@ -38,7 +39,7 @@ export const BlogFooterAreaLeft = styled.div`
   }
 `
 
-export const BlogFooterDescription = styled.ul`
+export const BlogFooterDescription = styled.div`
   list-style-type: none;
   font-size: 14px;
   font-weight: normal;
@@ -77,7 +78,14 @@ export const PostItemRootBase = styled(Link)`
 
   position: relative;
   
+  overflow: hidden;
+  
   transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
   ${WhenWidthLeast(750)} {
     &:hover {
@@ -87,7 +95,7 @@ export const PostItemRootBase = styled(Link)`
   }
 `
 
-export const PostItemImageContainerBase = styled.div`
+export const PostItemImageContainerBase = styled(Image)`
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 0;
@@ -110,10 +118,14 @@ export const PostItemTitleBase = styled.div`
   font-weight: bold;
   text-align: center;
   word-break: keep-all;
+  position: relative;
+  z-index: 2;
 `
 
 export const PostItemExcerptBase = styled.div`
   opacity: 0.75;
   text-align: center;
   word-break: keep-all;
+  position: relative;
+  z-index: 2;
 `
