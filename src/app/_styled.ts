@@ -290,7 +290,7 @@ export const PostsGrid = styled.div`
 
   width: 100%;
   
-  background-color: #12151a;
+  background-color: #0c0e11;
   
   padding: 30px 10%;
   ${Select(0, 500)} {
