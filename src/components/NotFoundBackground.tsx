@@ -3,12 +3,10 @@
 import React from "react"
 import styled from "styled-components"
 
-import BackgroundResource from "@/resources/404_bg.jpg"
-
-export const NotFoundBackground: React.FC = () => {
+export const NotFoundBackground: React.FC<{ src: string }> = ({ src }) => {
   return (
     <BackgroundImage
-      src={BackgroundResource.src}
+      src={src}
       alt={"Minecraft screenshot with moon setting in y=-59"}
     />
   )
