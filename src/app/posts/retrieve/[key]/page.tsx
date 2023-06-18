@@ -5,16 +5,33 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
 import { Post, Posts, PostWithContent } from "@/lib/23summer/post"
+import { Categories, Category } from "@/lib/23summer/category"
+
+import "@/lib/katex/styles.css"
+
 import {
-  BackgroundOverlay,
   InlineCode,
   MainImageContainer, PostBelowArea, PostContainer,
-  PostContent, PostContentDivider, PostFooterArea, PostFooterDescription, PostFooterLeft,
+  PostContent, PostContentDivider, BlogFooterArea,
   PostMetadata, PostRelated,
   PostRoot, PostSurroundings, PostTag, PostTags,
-  PostTitleArea
+  PostTitleArea,
+  PostItemExcerpt,
+  PostItemRoot,
+  PostItemTitle,
+  PostItemContent,
+  PostItemImageContainer,
 } from "@/app/posts/retrieve/_styled"
+import {
+  BackgroundOverlay,
+  BlogFooterDescription,
+  BlogFooterAreaLeft
+} from "@/app/posts/_styled"
+
 import { CodeHighlighter } from "@/components/CodeHighlighter"
+import { Background } from "@/components/Background"
+import { PostSummary } from "@/components/PostSummary"
+import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
 import { unified } from "unified"
 import remarkParse from "remark-parse"
@@ -26,19 +43,6 @@ import rehypeKatex from "rehype-katex"
 import rehypeRaw from "rehype-raw"
 import rehypeStringify from "rehype-stringify"
 import rehypeReact from "rehype-react"
-
-import "@/lib/katex/styles.css"
-import { Background } from "@/components/Background"
-import { Categories, Category } from "@/lib/23summer/category"
-import { PostSummary } from "@/components/PostSummary"
-import { KiwicraftLogo } from "@/components/KiwicraftLogo"
-import {
-  PostItemLinkChild,
-  PostPreviewContent,
-  PostPreviewImageContainer, PostRelatedExcerpt,
-  PostRelatedRoot,
-  PostRelatedTitle
-} from "@/app/posts/list/_styled"
 
 export type PostParams = { key: string }
 
@@ -120,27 +124,27 @@ export default async function Page({ params }: { params: PostParams }) {
         <PostBelowArea>
           { categories[0].display } 카테고리의 다른 글
           <PostRelated>
-            { related.map(it => <RelatedPostItem key={it.key} post={it}/>) }
+            { related.map(it => <PostItem key={it.key} post={it}/>) }
           </PostRelated>
 
           {[surroundings[0] === null ? null : "이전 글", surroundings[1] === null ? null : "다음 글"].filter(it => !!it).join("과 ")}
           <PostSurroundings>
-            { surroundings.filter(it => !!it).map(it => <RelatedPostItem key={it!.key} post={it!}/>) }
+            { surroundings.filter(it => !!it).map(it => <PostItem key={it!.key} post={it!}/>) }
           </PostSurroundings>
         </PostBelowArea>
       </PostContainer>
-      <PostFooterArea>
-        <PostFooterLeft>
+      <BlogFooterArea>
+        <BlogFooterAreaLeft>
           <Link href={"/posts/list/1"}>키위새의 아무말 저장소</Link>
-          <PostFooterDescription>
+          <BlogFooterDescription>
             <li>개발</li>
             <li>마인크래프트</li>
             <li>생명과학II</li>
             <li>아무말</li>
-          </PostFooterDescription>
-        </PostFooterLeft>
+          </BlogFooterDescription>
+        </BlogFooterAreaLeft>
         <KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
-      </PostFooterArea>
+      </BlogFooterArea>
     </PostRoot>
   )
 }
@@ -176,36 +180,33 @@ const ContentImage: React.FC<{ alt: string, postId: string, src: string }> = asy
   const image = await import(`$/__posts__/${props.postId}${props.src.replace("...image_base...", "")}`)
 
   return (
-    <Image src={image.default}
-           alt={props.alt}
-           style={{ width: "100%", height: "auto", marginTop: 15 }}
+    <Image
+      src={image.default}
+      alt={props.alt}
+      style={{ width: "100%", height: "auto", marginTop: 15 }}
     />
   )
 }
 
-const RelatedPostItem: React.FC<{ post: Post }> = async ({ post }) => {
+const PostItem: React.FC<{ post: Post }> = async ({ post }) => {
   const preview = await import(`$/__posts__/${post.key}/preview.png`)
 
   return (
-    <PostRelatedRoot>
-      <Link href={`/posts/retrieve/${post.key}`}>
-        <PostItemLinkChild>
-          <PostPreviewImageContainer>
-            <Image
-              src={preview.default}
-              alt={`preview image of ${post.key}`}
-              sizes={"(max-width: 900px) 66vw, 100vw"}
-              style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
-              fill
-            />
-          </PostPreviewImageContainer>
-          <PostPreviewContent>
-            <PostRelatedTitle>{post.data.title}</PostRelatedTitle>
-            <PostRelatedExcerpt>{ post.excerpt }</PostRelatedExcerpt>
-          </PostPreviewContent>
-        </PostItemLinkChild>
-      </Link>
-    </PostRelatedRoot>
+    <PostItemRoot href={`/posts/retrieve/${post.key}`}>
+      <PostItemImageContainer>
+        <Image
+          src={preview.default}
+          alt={`preview image of ${post.key}`}
+          sizes={"(max-width: 900px) 66vw, 100vw"}
+          style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
+          fill
+        />
+      </PostItemImageContainer>
+      <PostItemContent>
+        <PostItemTitle>{post.data.title}</PostItemTitle>
+        <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
+      </PostItemContent>
+    </PostItemRoot>
   )
 }
 

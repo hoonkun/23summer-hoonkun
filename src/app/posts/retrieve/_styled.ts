@@ -1,7 +1,14 @@
 'use client'
 
 import styled, { css } from "styled-components"
+
 import { Select } from "@/lib/styled/media-queries"
+
+import {
+  BlogFooterAreaBase, PostItemContentBase,
+  PostItemExcerptBase, PostItemImageContainerBase,
+  PostItemRootBase, PostItemTitleBase
+} from "@/app/posts/_styled"
 
 const ContentPadding = css`padding: 0 max((100% - 700px) / 2, 15px);`
 
@@ -48,84 +55,6 @@ export const PostTitleArea = styled.div`
   ${Select(1150)} {
     font-size: 40px;
     height: 350px;
-  }
-`
-
-export const BackgroundOverlay = styled.div`
-  position: absolute; left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #00000000 0%, #00000000 45%, #00000080 55%, #00000080 100%);
-`
-
-export const PostFooterArea = styled.div`
-  position: sticky; bottom: 0;
-  z-index: 0;
-  
-  width: 100%;
-  height: 150px;
-
-  ${ContentPadding};
-  
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  
-  ${Select(0, 500)} {
-    height: 100px;
-  }
-`
-
-export const PostsFooterArea = styled(PostFooterArea)`
-  padding: 0 10%;
-  ${Select(0, 500)} {
-    padding: 20px 15px;
-  }
-`
-
-export const PostFooterLeft = styled.div`
-  > a {
-    font-size: 20px;
-    font-weight: bold;
-    text-shadow: 0 0 5px #ffffff80;
-    
-    display: flex;
-    align-items: center;
-    
-    ${Select(500)} {
-      font-size: 26px;
-    }
-  }
-`
-
-export const PostFooterDescription = styled.ul`
-  list-style-type: none;
-  font-size: 14px;
-  font-weight: normal;
-  opacity: 0.75;
-  color: white;
-
-  ${Select(0, 500)} {
-    font-size: 12px;
-  }
-  ${Select(900)} {
-    font-size: 16px;
-  }
-
-  & > li {
-    display: inline-block;
-    padding-inline-start: 0;
-  }
-  & > li:nth-of-type(n+2):before {
-    content: "|";
-    margin: 0 12px;
-    font-size: 85%;
-    opacity: 0.4;
-
-    ${Select(0, 500)} {
-      margin: 0 8px;
-    }
   }
 `
 
@@ -403,5 +332,46 @@ export const PostContentDivider = styled.div`
   margin: 50px 0;
   ${Select(500)} {
     margin: 75px 0;
+  }
+`
+
+export const PostItemRoot = styled(PostItemRootBase)`
+  margin: 15px 0;
+  
+  ${Select(0, 500)} {
+    height: 150px;
+  }
+  ${Select(500)} {
+    height: 200px;
+  }
+`
+
+export const PostItemContent = styled(PostItemContentBase)``
+
+export const PostItemImageContainer = styled(PostItemImageContainerBase)``
+
+export const PostItemExcerpt = styled(PostItemExcerptBase)`
+  ${Select(0, 500)} {
+    font-size: 12px;
+    margin: 15px 20px 0 20px;
+  }
+  ${Select(500)} {
+    font-size: 16px;
+    margin: 15px 25px 0 25px;
+  }
+`
+
+export const BlogFooterArea = styled(BlogFooterAreaBase)`
+  ${ContentPadding};
+`
+
+export const PostItemTitle = styled(PostItemTitleBase)`
+  ${Select(0, 500)} {
+    font-size: 16px;
+    margin: 0 30px;
+  }
+  ${Select(500)} {
+    font-size: 20px;
+    margin: 0 20px;
   }
 `
