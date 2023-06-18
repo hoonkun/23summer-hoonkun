@@ -3,10 +3,10 @@ import { Post } from "@/lib/23summer/post"
 import Image from "next/image"
 import {
   PostItemLinkChild,
-  PostPreviewRoot, PostItemRootBase,
-  PostPreviewContent, PostPreviewExcerpt, PostItemExcerptBase,
+  PostPreviewRoot,
+  PostPreviewContent, PostPreviewExcerpt,
   PostPreviewImageContainer,
-  PostPreviewTitle, PostItemTitleBase, PostRelatedExcerpt, PostRelatedTitle, PostRelatedRoot
+  PostPreviewTitle, PostRelatedExcerpt, PostRelatedTitle, PostRelatedRoot
 } from "@/app/_styled"
 import Link from "next/link"
 

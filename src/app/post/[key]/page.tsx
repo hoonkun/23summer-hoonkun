@@ -6,9 +6,10 @@ import { Metadata } from "next"
 
 import { Post, Posts, PostWithContent } from "@/lib/23summer/post"
 import {
+  BackgroundOverlay,
   InlineCode,
   MainImageContainer, PostBelowArea, PostContainer,
-  PostContent, PostContentDivider,
+  PostContent, PostContentDivider, PostFooterArea, PostFooterDescription, PostFooterLeft,
   PostMetadata, PostRelated,
   PostRoot, PostSurroundings, PostTag, PostTags,
   PostTitleArea
@@ -31,6 +32,7 @@ import { Background } from "@/components/Background"
 import { Categories, Category } from "@/lib/23summer/category"
 import { PostSummary } from "@/components/PostSummary"
 import { RelatedPostItem } from "@/app/posts/[page]/_PostItem"
+import { Logo } from "@/app/post/[key]/_logo"
 
 export type PostParams = { key: string }
 
@@ -92,7 +94,9 @@ export default async function Page({ params }: { params: PostParams }) {
 
   return (
     <PostRoot>
-      <Background/>
+      <Background>
+        <BackgroundOverlay/>
+      </Background>
       <PostTitleArea>
         <PostTags>{ categories.map(it => <PostTag key={it.name} color={it.color.bright}>{ it.display }</PostTag>) }</PostTags>
         {post.data.title}
@@ -119,6 +123,18 @@ export default async function Page({ params }: { params: PostParams }) {
           </PostSurroundings>
         </PostBelowArea>
       </PostContainer>
+      <PostFooterArea>
+        <PostFooterLeft>
+          <Link href={"/posts/1"}>키위새의 아무말 저장소</Link>
+          <PostFooterDescription>
+            <li>개발</li>
+            <li>마인크래프트</li>
+            <li>생명과학II</li>
+            <li>아무말</li>
+          </PostFooterDescription>
+        </PostFooterLeft>
+        <Logo src={await import("@/resources/logo.png")}/>
+      </PostFooterArea>
     </PostRoot>
   )
 }

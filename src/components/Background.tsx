@@ -1,10 +1,10 @@
 'use client'
 
-import React from "react"
+import React, { PropsWithChildren } from "react"
 import { BackgroundContainer, BackgroundImage } from "@/app/_styled"
 import MainBackground from "@/resources/main_bg_crop.jpg"
 
-export const Background: React.FC<{ darker?: boolean }> = ({ darker }) => {
+export const Background: React.FC<PropsWithChildren<{ darker?: boolean }>> = ({ darker, children }) => {
   return (
     <BackgroundContainer>
       <BackgroundImage
@@ -12,6 +12,7 @@ export const Background: React.FC<{ darker?: boolean }> = ({ darker }) => {
         alt={"Minecraft screenshot with moon setting in y=-59"}
         darker={`${darker}`}
       />
+      {children}
     </BackgroundContainer>
   )
 }

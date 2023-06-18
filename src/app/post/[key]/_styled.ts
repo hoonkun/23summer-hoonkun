@@ -51,6 +51,63 @@ export const PostTitleArea = styled.div`
   }
 `
 
+export const BackgroundOverlay = styled.div`
+  position: absolute; left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #00000000 0%, #00000000 45%, #00000080 55%, #00000080 100%);
+`
+
+export const PostFooterArea = styled.div`
+  width: 100%;
+  height: 125px;
+
+  ${ContentPadding};
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const PostFooterLeft = styled.div`
+  > a {
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ffffff80;
+  }
+`
+
+export const PostFooterDescription = styled.ul`
+  list-style-type: none;
+  font-size: 14px;
+  font-weight: normal;
+  opacity: 0.75;
+  color: white;
+
+  ${Select(0, 500)} {
+    font-size: 12px;
+  }
+  ${Select(900)} {
+    font-size: 16px;
+  }
+
+  & > li {
+    display: inline-block;
+    padding-inline-start: 0;
+  }
+  & > li:nth-of-type(n+2):before {
+    content: "|";
+    margin: 0 12px;
+    font-size: 85%;
+    opacity: 0.4;
+
+    ${Select(0, 500)} {
+      margin: 0 8px;
+    }
+  }
+`
+
 export const PostTags = styled.div`
   display: flex;
   flex-direction: row;
@@ -295,9 +352,7 @@ export const PostBelowArea = styled.div`
   ${ContentPadding};
 `
 
-export const PostRelated = styled.div`
-  margin-bottom: 20px;
-  
+const PostBelowGrid = css`
   ${Select(750)} {
     display: grid;
     grid-auto-flow: column;
@@ -306,14 +361,16 @@ export const PostRelated = styled.div`
   }
 `
 
-export const PostSurroundings = styled.div`
+export const PostRelated = styled.div`
+  margin-bottom: 20px;
   
-  ${Select(750)} {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    grid-column-gap: 15px;
-  }
+  ${PostBelowGrid};
+`
+
+export const PostSurroundings = styled.div`
+  margin-bottom: 40px;
+  
+  ${PostBelowGrid};
 `
 
 export const PostContentDivider = styled.div`
