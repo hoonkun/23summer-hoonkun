@@ -14,7 +14,7 @@
   margin: 0;
 }
 
-html { color-scheme: dark; background-color: black; }
+html { color-scheme: dark; background-color: black; scroll-behavior: smooth; }
 
 html,
 body {

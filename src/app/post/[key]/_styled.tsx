@@ -99,20 +99,25 @@ export const PostMetadata = styled.div`
 
 export const MainImageContainer = styled.div`
   position: relative;
-  margin-top: -150px;
   margin-bottom: 25px;
 `
 
-export const PostContent = styled.div`
+export const PostContainer = styled.div`
   width: 100%;
-  height: 100%;
-  padding: 0 max((100% - 700px) / 2, 15px);
-  font-size: 16px;
   
   position: relative;
   z-index: 2;
 
   background-color: #181c22;
+`
+
+export const PostContent = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 0 max((100% - 700px) / 2, 15px);
+  margin-top: -150px;
+  
+  font-size: 16px;
   
   overflow-wrap: break-word;
 
@@ -139,7 +144,8 @@ export const PostContent = styled.div`
 
   h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF;
-    margin: 40px 0 10px 0;
+    margin: 0 0 10px 0;
+    padding-top: 40px;
   }
 
   .math-inline {
