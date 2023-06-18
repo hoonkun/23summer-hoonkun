@@ -19,7 +19,6 @@ import {
   PostItemExcerpt,
   PostItemRoot,
   PostItemTitle,
-  PostItemContent,
   PostItemImageContainer,
 } from "@/app/posts/retrieve/_styled"
 import {

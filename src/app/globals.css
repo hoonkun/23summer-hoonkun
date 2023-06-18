@@ -34,6 +34,10 @@ a {
   text-decoration: none;
 }
 
+::selection {
+  background-color: #b8d3ff40;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
 

@@ -14,7 +14,6 @@ import {
   VerticalDivider,
   PostItemRoot,
   PostItemTitle,
-  PostItemContent,
   PostItemExcerpt,
   PostItemImageContainer
 } from "@/app/posts/list/_styled"
@@ -45,6 +44,12 @@ export default async function Page({ params }: { params: { page: string } }) {
         </PostsCategories>
       </PostsTitle>
       <PostsGrid>
+        {/*
+        <PostsGridHeader>
+          Commits
+          <PostsGridHeaderIndicator>{ Posts.total }</PostsGridHeaderIndicator>
+        </PostsGridHeader>
+        */}
         {posts.map((it, index) => <PostItem key={it.key} priority={index === 0} post={it}/>)}
       </PostsGrid>
       <BlogFooterArea>

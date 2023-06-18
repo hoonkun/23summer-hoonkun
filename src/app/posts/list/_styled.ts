@@ -6,7 +6,7 @@ import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-q
 import { PostExpand } from "@/lib/23summer/post"
 
 import {
-  BlogFooterAreaBase, PostItemContentBase,
+  BlogFooterAreaBase,
   PostItemExcerptBase, PostItemImageContainerBase,
   PostItemRootBase, PostItemTitleBase
 } from "@/app/posts/_styled"
@@ -123,6 +123,41 @@ export const PostsGrid = styled.div`
   }
 `
 
+// export const PostsGridHeader = styled.div`
+//   display: flex;
+//   align-items: center;
+//
+//   margin: 0 0 20px 0;
+//   font-size: 32px;
+//
+//   font-weight: bold;
+//
+//   ${WhenWidthLeast(900)} {
+//     grid-column: span 3;
+//   }
+//   ${WhenWidthIn(750, 900)} {
+//     grid-column: span 2;
+//   }
+//   ${WhenWidthMost(750)} {
+//     grid-column: span 1;
+//     font-size: 24px;
+//     margin: -10px 0 10px 0;
+//   }
+// `
+//
+// export const PostsGridHeaderIndicator = styled.div`
+//   font-size: 20px;
+//   padding: 0 8px;
+//   background-color: #b8d3ff40;
+//   margin-left: 8px;
+//   border-radius: 4px;
+//   font-weight: normal;
+//
+//   ${WhenWidthMost(750)} {
+//     font-size: 16px;
+//   }
+// `
+
 export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
   ${WhenWidthIn(500, 750)} {
     height: 300px;
@@ -137,8 +172,6 @@ export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpan
     ${({ expand }) => expand ? css`grid-column: span ${expand.by2.columns};grid-row: span ${expand.by2.rows};` : ""}
   }
 `
-
-export const PostItemContent = styled(PostItemContentBase)``
 
 export const PostItemImageContainer = styled(PostItemImageContainerBase)``
 

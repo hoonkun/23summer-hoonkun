@@ -103,17 +103,6 @@ export const PostItemImageContainerBase = styled(Image)`
   overflow: hidden;
 `
 
-export const PostItemContentBase = styled.div`
-  position: relative;
-  width: 100%; height: 100%;
-  z-index: 1;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
 export const PostItemTitleBase = styled.div`
   font-weight: bold;
   text-align: center;

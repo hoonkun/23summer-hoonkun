@@ -5,7 +5,7 @@ import styled, { css } from "styled-components"
 import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 
 import {
-  BlogFooterAreaBase, PostItemContentBase,
+  BlogFooterAreaBase,
   PostItemExcerptBase, PostItemImageContainerBase,
   PostItemRootBase, PostItemTitleBase
 } from "@/app/posts/_styled"
@@ -345,8 +345,6 @@ export const PostItemRoot = styled(PostItemRootBase)`
     height: 200px;
   }
 `
-
-export const PostItemContent = styled(PostItemContentBase)``
 
 export const PostItemImageContainer = styled(PostItemImageContainerBase)``
 
