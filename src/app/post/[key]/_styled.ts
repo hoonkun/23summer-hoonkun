@@ -60,7 +60,7 @@ export const BackgroundOverlay = styled.div`
 
 export const PostFooterArea = styled.div`
   width: 100%;
-  height: 125px;
+  height: 150px;
 
   ${ContentPadding};
   
@@ -82,6 +82,10 @@ export const PostFooterLeft = styled.div`
     
     display: flex;
     align-items: center;
+    
+    ${Select(500)} {
+      font-size: 26px;
+    }
   }
 `
 
