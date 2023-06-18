@@ -4,7 +4,13 @@ import { PostsCategories, PostsGrid, PostsRoot, PostsTitle, VerticalDivider } fr
 import { notFound } from "next/navigation"
 import { Background } from "@/components/Background"
 import { PostItem } from "@/app/posts/[page]/_PostItem"
-import { BackgroundOverlay, PostFooterArea, PostFooterDescription, PostFooterLeft } from "@/app/post/[key]/_styled"
+import {
+  BackgroundOverlay,
+  PostFooterArea,
+  PostFooterDescription,
+  PostFooterLeft,
+  PostsFooterArea
+} from "@/app/post/[key]/_styled"
 import Link from "next/link"
 import { Logo } from "@/app/post/[key]/_logo"
 
@@ -31,13 +37,13 @@ export default async function Page({ params }: { params: { page: string } }) {
       <PostsGrid>
         {posts.map((it, index) => <PostItem key={it.key} priority={index === 0} post={it}/>)}
       </PostsGrid>
-      <PostFooterArea>
+      <PostsFooterArea>
         <PostFooterLeft>
           <Link href={"/"}>HoonKun <VerticalDivider/> 훈쿤</Link>
           <PostFooterDescription>재미있어 보이는 이것저것을 살피는 햇병아리 멍발자</PostFooterDescription>
         </PostFooterLeft>
-        <Logo src={await import("@/resources/logo.png")}/>
-      </PostFooterArea>
+        <Logo src={(await import("@/resources/logo.png")).default.src}/>
+      </PostsFooterArea>
     </PostsRoot>
   )
 }

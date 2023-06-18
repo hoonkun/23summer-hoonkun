@@ -6,6 +6,9 @@ const nextConfig = {
     },
     experimental: {
         esmExternals: "loose"
+    },
+    compiler: {
+        styledComponents: true
     }
 }
 

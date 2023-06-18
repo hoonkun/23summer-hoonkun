@@ -1,14 +1,14 @@
 import React from "react"
 import { dateBasedRandom, dice } from "@/lib/23summer/dice"
 import {
-  BackgroundContainer, BackgroundImage, ContentArea, ContentHeader, GlowText,
+  ContentArea, ContentHeader, GlowText,
   HomeRoot, MotdContent, MotdImage, MotdText, NameDivider,
   SectionDivider, TitleArea, TitleContent, TitleText
 } from "@/app/_styled"
 import Spacer from "@/components/Spacer"
-import { Background } from "@/components/Background"
 import Link from "next/link"
 import { NewTabIndicator } from "@/components/NewTabIndicator"
+import { Background } from "@/components/Background"
 
 export default function Home() {
   const die = dice()

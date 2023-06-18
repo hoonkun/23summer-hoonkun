@@ -133,7 +133,7 @@ export default async function Page({ params }: { params: PostParams }) {
             <li>아무말</li>
           </PostFooterDescription>
         </PostFooterLeft>
-        <Logo src={await import("@/resources/logo.png")}/>
+        <Logo src={(await import("@/resources/logo.png")).default.src}/>
       </PostFooterArea>
     </PostRoot>
   )

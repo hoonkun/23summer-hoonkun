@@ -1,8 +1,9 @@
 'use client'
 
 import React, { PropsWithChildren } from "react"
-import { BackgroundContainer, BackgroundImage } from "@/app/_styled"
 import MainBackground from "@/resources/main_bg_crop.jpg"
+import { Select } from "@/lib/styled/media-queries"
+import styled, { css } from "styled-components"
 
 export const Background: React.FC<PropsWithChildren<{ darker?: boolean }>> = ({ darker, children }) => {
   return (
@@ -16,3 +17,28 @@ export const Background: React.FC<PropsWithChildren<{ darker?: boolean }>> = ({ 
     </BackgroundContainer>
   )
 }
+
+export const BackgroundContainer = styled.div`
+  position: fixed;
+  width: 100vw; height: 100vh;
+
+  z-index: -2;
+`
+
+export const BackgroundImage = styled.img<{ darker?: string }>`
+  width: 100%; height: 100%;
+  display: block;
+  
+  object-fit: cover;
+  object-position: 30% 50%;
+  image-rendering: pixelated;
+  
+  ${({ darker }) => darker === "true" ? css`
+    ${Select(0, 1150)} {
+      filter: brightness(0.3);
+    }
+    ${Select(1150)} {
+      filter: brightness(0.75);
+    }
+  ` : ""}
+`

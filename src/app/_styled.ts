@@ -8,31 +8,6 @@ export const HomeRoot = styled.div`
   width: 100%; height: 100%;
 `
 
-export const BackgroundContainer = styled.div`
-  position: fixed;
-  width: 100vw; height: 100vh;
-
-  z-index: -2;
-`
-
-export const BackgroundImage = styled.img<{ darker?: string }>`
-  width: 100%; height: 100%;
-  display: block;
-  
-  object-fit: cover;
-  object-position: 30% 50%;
-  image-rendering: pixelated;
-  
-  ${({ darker }) => darker === "true" ? css`
-    ${Select(0, 1150)} {
-      filter: brightness(0.3);
-    }
-    ${Select(1150)} {
-      filter: brightness(0.75);
-    }
-  ` : ""}
-`
-
 export const ContentArea = styled.div`
   position: relative;
   width: 100%; height: 100%;

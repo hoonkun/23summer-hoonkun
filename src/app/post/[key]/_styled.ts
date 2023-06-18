@@ -59,6 +59,9 @@ export const BackgroundOverlay = styled.div`
 `
 
 export const PostFooterArea = styled.div`
+  position: sticky; bottom: 0;
+  z-index: 0;
+  
   width: 100%;
   height: 150px;
 
@@ -71,6 +74,13 @@ export const PostFooterArea = styled.div`
   
   ${Select(0, 500)} {
     height: 100px;
+  }
+`
+
+export const PostsFooterArea = styled(PostFooterArea)`
+  padding: 0 10%;
+  ${Select(0, 500)} {
+    padding: 20px 15px;
   }
 `
 
