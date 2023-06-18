@@ -134,10 +134,6 @@ export const SectionDivider = styled.div`
 `
 
 export const TitleContent = styled.div`
-  > ul {
-    margin: 15px 0;
-    padding-inline-start: 20px;
-  }
   a {
     color: #639aff;
   }
@@ -167,7 +163,8 @@ export const Comment = styled.b`
 `
 
 export const ReadMe = styled.ul`
-  margin-bottom: 15px;
+  margin: 15px 0 30px 0;
+  padding-inline-start: 20px;
 `
 
 export const MotdContent = styled.div`
