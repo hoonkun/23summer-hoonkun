@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react"
 import styled from "styled-components"
-import { WhenWidthIn, WhenWidthMost } from "@/lib/styled/media-queries"
+import { WhenWidthMost } from "@/lib/styled/media-queries"
 import "@/lib/ktn"
 
 export type PostSummary = {
@@ -25,9 +25,12 @@ export const PostSummary: React.FC<PostSummaryProps> = ({ summary }) => {
         <SummaryTitle>이 페이지의 내용</SummaryTitle>
         <Summaries>
           { summary.map(it =>
-            <a key={`${it.type}_${it.text}`} href={`#${it.text.replaceAll(" ", "_")}`}>
-              <SummaryItem indent={parseInt(it.type.substring(1)) - minIndent}>{ it.text }</SummaryItem>
-            </a>
+            <SummaryItem
+              key={`${it.type}_${it.text}`}
+              href={`#${it.text.replaceAll(" ", "_")}`}
+              indent={parseInt(it.type.substring(1)) - minIndent}>
+              { it.text }
+            </SummaryItem>
           ) }
         </Summaries>
       </Sticky>
@@ -70,6 +73,7 @@ const Summaries = styled.div`
   line-height: 125%;
 `
 
-const SummaryItem = styled.div<{ indent: number }>`
+const SummaryItem = styled.a<{ indent: number }>`
   padding: 7.5px 0 7.5px ${({ indent }) => indent * 20}px;
+  display: block;
 `
