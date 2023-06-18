@@ -138,12 +138,16 @@ export const PostContent = styled.div`
   }
 
   table {
-    border-color: #FFFFFFBB;
+    width: 100%;
+    border: 1px solid #FFFFFFBB;
+    border-collapse: collapse;
+    margin: 5px 0;
     table-layout: fixed;
   }
 
   table td, th {
-    border-color: #FFFFFFBB;
+    border: 1px solid #FFFFFFBB;
+    text-align: center;
   }
 
   del {
@@ -172,7 +176,7 @@ export const PostContent = styled.div`
   }
 
   table .math-inline {
-    margin-bottom: -5px;
+    margin-bottom: -14px;
   }
 
   p:has(> img) + blockquote {
