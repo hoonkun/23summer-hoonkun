@@ -3,16 +3,16 @@ import { Posts } from "@/lib/23summer/post"
 import { PostsCategories, PostsGrid, PostsRoot, PostsTitle, VerticalDivider } from "@/app/_styled"
 import { notFound } from "next/navigation"
 import { Background } from "@/components/Background"
-import { PostItem } from "@/app/posts/[page]/_PostItem"
+import { PostItem } from "@/app/posts/list/[page]/_PostItem"
 import {
   BackgroundOverlay,
   PostFooterArea,
   PostFooterDescription,
   PostFooterLeft,
   PostsFooterArea
-} from "@/app/post/[key]/_styled"
+} from "@/app/posts/retrieve/[key]/_styled"
 import Link from "next/link"
-import { Logo } from "@/app/post/[key]/_logo"
+import { Logo } from "@/app/posts/retrieve/[key]/_logo"
 
 export default async function Page({ params }: { params: { page: string } }) {
   const page = parseInt(params.page)

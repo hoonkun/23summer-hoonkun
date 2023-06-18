@@ -15,7 +15,7 @@ export const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ po
 
   return (
     <PostPreviewRoot expand={post.expand}>
-      <Link href={`/post/${post.key}`}>
+      <Link href={`/posts/retrieve/${post.key}`}>
         <PostItemLinkChild>
           <PostPreviewImageContainer>
             <Image
@@ -42,7 +42,7 @@ export const RelatedPostItem: React.FC<{ post: Post }> = async ({ post }) => {
 
   return (
     <PostRelatedRoot>
-      <Link href={`/post/${post.key}`}>
+      <Link href={`/posts/retrieve/${post.key}`}>
         <PostItemLinkChild>
           <PostPreviewImageContainer>
             <Image

@@ -24,7 +24,7 @@ export default function Home() {
             <NameDivider />
             <GlowText>훈쿤</GlowText>
           </TitleText>
-          <Link href={"/posts/1"}><NewTabIndicator/> 키위새의 아무말 저장소</Link>
+          <Link href={"/posts/list/1"}><NewTabIndicator/> 키위새의 아무말 저장소</Link>
         </TitleArea>
         <SectionDivider />
         <TitleContent>

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/server"
-import { PostParams } from "@/app/post/[key]/page"
+import { PostParams } from "@/app/posts/retrieve/[key]/page"
 import { Post, Posts } from "@/lib/23summer/post"
 import config from "@/config"
 

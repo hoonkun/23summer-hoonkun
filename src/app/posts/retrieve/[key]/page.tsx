@@ -13,8 +13,8 @@ import {
   PostMetadata, PostRelated,
   PostRoot, PostSurroundings, PostTag, PostTags,
   PostTitleArea
-} from "@/app/post/[key]/_styled"
-import { Highlighter } from "@/app/post/[key]/_Highlighter"
+} from "@/app/posts/retrieve/[key]/_styled"
+import { Highlighter } from "@/app/posts/retrieve/[key]/_Highlighter"
 
 import { unified } from "unified"
 import remarkParse from "remark-parse"
@@ -31,8 +31,8 @@ import "@/lib/katex/styles.css"
 import { Background } from "@/components/Background"
 import { Categories, Category } from "@/lib/23summer/category"
 import { PostSummary } from "@/components/PostSummary"
-import { RelatedPostItem } from "@/app/posts/[page]/_PostItem"
-import { Logo } from "@/app/post/[key]/_logo"
+import { RelatedPostItem } from "@/app/posts/list/[page]/_PostItem"
+import { Logo } from "@/app/posts/retrieve/[key]/_logo"
 
 export type PostParams = { key: string }
 
@@ -125,7 +125,7 @@ export default async function Page({ params }: { params: PostParams }) {
       </PostContainer>
       <PostFooterArea>
         <PostFooterLeft>
-          <Link href={"/posts/1"}>키위새의 아무말 저장소</Link>
+          <Link href={"/posts/list/1"}>키위새의 아무말 저장소</Link>
           <PostFooterDescription>
             <li>개발</li>
             <li>마인크래프트</li>
