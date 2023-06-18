@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <HomeRoot>
-      <Background darker={true}/>
+      <Background darker/>
       <ContentArea>
         <TitleArea>
           <TitleText>

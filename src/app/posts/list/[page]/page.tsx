@@ -20,12 +20,11 @@ import {
   PostItemImageContainer
 } from "@/app/posts/list/_styled"
 import {
-  BackgroundOverlay,
   BlogFooterDescription,
   BlogFooterAreaLeft
 } from "@/app/posts/_styled"
 
-import { Background } from "@/components/Background"
+import { Background, BackgroundOverlay } from "@/components/Background"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
 export default async function Page({ params }: { params: { page: string } }) {
@@ -36,9 +35,7 @@ export default async function Page({ params }: { params: { page: string } }) {
 
   return (
     <PostsRoot>
-      <Background>
-        <BackgroundOverlay/>
-      </Background>
+      <Background overlay/>
       <PostsTitle>
         <div>키위새의 아무말 저장소</div>
         <PostsCategories>

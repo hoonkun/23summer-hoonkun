@@ -1,32 +1,37 @@
 'use client'
 
-import React, { PropsWithChildren } from "react"
+import React from "react"
 import MainBackground from "@/resources/main_bg_crop.jpg"
-import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
+import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
 
-export const Background: React.FC<PropsWithChildren<{ darker?: boolean }>> = ({ darker, children }) => {
+export const Background: React.FC<{ darker?: boolean, overlay?: boolean }> = ({ darker, overlay }) => {
   return (
-    <BackgroundContainer>
+    <>
       <BackgroundImage
         src={MainBackground.src}
         alt={"Minecraft screenshot with moon setting in y=-59"}
         darker={`${darker}`}
       />
-      {children}
-    </BackgroundContainer>
+      {overlay && <BackgroundOverlay/>}
+    </>
   )
 }
 
-export const BackgroundContainer = styled.div`
+export const BackgroundOverlay = styled.div`
+  position: fixed; left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  
+  z-index: -1;
+  
+  background: linear-gradient(to bottom, #00000000 0%, #00000000 45%, #00000080 55%, #00000080 100%);
+`
+
+export const BackgroundImage = styled.img<{ darker?: string }>`
   position: fixed;
   width: 100vw; height: 100vh;
 
   z-index: -2;
-`
-
-export const BackgroundImage = styled.img<{ darker?: string }>`
-  width: 100%; height: 100%;
   display: block;
   
   object-fit: cover;

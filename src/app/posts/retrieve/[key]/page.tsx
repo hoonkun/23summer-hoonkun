@@ -23,13 +23,12 @@ import {
   PostItemImageContainer,
 } from "@/app/posts/retrieve/_styled"
 import {
-  BackgroundOverlay,
   BlogFooterDescription,
   BlogFooterAreaLeft
 } from "@/app/posts/_styled"
 
 import { CodeHighlighter } from "@/components/CodeHighlighter"
-import { Background } from "@/components/Background"
+import { Background, BackgroundOverlay } from "@/components/Background"
 import { PostSummary } from "@/components/PostSummary"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
@@ -104,9 +103,7 @@ export default async function Page({ params }: { params: PostParams }) {
 
   return (
     <PostRoot>
-      <Background>
-        <BackgroundOverlay/>
-      </Background>
+      <Background overlay/>
       <PostTitleArea>
         <PostTags>{ categories.map(it => <PostTag key={it.name} color={it.color.bright}>{ it.display }</PostTag>) }</PostTags>
         {post.data.title}

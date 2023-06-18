@@ -6,13 +6,6 @@ import styled from "styled-components"
 
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 
-export const BackgroundOverlay = styled.div`
-  position: absolute; left: 0; top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #00000000 0%, #00000000 45%, #00000080 55%, #00000080 100%);
-`
-
 export const BlogFooterAreaBase = styled.div`
   position: sticky; bottom: 0;
   z-index: 0;
