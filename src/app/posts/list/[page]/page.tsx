@@ -1,18 +1,25 @@
 import React from "react"
-import { Posts } from "@/lib/23summer/post"
-import { PostsCategories, PostsGrid, PostsRoot, PostsTitle, VerticalDivider } from "@/app/_styled"
+import { Post, Posts } from "@/lib/23summer/post"
+import {
+  PostItemLinkChild, PostPreviewContent, PostPreviewExcerpt, PostPreviewImageContainer,
+  PostPreviewRoot, PostPreviewTitle,
+  PostsCategories,
+  PostsGrid,
+  PostsRoot,
+  PostsTitle,
+  VerticalDivider
+} from "@/app/posts/list/_styled"
 import { notFound } from "next/navigation"
 import { Background } from "@/components/Background"
-import { PostItem } from "@/app/posts/list/[page]/_PostItem"
 import {
   BackgroundOverlay,
-  PostFooterArea,
   PostFooterDescription,
   PostFooterLeft,
   PostsFooterArea
-} from "@/app/posts/retrieve/[key]/_styled"
+} from "@/app/posts/retrieve/_styled"
 import Link from "next/link"
-import { Logo } from "@/app/posts/retrieve/[key]/_logo"
+import { KiwicraftLogo } from "@/components/KiwicraftLogo"
+import Image from "next/image"
 
 export default async function Page({ params }: { params: { page: string } }) {
   const page = parseInt(params.page)
@@ -42,7 +49,7 @@ export default async function Page({ params }: { params: { page: string } }) {
           <Link href={"/"}>HoonKun <VerticalDivider/> 훈쿤</Link>
           <PostFooterDescription>재미있어 보이는 이것저것을 살피는 햇병아리 멍발자</PostFooterDescription>
         </PostFooterLeft>
-        <Logo src={(await import("@/resources/logo.png")).default.src}/>
+        <KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
       </PostsFooterArea>
     </PostsRoot>
   )
@@ -50,4 +57,31 @@ export default async function Page({ params }: { params: { page: string } }) {
 
 export async function generateStaticParams() {
   return new Array(Posts.pages).fill(undefined).map((_, index) => ({ page: `${index + 1}` }))
+}
+
+const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, priority }) => {
+  const preview = await import(`$/__posts__/${post.key}/preview.png`)
+
+  return (
+    <PostPreviewRoot expand={post.expand}>
+      <Link href={`/posts/retrieve/${post.key}`}>
+        <PostItemLinkChild>
+          <PostPreviewImageContainer>
+            <Image
+              src={preview.default}
+              alt={`preview image of ${post.key}`}
+              sizes={"(max-width: 900px) 66vw, 100vw"}
+              style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
+              priority={priority}
+              fill
+            />
+          </PostPreviewImageContainer>
+          <PostPreviewContent>
+            <PostPreviewTitle expand={post.expand}>{post.data.title}</PostPreviewTitle>
+            <PostPreviewExcerpt>{ post.excerpt }</PostPreviewExcerpt>
+          </PostPreviewContent>
+        </PostItemLinkChild>
+      </Link>
+    </PostPreviewRoot>
+  )
 }

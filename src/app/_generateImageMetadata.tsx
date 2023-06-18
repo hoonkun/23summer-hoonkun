@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/server"
-import { dateBasedRandom, dice } from "@/lib/23summer/dice"
+import { dice } from "@/lib/23summer/dice"
 import "@/lib/ktn"
 import config from "@/config"
 

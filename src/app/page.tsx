@@ -7,7 +7,7 @@ import {
 } from "@/app/_styled"
 import Spacer from "@/components/Spacer"
 import Link from "next/link"
-import { NewTabIndicator } from "@/components/NewTabIndicator"
+import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
 import { Background } from "@/components/Background"
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
             <NameDivider />
             <GlowText>훈쿤</GlowText>
           </TitleText>
-          <Link href={"/posts/list/1"}><NewTabIndicator/> 키위새의 아무말 저장소</Link>
+          <Link href={"/posts/list/1"}><NewTabLinkIndicator/> 키위새의 아무말 저장소</Link>
         </TitleArea>
         <SectionDivider />
         <TitleContent>

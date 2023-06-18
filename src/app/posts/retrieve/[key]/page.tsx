@@ -13,8 +13,8 @@ import {
   PostMetadata, PostRelated,
   PostRoot, PostSurroundings, PostTag, PostTags,
   PostTitleArea
-} from "@/app/posts/retrieve/[key]/_styled"
-import { Highlighter } from "@/app/posts/retrieve/[key]/_Highlighter"
+} from "@/app/posts/retrieve/_styled"
+import { CodeHighlighter } from "@/components/CodeHighlighter"
 
 import { unified } from "unified"
 import remarkParse from "remark-parse"
@@ -31,8 +31,14 @@ import "@/lib/katex/styles.css"
 import { Background } from "@/components/Background"
 import { Categories, Category } from "@/lib/23summer/category"
 import { PostSummary } from "@/components/PostSummary"
-import { RelatedPostItem } from "@/app/posts/list/[page]/_PostItem"
-import { Logo } from "@/app/posts/retrieve/[key]/_logo"
+import { KiwicraftLogo } from "@/components/KiwicraftLogo"
+import {
+  PostItemLinkChild,
+  PostPreviewContent,
+  PostPreviewImageContainer, PostRelatedExcerpt,
+  PostRelatedRoot,
+  PostRelatedTitle
+} from "@/app/posts/list/_styled"
 
 export type PostParams = { key: string }
 
@@ -67,7 +73,7 @@ export default async function Page({ params }: { params: PostParams }) {
     .use(rehypeReact, { createElement, Fragment, components: {
         img: (props: any) => <ContentImage src={props.src} alt={props.alt} postId={params.key}/>,
         code: (props: any) => props.className ?
-          <Highlighter className={props.className}>{props.children}</Highlighter> :
+          <CodeHighlighter className={props.className}>{props.children}</CodeHighlighter> :
           <InlineCode {...props}/>,
         a: (props: any) => props.href.startsWith("/") ?
           <Link href={props.href} scroll={false}>{props.children}</Link> :
@@ -133,7 +139,7 @@ export default async function Page({ params }: { params: PostParams }) {
             <li>아무말</li>
           </PostFooterDescription>
         </PostFooterLeft>
-        <Logo src={(await import("@/resources/logo.png")).default.src}/>
+        <KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
       </PostFooterArea>
     </PostRoot>
   )
@@ -176,3 +182,30 @@ const ContentImage: React.FC<{ alt: string, postId: string, src: string }> = asy
     />
   )
 }
+
+const RelatedPostItem: React.FC<{ post: Post }> = async ({ post }) => {
+  const preview = await import(`$/__posts__/${post.key}/preview.png`)
+
+  return (
+    <PostRelatedRoot>
+      <Link href={`/posts/retrieve/${post.key}`}>
+        <PostItemLinkChild>
+          <PostPreviewImageContainer>
+            <Image
+              src={preview.default}
+              alt={`preview image of ${post.key}`}
+              sizes={"(max-width: 900px) 66vw, 100vw"}
+              style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
+              fill
+            />
+          </PostPreviewImageContainer>
+          <PostPreviewContent>
+            <PostRelatedTitle>{post.data.title}</PostRelatedTitle>
+            <PostRelatedExcerpt>{ post.excerpt }</PostRelatedExcerpt>
+          </PostPreviewContent>
+        </PostItemLinkChild>
+      </Link>
+    </PostRelatedRoot>
+  )
+}
+
