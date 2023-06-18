@@ -22,7 +22,7 @@ import {
   BlogFooterAreaLeft
 } from "@/app/posts/_styled"
 
-import { Background, BackgroundOverlay } from "@/components/Background"
+import { Background } from "@/components/Background"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
 export default async function Page({ params }: { params: { page: string } }) {

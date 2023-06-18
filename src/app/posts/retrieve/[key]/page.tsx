@@ -27,7 +27,7 @@ import {
 } from "@/app/posts/_styled"
 
 import { CodeHighlighter } from "@/components/CodeHighlighter"
-import { Background, BackgroundOverlay } from "@/components/Background"
+import { Background } from "@/components/Background"
 import { PostSummary } from "@/components/PostSummary"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
