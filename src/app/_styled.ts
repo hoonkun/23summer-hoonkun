@@ -164,6 +164,7 @@ export const ContentHeader = styled.div`
 
 export const Comment = styled.b`
   margin-bottom: 15px;
+  display: block;
 `
 
 export const ReadMe = styled.ul`
