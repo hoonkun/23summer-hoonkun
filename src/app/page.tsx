@@ -3,10 +3,12 @@ import { dateBasedRandom, dice } from "@/lib/23summer/dice"
 import {
   BackgroundContainer, BackgroundImage, ContentArea, ContentHeader, GlowText,
   HomeRoot, MotdContent, MotdImage, MotdText, NameDivider,
-  SectionDivider, TitleContent, TitleText
+  SectionDivider, TitleArea, TitleContent, TitleText
 } from "@/app/_styled"
 import Spacer from "@/components/Spacer"
 import { Background } from "@/components/Background"
+import Link from "next/link"
+import { NewTabIndicator } from "@/components/NewTabIndicator"
 
 export default function Home() {
   const die = dice()
@@ -16,11 +18,14 @@ export default function Home() {
     <HomeRoot>
       <Background darker={true}/>
       <ContentArea>
-        <TitleText>
-          <span>HoonKun</span>
-          <NameDivider />
-          <GlowText>훈쿤</GlowText>
-        </TitleText>
+        <TitleArea>
+          <TitleText>
+            <span>HoonKun</span>
+            <NameDivider />
+            <GlowText>훈쿤</GlowText>
+          </TitleText>
+          <Link href={"/posts/1"}><NewTabIndicator/> 키위새의 아무말 저장소</Link>
+        </TitleArea>
         <SectionDivider />
         <TitleContent>
           <ContentHeader>방가어요!!</ContentHeader>
@@ -34,7 +39,7 @@ export default function Home() {
             <li>🌱 최근에는 Jetpack Compose에 대해 공부 중이에요!</li>
             <li>🥝 주로 개인 프로젝트를 통해 공부하고 있어요.</li>
             <li>📫 트위터<a href={"https://twitter.com/arctic_apteryx"}>@arctic_apteryx</a>에 주로 상주 중이에요!</li>
-            <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/>&nbsp;&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;</small>같이 할 사람 절찬리에 모집 중! (??)</li>
+            <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/>&nbsp;&nbsp;&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;</small>같이 할 사람 절찬리에 모집 중! (??)</li>
           </ul>
           <Spacer height={15}/>
           <ContentHeader>오늘의 아무말</ContentHeader>

@@ -49,6 +49,35 @@ export const ContentArea = styled.div`
   }
 `
 
+export const TitleArea = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > a {
+    align-self: flex-end;
+    position: relative;
+    z-index: 20;
+
+    border-radius: 3px;
+    padding: 0 4px;
+    margin-right: -4px;
+    margin-top: -6px;
+    
+    color: #ffffff90;
+    
+    ${Select(0, 500)} {
+      font-size: 14px;
+    }
+    ${Select(1350)} {
+      font-size: 20px;
+    }
+  }
+  
+  & > a:hover {
+    background-color: #ffffff20;
+  }
+`
+
 export const TitleText = styled.div`
   display: flex;
   align-items: center;
@@ -62,7 +91,16 @@ export const TitleText = styled.div`
   
   ${Select(0, 500)} {
     font-size: 40px;
+    
+    > span {
+      text-shadow: #ffffff40 0 0 10px;
+    }
   }
+
+  ${Select(1350)} {
+    font-size: 75px;
+  }
+  
 `
 
 export const GlowText = styled.span`
@@ -115,7 +153,7 @@ export const SectionDivider = styled.div`
     margin: 0 75px;
   }
   ${Select(0, 1150)} {
-    height: 75px;
+    height: 60px;
   }
   
   opacity: 0.15;
@@ -133,11 +171,20 @@ export const TitleContent = styled.div`
   ${Select(0, 500)} {
     font-size: 13px;
   }
+
+  ${Select(1350)} {
+    font-size: 24px;
+  }
 `
 
 export const ContentHeader = styled.div`
   font-size: 12px;
   opacity: 0.45;
+
+
+  ${Select(1350)} {
+    font-size: 16px;
+  }
 `
 
 export const MotdContent = styled.div`
@@ -149,6 +196,10 @@ export const MotdImage = styled.img<{ rotate: number }>`
   width: 65px; height: 65px;
   border: 3px solid white;
   rotate: ${({ rotate }) => rotate}deg;
+  
+  ${Select(1350)} {
+    width: 85px; height: 85px;
+  }
 `
 
 export const MotdText = styled.div`
