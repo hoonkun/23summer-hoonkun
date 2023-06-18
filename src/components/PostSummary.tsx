@@ -17,6 +17,8 @@ type PostSummaryProps = {
 export const PostSummary: React.FC<PostSummaryProps> = ({ summary }) => {
   const minIndent = useMemo(() => summary.map(it => parseInt(it.type.substring(1))).min(), [summary])
 
+  if (summary.length === 0) return <></>
+
   return (
     <Root>
       <Sticky>
