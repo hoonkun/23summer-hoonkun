@@ -1,16 +1,9 @@
 import React from "react"
-import { Post, Posts } from "@/lib/23summer/post"
-import {
-  PostItemLinkChild,
-  PostItemViewRoot,
-  PostPreviewContent, PostPreviewExcerpt,
-  PostPreviewImageContainer, PostPreviewTitle, PostsCategories,
-  PostsGrid, PostsRoot, PostsTitle
-} from "@/app/_styled"
-import Image from "next/image"
+import { Posts } from "@/lib/23summer/post"
+import { PostsCategories, PostsGrid, PostsRoot, PostsTitle } from "@/app/_styled"
 import { notFound } from "next/navigation"
 import { Background } from "@/components/Background"
-import Link from "next/link"
+import { PostItem } from "@/app/posts/[page]/_PostItem"
 
 export default function Page({ params }: { params: { page: string } }) {
   const page = parseInt(params.page)
@@ -40,31 +33,3 @@ export default function Page({ params }: { params: { page: string } }) {
 export async function generateStaticParams() {
   return new Array(Posts.pages).fill(undefined).map((_, index) => ({ page: `${index + 1}` }))
 }
-
-const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, priority }) => {
-  const preview = await import(`$/__posts__/${post.key}/preview.png`)
-
-  return (
-    <PostItemViewRoot expand={post.expand}>
-      <Link href={`/post/${post.key}`}>
-        <PostItemLinkChild>
-          <PostPreviewImageContainer>
-            <Image
-              src={preview.default}
-              alt={`preview image of ${post.key}`}
-              sizes={"(max-width: 900px) 66vw, 100vw"}
-              style={{ objectFit: "cover", filter: "brightness(0.5) blur(5px)", scale: "1.2" }}
-              priority={priority}
-              fill
-            />
-          </PostPreviewImageContainer>
-          <PostPreviewContent>
-            <PostPreviewTitle expand={post.expand}>{post.data.title}</PostPreviewTitle>
-            <PostPreviewExcerpt>{ post.excerpt }</PostPreviewExcerpt>
-          </PostPreviewContent>
-        </PostItemLinkChild>
-      </Link>
-    </PostItemViewRoot>
-  )
-}
-

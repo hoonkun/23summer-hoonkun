@@ -36,8 +36,8 @@ export const PostSummary: React.FC<PostSummaryProps> = ({ summary }) => {
 }
 
 const Root = styled.div`
-  position: absolute; top: 40px; right: 50%;
-  width: 210px; height: calc(100% - 40px);
+  position: absolute; top: calc(175px + 20px); right: 50%;
+  width: 210px; height: calc(100% - 40px - 175px);
   
   word-break: keep-all;
   
@@ -46,10 +46,15 @@ const Root = styled.div`
   ${Select(0, 1250)} {
     display: none;
   }
+  
+  & a {
+    color: white !important;
+    text-decoration: none !important;
+  }
 `
 
 const Sticky = styled.div`
-  position: sticky; top: 40px;
+  position: sticky; top: calc(40px);
 
   border-left: 4px solid #3485ff;
   padding-left: 17.5px;

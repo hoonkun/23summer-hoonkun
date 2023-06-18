@@ -1,4 +1,4 @@
-import React, { createElement, Fragment, ReactNode } from "react"
+import React, { createElement, Fragment } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -7,13 +7,13 @@ import { Metadata } from "next"
 import { Post, Posts, PostWithContent } from "@/lib/23summer/post"
 import {
   InlineCode,
-  MainImageContainer, PostContainer,
-  PostContent,
-  PostMetadata,
-  PostRoot, PostTag, PostTags,
+  MainImageContainer, PostBelowArea, PostContainer,
+  PostContent, PostContentDivider,
+  PostMetadata, PostRelated,
+  PostRoot, PostSurroundings, PostTag, PostTags,
   PostTitleArea
 } from "@/app/post/[key]/_styled"
-import { Highlighter } from "@/app/post/[key]/Highlighter"
+import { Highlighter } from "@/app/post/[key]/_Highlighter"
 
 import { unified } from "unified"
 import remarkParse from "remark-parse"
@@ -28,8 +28,9 @@ import rehypeReact from "rehype-react"
 
 import "@/lib/katex/styles.css"
 import { Background } from "@/components/Background"
-import { Categories } from "@/lib/23summer/category"
+import { Categories, Category } from "@/lib/23summer/category"
 import { PostSummary } from "@/components/PostSummary"
+import { RelatedPostItem } from "@/app/posts/[page]/_PostItem"
 
 export type PostParams = { key: string }
 
@@ -82,7 +83,10 @@ export default async function Page({ params }: { params: PostParams }) {
   const summary = Array.from(html.value.toString().matchAll(/<(?<opening>h1|h2|h3|h4|h5|h6)>(?<text>.+?)<\/(?<closing>h1|h2|h3|h4|h5|h6)>/gi))
     .map(it => ({ type: it.groups?.["opening"] ?? "h6", text: it.groups?.["text"] ?? "" }))
 
-  console.log(summary)
+  const categories = post.data.categories.map(it => Categories.retrieve(it)).filter(it => !!it) as Category[]
+
+  const surroundings = [Posts.previous(post.key), Posts.next(post.key)]
+  const related = Posts.related(post.key, post.data.categories[0], surroundings)
 
   const mainImage = await import(`$/__posts__/${post.key}/main.png`)
 
@@ -90,18 +94,30 @@ export default async function Page({ params }: { params: PostParams }) {
     <PostRoot>
       <Background/>
       <PostTitleArea>
-        <PostTags>{ post.data.categories.map(it => Categories.retrieve(it)).filter(it => !!it).map(it => <PostTag key={it!.name} color={it!.color.bright}>{ it!.display }</PostTag>) }</PostTags>
+        <PostTags>{ categories.map(it => <PostTag key={it.name} color={it.color.bright}>{ it.display }</PostTag>) }</PostTags>
         {post.data.title}
         <PostMetadata>{ post.data.date } | { post.data.author.replace("GoHoon", "HoonKun") }</PostMetadata>
       </PostTitleArea>
       <PostContainer>
         <PostContent>
+          <PostSummary summary={summary as PostSummary[]}/>
           <MainImageContainer style={{ width: "min(700px, 100%)", aspectRatio: `${mainImage.default.width / mainImage.default.height}` }}>
             <Image src={mainImage.default} alt={`${post.data.title}`} priority fill sizes={"(min-width: 850px) 800px, 100vw"} style={{ objectFit: "cover" }}/>
           </MainImageContainer>
           {content.result}
         </PostContent>
-        <PostSummary summary={summary as PostSummary[]}/>
+        <PostContentDivider/>
+        <PostBelowArea>
+          { categories[0].display } 카테고리의 다른 글
+          <PostRelated>
+            { related.map(it => <RelatedPostItem key={it.key} post={it}/>) }
+          </PostRelated>
+
+          {[surroundings[0] === null ? null : "이전 글", surroundings[1] === null ? null : "다음 글"].filter(it => !!it).join("과 ")}
+          <PostSurroundings>
+            { surroundings.filter(it => !!it).map(it => <RelatedPostItem key={it!.key} post={it!}/>) }
+          </PostSurroundings>
+        </PostBelowArea>
       </PostContainer>
     </PostRoot>
   )

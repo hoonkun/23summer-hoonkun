@@ -142,9 +142,9 @@ export class Posts {
       ?.let(it => it ? Posts.retrieve(it) : null) ?? null
   }
 
-  static related(key: string, name: string) {
+  static related(key: string, name: string, surroundings?: (Post | null)[]) {
     return Posts.list()
-      .filter(it => it.key !== key && it.category[0].name === name).slice(0, 2)
+      .filter(it => it.key !== key && (surroundings?.every(sr => sr?.key !== it.key) ?? true) && it.category[0].name === name).slice(0, 2)
   }
 
 }

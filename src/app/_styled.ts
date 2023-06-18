@@ -268,26 +268,42 @@ export const PostsGrid = styled.div`
   }
 `
 
-export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+export const PostItemRootBase = styled.div`
   align-self: center;
   justify-self: stretch;
-  
+
   width: 100%;
   height: 100%;
-  
+
   position: relative;
   
-  ${Select(500, 750)} {
-    height: 300px;
-  }
-  ${Select(0, 500)} {
-    height: 175px;
-  }
+  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  
   ${Select(750)} {
     &:hover {
       transform: scale(1.05);
       z-index: 100;
     }
+  }
+`
+
+export const PostRelatedRoot = styled(PostItemRootBase)`
+  margin: 15px 0;
+  
+  ${Select(0, 500)} {
+    height: 150px;
+  }
+  ${Select(500)} {
+    height: 200px;
+  }
+`
+
+export const PostPreviewRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+  ${Select(500, 750)} {
+    height: 300px;
+  }
+  ${Select(0, 500)} {
+    height: 175px;
   }
   ${Select(900)} {
     ${({ expand }) => expand ? css`grid-column: span ${expand.by3.columns};grid-row: span ${expand.by3.rows};` : ""}
@@ -295,8 +311,6 @@ export const PostItemViewRoot = styled.div<{ expand?: { by2: PostExpand, by3: Po
   ${Select(750, 900)} {
     ${({ expand }) => expand ? css`grid-column: span ${expand.by2.columns};grid-row: span ${expand.by2.rows};` : ""}
   }
-
-  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
 `
 
 export const PostItemLinkChild = styled.div`
@@ -323,12 +337,20 @@ export const PostPreviewContent = styled.div`
   justify-content: center;
 `
 
-export const PostPreviewTitle = styled.div<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+export const PostItemTitleBase = styled.div`
+  font-weight: bold;
+  text-align: center;
+  word-break: keep-all;
+`
+
+export const PostPreviewTitle = styled(PostItemTitleBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
   ${Select(1000)} {
     font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 18}px;
+    margin: 0 25px;
   }
   ${Select(900, 1000)} {
     font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 14}px;
+    margin: 0 15px;
   }
   ${Select(825, 900)} {
     font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 18}px;
@@ -342,32 +364,43 @@ export const PostPreviewTitle = styled.div<{ expand?: { by2: PostExpand, by3: Po
   ${Select(0, 500)} {
     font-size: 16px;
   }
-  ${Select(1000)} {
-    margin: 0 25px;
-  }
-  ${Select(900, 1000)} {
-    margin: 0 15px;
-  }
   ${Select(750, 900)} {
     margin: 0 25px;
   }
   ${Select(0, 750)} {
-    margin: 0 50px;
+    margin: 0 30px;
   }
-  font-weight: bold;
+`
+
+export const PostRelatedTitle = styled(PostItemTitleBase)`
+  ${Select(0, 500)} {
+    font-size: 16px;
+    margin: 0 30px;
+  }
+  ${Select(500)} {
+    font-size: 20px;
+    margin: 0 20px;
+  }
+`
+
+export const PostItemExcerptBase = styled.div`
+  opacity: 0.75;
   text-align: center;
   word-break: keep-all;
 `
 
-export const PostPreviewImage = styled.img`
-  width: 100%; height: 100%;
-  object-fit: cover;
-
-  filter: brightness(0.5) blur(5px);
-  scale: 1.2;
+export const PostRelatedExcerpt = styled(PostItemExcerptBase)`
+  ${Select(0, 500)} {
+    font-size: 12px;
+    margin: 15px 20px 0 20px;
+  }
+  ${Select(500)} {
+    font-size: 16px;
+    margin: 15px 25px 0 25px;
+  }
 `
 
-export const PostPreviewExcerpt = styled.div`
+export const PostPreviewExcerpt = styled(PostItemExcerptBase)`
   ${Select(1400)} {
     font-size: 14px;
     margin: 15px 40px 0 40px;
@@ -388,8 +421,4 @@ export const PostPreviewExcerpt = styled.div`
     font-size: 12px;
     margin: 15px 40px 0 40px;
   }
-  
-  opacity: 0.75;
-  text-align: center;
-  word-break: keep-all;
 `

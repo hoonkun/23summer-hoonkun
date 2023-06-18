@@ -1,12 +1,11 @@
 'use client'
 
-import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { Select } from "@/lib/styled/media-queries"
 
+const ContentPadding = css`padding: 0 max((100% - 700px) / 2, 15px);`
+
 export const PostRoot = styled.div`
-  line-height: 225%;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,12 +108,18 @@ export const PostContainer = styled.div`
   z-index: 2;
 
   background-color: #181c22;
+  
+  display: flex;
+  flex-direction: column;
 `
 
 export const PostContent = styled.div`
+  line-height: 225%;
+  
+  ${ContentPadding};
+  
   position: relative;
   width: 100%;
-  padding: 0 max((100% - 700px) / 2, 15px);
   margin-top: -150px;
   
   font-size: 16px;
@@ -282,4 +287,43 @@ export const InlineCode = styled.code`
   padding: 2px 5px;
   background-color: #00000040;
   border-radius: 4px;
+`
+
+export const PostBelowArea = styled.div`
+  font-size: 20px;
+  
+  ${ContentPadding};
+`
+
+export const PostRelated = styled.div`
+  margin-bottom: 20px;
+  
+  ${Select(750)} {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 15px;
+  }
+`
+
+export const PostSurroundings = styled.div`
+  
+  ${Select(750)} {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 15px;
+  }
+`
+
+export const PostContentDivider = styled.div`
+  width: 60%;
+  max-width: 400px;
+  align-self: center;
+  height: 0;
+  border-bottom: 1px solid #ffffff40;
+  margin: 50px 0;
+  ${Select(500)} {
+    margin: 75px 0;
+  }
 `
