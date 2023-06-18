@@ -63,6 +63,10 @@ const NodeTextRetriever = (node: any): string => {
 
 const SpaceReplacer = (input: string): string => input.replaceAll(" ", "_")
 
+const TagReplace = (input: string): string => input
+  .replaceAll(/<([0-z]+)>/g, "")
+  .replaceAll(/<\/([0-z]+)>/g, "")
+
 export default async function Page({ params }: { params: PostParams }) {
   const post = Posts.retrieve<PostWithContent>(params.key, true)
 
@@ -91,7 +95,7 @@ export default async function Page({ params }: { params: PostParams }) {
     .process(post.content)
 
   const summary = Array.from(html.value.toString().matchAll(/<(?<opening>h1|h2|h3|h4|h5|h6)>(?<text>.+?)<\/(?<closing>h1|h2|h3|h4|h5|h6)>/gi))
-    .map(it => ({ type: it.groups?.["opening"] ?? "h6", text: it.groups?.["text"] ?? "" }))
+    .map(it => ({ type: it.groups?.["opening"] ?? "h6", text: TagReplace(it.groups?.["text"] ?? "") }))
 
   const categories = post.data.categories.map(it => Categories.retrieve(it)).filter(it => !!it) as Category[]
 
