@@ -239,7 +239,7 @@ export const PostsGrid = styled.div`
 
   width: 100%;
   
-  background-color: black;
+  background-color: #12151a;
   
   padding: 30px 10%;
   ${Select(0, 500)} {
@@ -421,4 +421,11 @@ export const PostPreviewExcerpt = styled(PostItemExcerptBase)`
     font-size: 12px;
     margin: 15px 40px 0 40px;
   }
+`
+
+export const VerticalDivider = styled.div`
+  width: 0;
+  height: 15px;
+  margin: 0 10px;
+  border-right: 1px solid #ffffff50;
 `

@@ -68,6 +68,10 @@ export const PostFooterArea = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  
+  ${Select(0, 500)} {
+    height: 100px;
+  }
 `
 
 export const PostFooterLeft = styled.div`
@@ -75,6 +79,9 @@ export const PostFooterLeft = styled.div`
     font-size: 20px;
     font-weight: bold;
     text-shadow: 0 0 5px #ffffff80;
+    
+    display: flex;
+    align-items: center;
   }
 `
 
