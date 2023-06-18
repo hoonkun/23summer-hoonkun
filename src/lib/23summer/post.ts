@@ -1,7 +1,7 @@
 import fs from "fs";
 import matter from 'gray-matter';
 
-import config from "./../config";
+import config from "../../config";
 import { ArrayK } from "./../ktn";
 import { Categories, Category } from "./category";
 
