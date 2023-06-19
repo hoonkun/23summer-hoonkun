@@ -123,11 +123,6 @@ export const PostsGrid = styled.div`
     grid-auto-rows: 200px;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    
-    a:nth-of-type(1) {
-      height: 400px;
-      transform: translateY(-100px);
-    }
   }
   
   ${WhenWidthLeast(900)} {
@@ -176,7 +171,11 @@ export const PostsGrid = styled.div`
 //   }
 // `
 
-export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
+export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand }, priority?: "true" | "false" }>`
+  ${({ priority }) => priority === "true" ? css`
+    height: 400px;
+    transform: translateY(-100px);
+  ` : ""}
   ${WhenWidthIn(450, 650)} {
     height: 300px;
   }

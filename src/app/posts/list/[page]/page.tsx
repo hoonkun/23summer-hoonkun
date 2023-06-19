@@ -71,7 +71,7 @@ const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, pri
   const preview = await import(`$/__posts__/${post.key}/preview.png`)
 
   return (
-    <PostItemRoot expand={post.expand} href={`/posts/retrieve/${post.key}`}>
+    <PostItemRoot expand={post.expand} href={`/posts/retrieve/${post.key}`} priority={`${priority}`}>
       <PostItemImageContainer
         src={preview.default}
         alt={`preview image of ${post.key}`}
