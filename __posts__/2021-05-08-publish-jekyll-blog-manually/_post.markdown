@@ -4,7 +4,7 @@ title: jekyll로 만든 정적 사이트를 github pages에 수동으로 배포�
 date: 2021-05-08, 22:36
 categories: [dev,dev-others]
 ---
-> 최근에는 Github Actions 가 꽤 잘 되어있을 것이므로 가능하다면 그것을 사용합시다. 그게 훨 깔끔합니다.
+> 최근에는 Github Actions 가 꽤 잘 되어있을 것이므로 가능하다면 그것을 사용합시다. 그게 훨 깔끔합니다. Jekyll이 아니라면 Vercel 도 좋겠구요.
 
 github-page에서 지원하지 않는 gem을 가진 jekyll 프로젝트를 github-pages(gh-pages 브랜치)에 _site의 내용으로 배포해보자.   
 <!-- Excerpt -->
@@ -65,4 +65,4 @@ github-page에서 지원하지 않는 gem을 가진 jekyll 프로젝트를 githu
 
 단지, 이 dos 스크립트는 실행하면 project 까지 커밋을 수행하므로 그게 싫다면 git 명령 수행 부분 중 위에 있는 3줄을 지우면 된다.   
 
-다들 이거 하려고 무슨... Tra..? CI...? 인지 그거 쓴다는데 음... 난 그냥 이렇게 할래.
+다들 이거 하려고 무슨... CI...? 인지 그거 쓴다는데 음... 난 그냥 이렇게 할래.

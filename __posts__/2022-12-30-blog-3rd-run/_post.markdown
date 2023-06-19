@@ -8,7 +8,7 @@ categories: [dev,frontend]
 Next SSG + Github Action 으로 코드를 푸시하면 알아서 바로 배포되는 개인 페이지 + 블로그 제작 후기.
 <!-- Excerpt -->
 
-[이런](https://hoonkun.kiwi/post/2021-05-09-blog-restart) 포스트를 쓴 적이 있었다.  
+[이런](/posts/retrieve/2021-05-09-blog-restart) 포스트를 쓴 적이 있었다.  
 대충 쉽고 빠르고 무료인 jekyll 을 쓰자는 내용의 글인데... 사실 이거 지금에 와서는 딱히 그렇지 않은 것 같다.  
 
 이미 React에 쩔어버린 나로서는 jekyll 의 liquid 문법이 오히려 생소했고, 에디터에서 syntax highlighting 도 제대로 안되니 효율이 떨어진다.  
