@@ -110,7 +110,7 @@ export const PostsGrid = styled.div`
     padding: 80px 10% 30px 10%;
   }
   ${WhenWidthMost(650)} {
-    padding: 0 15px;
+    padding: 0 15px 15px 15px;
     margin-top: -125px;
     background: linear-gradient(to bottom, #0c0e1100 0, #0c0e1100 125px, #0c0e11 125px, #0c0e11 100%);
   }
@@ -247,8 +247,10 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
 
 export const BlogFooterArea = styled(BlogFooterAreaBase)`
   padding: 0 17%;
-  
-  ${WhenWidthMost(450)} {
+  ${WhenWidthMost(1150)} {
+    padding: 0 10%;
+  }
+  ${WhenWidthMost(650)} {
     padding: 20px 15px;
   }
 `
