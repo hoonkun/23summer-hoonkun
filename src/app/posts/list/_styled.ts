@@ -172,10 +172,12 @@ export const PostsGrid = styled.div`
 // `
 
 export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand }, priority?: "true" | "false" }>`
-  ${({ priority }) => priority === "true" ? css`
-    height: 400px;
-    transform: translateY(-100px);
-  ` : ""}
+  ${WhenWidthLeast(650)} {
+    ${({ priority }) => priority === "true" ? css`
+      height: 400px;
+      transform: translateY(-100px);
+    ` : ""}
+  }
   ${WhenWidthIn(450, 650)} {
     height: 300px;
   }
