@@ -1,20 +1,15 @@
 import { ImageResponse } from "next/server"
-import { dice } from "@/lib/23summer/dice"
 import "@/lib/ktn"
 import config from "@/config"
+import { Posts } from "@/lib/23summer/post"
 import { ImageMetadataHeaders, ImageRenderedAt } from "@/lib/23summer/ImageMetadataUtils"
 
-export const alt = "Title Image of HoonKun.kiwi"
+export const alt = ""
 export const size = { width: 1200, height: 630 }
 
 export const contentType = "image/png"
 
 export const runtime = 'edge'
-
-// 그래서 이게 뭔데... 어디다가 집어넣어도 Cannot resolve module 던지거나 Invalid URL 뜨는데 어쩌라는거임
-// const interSemiBold = fetch(
-//   new URL('./Inter-SemiBold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer())
 
 const JetBrainsMono = fetch(
   `${config.deploy}/fonts/JetBrainsMono-Regular.ttf`
@@ -25,8 +20,6 @@ const IBMPlexSansKR = fetch(
 ).then((res) => res.arrayBuffer())
 
 export default async function MetadataImage(): Promise<ImageResponse> {
-  const die = dice()
-
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "flex-end", fontFamily: "IBMPlexSansKR" }}>
@@ -40,31 +33,28 @@ export default async function MetadataImage(): Promise<ImageResponse> {
           alt={"logo"}
           style={{ width: "125px", height: "125px", margin: "25px", position: "absolute", left: "0", top: "0" }}
         />
-        <div style={{ width: "100%", height: "100%", position: "absolute", top: "0", left: "0", zIndex: "1", color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", transform: "translateY(-50px)" }}>
+        <div style={{ width: "100%", height: "100%", position: "absolute", top: "0", left: "0", zIndex: "1", color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", transform: "translateY(-25px)" }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "100px", textShadow: "0 0 10px #ffffffff" }}>
-            <span style={{ fontFamily: "JetBrainsMono" }}>HoonKun</span>
-            <div style={{ width: "0", height: "40px", borderRight: "3px solid #ffffff50", margin: "0 40px" }}></div>
-            <span style={{ transform: "translateY(-15px)" }}>훈쿤</span>
+            키위새의 아무말 저장소
           </div>
-          <div style={{ textAlign: "center", opacity: "0.5", transform: "translateY(-20px)", fontSize: "20px" }}>
-            재미있어 보이는 이것저것을 살펴보는 햇병아리 멍발자
+          <div style={{ textAlign: "center", opacity: "0.5", fontSize: "32px", display: "flex", alignItems: "center" }}>
+            개발
+            <div style={{ width: "0", height: "15px", borderRight: "2px solid #ffffff50", margin: "2px 40px" }}/>
+            마인크래프트
+            <div style={{ width: "0", height: "15px", borderRight: "2px solid #ffffff50", margin: "2px 40px" }}/>
+            생명과학II
+            <div style={{ width: "0", height: "15px", borderRight: "2px solid #ffffff50", margin: "2px 40px" }}/>
+            아무말
           </div>
         </div>
-        <div style={{ position: "relative", zIndex: "2", display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "flex-end", padding: "50px" }}>
-          <div style={{ display: "flex", flexDirection: "row-reverse", alignItems: "center" }}>
-            <img
-              src={`${config.deploy}/dice/${die.image}`}
-              alt={`Message of the today, of hoonkun.kiwi`}
-              style={{ width: "185px", aspectRatio: `1`, border: "8px solid white" }}
-            />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-              <div style={{ fontSize: "20px", color: "#ffffff80", marginBottom: "16px", marginRight: "30px" }}>오늘의 아무말</div>
-              {die.text.split("\n").map((it, index) =>
-                <div key={index} style={{ color: "white", whiteSpace: "pre-wrap", fontSize: "30px", marginRight: "30px", textAlign: "right" }}>
-                  {it}
-                </div>
-              )}
-            </div>
+        <div style={{ position: "relative", zIndex: "2", display: "flex", flexDirection: "row", alignItems: "flex-end", justifyContent: "flex-start", padding: "40px 45px" }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", marginRight: "60px" }}>
+            <div style={{ display: "flex", fontSize: "24px", color: "white", opacity: "0.45" }}>총 게시글 수</div>
+            <div style={{ display: "flex", fontSize: "36px", color: "white", fontWeight: "bold" }}>{Posts.total}</div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ display: "flex", fontSize: "24px", color: "white", opacity: "0.45" }}>최신 게시글</div>
+            <div style={{ display: "flex", fontSize: "36px", color: "white", fontWeight: "bold" }}>{Posts.latest!.data.title}</div>
           </div>
         </div>
         <div style={{ display: "flex", position: "absolute", right: "40px", top: "35px", color: "white", opacity: "0.35", zIndex: "3", fontFamily: "JetBrainsMono" }}>

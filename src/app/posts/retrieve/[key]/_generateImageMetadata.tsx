@@ -2,6 +2,7 @@ import { ImageResponse } from "next/server"
 import { PostParams } from "@/app/posts/retrieve/[key]/page"
 import { Post, Posts } from "@/lib/23summer/post"
 import config from "@/config"
+import { ImageMetadataHeaders } from "@/lib/23summer/ImageMetadataUtils"
 
 export const alt = ""
 export const size = { width: 1200, height: 630 }
@@ -33,7 +34,7 @@ export default async function MetadataImage({ params }: { params: PostParams }):
           style={{ width: "125px", height: "125px", margin: "25px", position: "absolute", left: "0", bottom: "0" }}
         />
       </div>,
-      { ...size }
+      { ...size, headers: ImageMetadataHeaders() }
     )
   }
 }

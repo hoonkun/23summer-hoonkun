@@ -4,12 +4,8 @@ const nextConfig = {
         config.module.rules.push( { test: /\.markdown$/, use: "raw-loader" } )
         return config
     },
-    experimental: {
-        esmExternals: "loose"
-    },
-    compiler: {
-        styledComponents: true
-    }
+    experimental: { esmExternals: "loose" },
+    compiler: { styledComponents: true }
 }
 
 module.exports = nextConfig

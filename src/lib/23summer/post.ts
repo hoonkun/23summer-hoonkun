@@ -34,6 +34,10 @@ export class Posts {
       .reverse()
   }
 
+  static get latest() {
+    return Posts.retrieve(this.queryset[0])
+  }
+
   static get total() {
     return Posts.queryset.length
   }
