@@ -67,6 +67,15 @@ export async function generateStaticParams() {
   return new Array(Posts.pages).fill(undefined).map((_, index) => ({ page: `${index + 1}` }))
 }
 
+const title = "키위새의 아무말 저장소"
+const description = "개발, 마인크래프트, 생명과학II 등의 주제로 아무말을 합니다!"
+
+export const metadata = {
+  title, description,
+  twitter: { title, description, card: "summary_large_image", site: "arctic_apteryx" },
+  openGraph: { title, description }
+}
+
 const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, priority }) => {
   const preview = await import(`$/__posts__/${post.key}/preview.png`)
 
