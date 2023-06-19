@@ -75,7 +75,7 @@ export class Posts {
 
         if (index === 0) {
           grid[y + 1][x] = grid[y][x + 1] = grid[y + 1][x + 1] = true
-          return ({ columns: 2, rows: 2 })
+          return ({ columns: 2, rows: 1 })
         }
 
         if (!post.data.expand)

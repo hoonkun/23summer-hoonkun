@@ -19,10 +19,12 @@ export const PostsRoot = styled.div`
 
 export const PostsTitle = styled.div`
   position: sticky; top: 0;
-  height: 325px;
+  height: 375px;
   z-index: 0;
-  padding: 10px calc(17% + 15px) 10px 10%;
+  padding: 10px calc(17% + 15px) 10px;
   /*background-color: #00000040;*/
+  
+  transform: translateY(-60px);
   
   display: flex;
   flex-direction: column;
@@ -33,10 +35,18 @@ export const PostsTitle = styled.div`
   font-weight: bold;
   text-shadow: #ffffff60 0 0 10px;
   
-  ${WhenWidthMost(500)} {
-    height: 235px;
+  ${WhenWidthMost(1100)} {
+    padding: 10px calc(10% + 15px);
+  }
+  
+  ${WhenWidthMost(650)} {
+    height: 350px;
     font-size: 33px;
     padding: 10px 25px 10px 0;
+  }
+  
+  ${WhenWidthMost(450)} {
+    height: 315px;
   }
   
   ${WhenWidthLeast(900)} {
@@ -54,7 +64,7 @@ export const PostsCategories = styled.ul`
   opacity: 0.75;
   color: white;
   
-  ${WhenWidthMost(500)} {
+  ${WhenWidthMost(450)} {
     font-size: 12px;
   }
 
@@ -75,7 +85,7 @@ export const PostsCategories = styled.ul`
     font-size: 85%;
     opacity: 0.4;
 
-    ${WhenWidthMost(500)} {
+    ${WhenWidthMost(450)} {
       margin: 0 12px;
     }
   }
@@ -95,25 +105,38 @@ export const PostsGrid = styled.div`
   
   background-color: #0c0e11;
   
-  padding: 30px 17%;
-  ${WhenWidthMost(500)} {
+  padding: 80px 17% 30px 17%;
+  ${WhenWidthMost(1150)} {
+    padding: 80px 10% 30px 10%;
+  }
+  ${WhenWidthMost(650)} {
+    padding: 0 15px;
+    margin-top: -125px;
+    background: linear-gradient(to bottom, #0c0e1100 0, #0c0e1100 125px, #0c0e11 125px, #0c0e11 100%);
+  }
+  ${WhenWidthMost(450)} {
     padding: 20px 15px;
   }
 
-  ${WhenWidthLeast(750)} {
+  ${WhenWidthLeast(650)} {
     grid-template-rows: unset;
     grid-auto-rows: 200px;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    
+    a:nth-of-type(1) {
+      height: 400px;
+      transform: translateY(-100px);
+    }
   }
   
   ${WhenWidthLeast(900)} {
     grid-template-columns: repeat(3, 1fr);
   }
-  ${WhenWidthIn(750, 900)} {
+  ${WhenWidthIn(650, 900)} {
     grid-template-columns: repeat(2, 1fr);
   }
-  ${WhenWidthMost(750)} {
+  ${WhenWidthMost(650)} {
     grid-template-columns: repeat(1, 1fr);
   }
 `
@@ -130,10 +153,10 @@ export const PostsGrid = styled.div`
 //   ${WhenWidthLeast(900)} {
 //     grid-column: span 3;
 //   }
-//   ${WhenWidthIn(750, 900)} {
+//   ${WhenWidthIn(650, 900)} {
 //     grid-column: span 2;
 //   }
-//   ${WhenWidthMost(750)} {
+//   ${WhenWidthMost(650)} {
 //     grid-column: span 1;
 //     font-size: 24px;
 //     margin: -10px 0 10px 0;
@@ -148,22 +171,22 @@ export const PostsGrid = styled.div`
 //   border-radius: 4px;
 //   font-weight: normal;
 //
-//   ${WhenWidthMost(750)} {
+//   ${WhenWidthMost(650)} {
 //     font-size: 16px;
 //   }
 // `
 
 export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
-  ${WhenWidthIn(500, 750)} {
+  ${WhenWidthIn(450, 650)} {
     height: 300px;
   }
-  ${WhenWidthMost(500)} {
+  ${WhenWidthMost(450)} {
     height: 175px;
   }
   ${WhenWidthLeast(900)} {
     ${({ expand }) => expand ? css`grid-column: span ${expand.by3.columns};grid-row: span ${expand.by3.rows};` : ""}
   }
-  ${WhenWidthIn(750, 900)} {
+  ${WhenWidthIn(650, 900)} {
     ${({ expand }) => expand ? css`grid-column: span ${expand.by2.columns};grid-row: span ${expand.by2.rows};` : ""}
   }
 `
@@ -182,19 +205,19 @@ export const PostItemTitle = styled(PostItemTitleBase)<{ expand?: { by2: PostExp
   ${WhenWidthIn(825, 900)} {
     font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 18}px;
   }
-  ${WhenWidthIn(750, 825)} {
+  ${WhenWidthIn(650, 825)} {
     font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 14}px;
   }
-  ${WhenWidthIn(500, 750)} {
+  ${WhenWidthIn(450, 650)} {
     font-size: 20px;
   }
-  ${WhenWidthMost(500)} {
+  ${WhenWidthMost(450)} {
     font-size: 16px;
   }
-  ${WhenWidthIn(750, 900)} {
+  ${WhenWidthIn(650, 900)} {
     margin: 0 25px;
   }
-  ${WhenWidthMost(750)} {
+  ${WhenWidthMost(650)} {
     margin: 0 30px;
   }
 `
@@ -208,15 +231,15 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
     font-size: 12px;
     margin: 15px 40px 0 40px;
   }
-  ${WhenWidthIn(750, 1000)} {
+  ${WhenWidthIn(650, 1000)} {
     font-size: 12px;
     margin: 15px 20px 0 20px;
   }
-  ${WhenWidthIn(500, 750)} {
+  ${WhenWidthIn(450, 650)} {
     font-size: 14px;
     margin: 15px 40px 0 40px;
   }
-  ${WhenWidthMost(500)} {
+  ${WhenWidthMost(450)} {
     font-size: 12px;
     margin: 15px 40px 0 40px;
   }
@@ -225,7 +248,7 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
 export const BlogFooterArea = styled(BlogFooterAreaBase)`
   padding: 0 17%;
   
-  ${WhenWidthMost(500)} {
+  ${WhenWidthMost(450)} {
     padding: 20px 15px;
   }
 `

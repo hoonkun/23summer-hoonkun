@@ -80,7 +80,7 @@ export const PostItemRootBase = styled(Link)`
   
   overflow: hidden;
   
-  transition: transform 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: scale 0.25s cubic-bezier(0.33, 1, 0.68, 1);
 
   display: flex;
   flex-direction: column;
@@ -89,7 +89,7 @@ export const PostItemRootBase = styled(Link)`
   
   ${WhenWidthLeast(750)} {
     &:hover {
-      transform: scale(1.05);
+      scale: 1.05;
       z-index: 100;
     }
   }
