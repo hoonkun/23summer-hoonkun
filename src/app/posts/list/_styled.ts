@@ -21,7 +21,7 @@ export const PostsTitle = styled.div`
   position: sticky; top: 0;
   height: 325px;
   z-index: 0;
-  padding: 10px calc(10% + 15px) 10px 10%;
+  padding: 10px calc(17% + 15px) 10px 10%;
   /*background-color: #00000040;*/
   
   display: flex;
@@ -44,7 +44,6 @@ export const PostsTitle = styled.div`
   }
   ${WhenWidthLeast(1150)} {
     font-size: 60px;
-    height: 375px;
   }
 `
 
@@ -96,14 +95,14 @@ export const PostsGrid = styled.div`
   
   background-color: #0c0e11;
   
-  padding: 30px 10%;
+  padding: 30px 17%;
   ${WhenWidthMost(500)} {
     padding: 20px 15px;
   }
 
   ${WhenWidthLeast(750)} {
     grid-template-rows: unset;
-    grid-auto-rows: 250px;
+    grid-auto-rows: 200px;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }
@@ -116,10 +115,6 @@ export const PostsGrid = styled.div`
   }
   ${WhenWidthMost(750)} {
     grid-template-columns: repeat(1, 1fr);
-  }
-
-  ${WhenWidthIn(750, 1400)} {
-    grid-auto-rows: 200px;
   }
 `
 
@@ -228,7 +223,7 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
 `
 
 export const BlogFooterArea = styled(BlogFooterAreaBase)`
-  padding: 0 10%;
+  padding: 0 17%;
   
   ${WhenWidthMost(500)} {
     padding: 20px 15px;
