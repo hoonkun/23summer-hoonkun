@@ -1,4 +1,4 @@
-import Image from "@/app/posts/retrieve/[key]/_generateImageMetadata"
+import Image from "./_generateImageMetadata"
 
 export { runtime } from "./_generateImageMetadata"
 

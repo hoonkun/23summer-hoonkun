@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import config from "../../config";
 import { ArrayK } from "./../ktn";
 import { Categories, Category } from "./category";
+import path from "path"
 
 export type PostMetadata = {
   title: string
@@ -29,7 +30,7 @@ export type PostWithContent = Post & { content: string }
 export class Posts {
 
   private static get queryset() {
-    return fs.readdirSync("./__posts__")
+    return fs.readdirSync(path.join(process.cwd(), "__posts__"))
       .filter(it => !it.startsWith("_"))
       .reverse()
   }
