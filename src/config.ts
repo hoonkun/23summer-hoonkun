@@ -3,7 +3,7 @@ const config = {
     page_size: 50,
     excerpt_separator: "<!-- Excerpt -->"
   },
-  deploy: "http://localhost:3000"
+  deploy: "https://hoonkun.kiwi"
 } as const;
 
 export default config;
