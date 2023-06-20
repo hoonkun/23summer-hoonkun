@@ -30,9 +30,9 @@ export type PostWithContent = Post & { content: string }
 export class Posts {
 
   private static get queryset() {
-    return fs.readdirSync(path.join(process.cwd(), "__posts__"))
+    return fs.readFileSync(path.join(process.cwd(), "__posts__/_registry.json"))
+      .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
-      .reverse()
   }
 
   static get latest() {
