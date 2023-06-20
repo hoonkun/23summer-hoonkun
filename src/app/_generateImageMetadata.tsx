@@ -40,7 +40,7 @@ export default async function MetadataImage(): Promise<ImageResponse> {
           alt={"logo"}
           style={{ width: "125px", height: "125px", margin: "25px", position: "absolute", left: "0", top: "0" }}
         />
-        <div style={{ width: "100%", height: "100%", position: "absolute", top: "0", left: "0", zIndex: "1", color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", transform: "translateY(-50px)" }}>
+        <div style={{ width: "100%", height: "100%", position: "absolute", top: "0", left: "0", zIndex: "1", color: "white", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", transform: "translateY(-15px)" }}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", fontSize: "100px", textShadow: "0 0 10px #ffffffff" }}>
             <span style={{ fontFamily: "JetBrainsMono" }}>HoonKun</span>
             <div style={{ width: "0", height: "40px", borderRight: "3px solid #ffffff50", margin: "0 40px" }}></div>

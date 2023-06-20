@@ -123,7 +123,7 @@ export class Posts {
     const categories = Categories.list()
 
     try {
-      return fs.readFileSync(`./__posts__/${key}/_post.markdown`, { encoding: "utf8" })
+      return fs.readFileSync(path.join(process.cwd(), `__posts__/${key}/_post.markdown`), { encoding: "utf8" })
         .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
         .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
         .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand"))

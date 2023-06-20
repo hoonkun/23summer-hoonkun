@@ -1,4 +1,5 @@
 import fs from "fs"
+import path from "path"
 
 export type Category = {
   name: string
@@ -13,7 +14,7 @@ export type Category = {
 export class Categories {
 
   static list() {
-    return fs.readFileSync("./__posts__/_categories.json", { encoding: "utf8" })
+    return fs.readFileSync(path.join(process.cwd(), "__posts__/_categories.json"), { encoding: "utf8" })
       .let(it => JSON.parse(it) as unknown as Category[])
   }
 
