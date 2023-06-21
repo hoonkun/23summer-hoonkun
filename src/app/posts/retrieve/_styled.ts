@@ -377,3 +377,8 @@ export const PostItemTitle = styled(PostItemTitleBase)`
     margin: 0 20px;
   }
 `
+
+export const DiscussionContainer = styled.div`
+  ${ContentPadding};
+  margin-top: 40px;
+`

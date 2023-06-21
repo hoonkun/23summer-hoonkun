@@ -19,7 +19,7 @@ import {
   PostItemExcerpt,
   PostItemRoot,
   PostItemTitle,
-  PostItemImageContainer,
+  PostItemImageContainer, DiscussionContainer,
 } from "@/app/posts/retrieve/_styled"
 import {
   BlogFooterDescription,
@@ -30,6 +30,8 @@ import { CodeHighlighter } from "@/components/CodeHighlighter"
 import { Background } from "@/components/Background"
 import { PostSummary } from "@/components/PostSummary"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
+
+import { Discussions } from "@/lib/giscus/Giscus"
 
 import { unified } from "unified"
 import remarkParse from "remark-parse"
@@ -120,6 +122,21 @@ export default async function Page({ params }: { params: PostParams }) {
           </MainImageContainer>
           {content.result}
         </PostContent>
+        <DiscussionContainer>
+          <Discussions
+            id="comments"
+            repo="hoonkun/23summer-hoonkun"
+            repoId="R_kgDOJxH8WQ"
+            category="Post-Comments"
+            categoryId="DIC_kwDOJxH8Wc4CXXSE"
+            mapping="title"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme="dark_tritanopia"
+            lang="ko"
+          />
+        </DiscussionContainer>
         <PostContentDivider/>
         <PostBelowArea>
           { categories[0].display } 카테고리의 다른 글
@@ -157,7 +174,7 @@ export async function generateMetadata({ params }: { params: PostParams }): Prom
   const title = `${post.data.title} | 키위새의 아무말 저장소`
 
   return {
-    title,
+    title: post.data.title,
     description: post.excerpt,
     openGraph: {
       title,
