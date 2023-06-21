@@ -29,7 +29,7 @@ export type PostWithContent = Post & { content: string }
 
 export class Posts {
 
-  private static get queryset() {
+  static get queryset() {
     return fs.readFileSync(path.join(process.cwd(), "__posts__/_registry.json"))
       .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
@@ -45,18 +45,6 @@ export class Posts {
 
   static get pages() {
     return Math.ceil(Posts.queryset.length / config.blog.page_size)
-  }
-
-  static get lastModified() {
-    const retrieves = Posts.queryset.map(it => {
-      const basePath = path.join(process.cwd(), `__posts__/${it}`)
-      const files = fs.readdirSync(basePath)
-      return { key: it, lastModified: new Date(files.map(it => +fs.statSync(path.join(basePath, it)).mtime).max()) }
-    })
-    const lists = retrieves.chunked(config.blog.page_size)
-      .map(it => it.sort((a, b) => (+b.lastModified) - (+a.lastModified))[0])
-      .map((it, index) => ({ page: index, lastModified: it.lastModified }))
-    return { retrieves, lists }
   }
 
   static list(page?: number, expand?: boolean): Post[] {

@@ -2,13 +2,23 @@ import fs from "fs"
 import path from "path"
 
 import { Posts } from "./lib/23summer/post"
+import config from "@/config"
 
 
 const base = "https://hoonkun.kiwi"
 
 // ___SITEMAP___
 
-const modified = Posts.lastModified
+const retrieves = Posts.queryset.map(it => {
+  const basePath = path.join(process.cwd(), `__posts__/${it}`)
+  const files = fs.readdirSync(basePath)
+  return { key: it, lastModified: new Date(files.map(it => +fs.statSync(path.join(basePath, it)).mtime).max()) }
+})
+const lists = retrieves.chunked(config.blog.page_size)
+  .map(it => it.sort((a, b) => (+b.lastModified) - (+a.lastModified))[0])
+  .map((it, index) => ({ page: index, lastModified: it.lastModified }))
+
+const modified = { retrieves, lists }
 
 const PostLists = modified.lists.map(it => ({
   url: `${base}/posts/list/${it.page}`, lastModified: it.lastModified
