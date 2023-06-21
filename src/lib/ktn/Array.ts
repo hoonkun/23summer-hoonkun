@@ -22,6 +22,7 @@ Array.prototype.chunked = function <R>(size: number, transform?: (it: any[]) => 
     result.push(transform ? transform([...buffer]) : [...buffer])
     buffer.splice(0, size)
   }
+  if (buffer.length < size) result.push(buffer)
   return result
 }
 
