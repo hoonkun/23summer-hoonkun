@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 
 import { Posts } from "./lib/23summer/post"
-import config from "@/config"
+import config from "./config"
 
 
 const base = "https://hoonkun.kiwi"
