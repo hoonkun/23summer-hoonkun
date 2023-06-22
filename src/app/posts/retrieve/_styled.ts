@@ -164,6 +164,16 @@ export const PostContent = styled.div`
     padding-top: 40px;
   }
 
+  h3 {
+    margin: 0 0 8px 0;
+    padding-top: 25px;
+  }
+
+  h4, h5, h6 {
+    margin: 0 0 5px 0;
+    padding-top: 12.5px;
+  }
+
   .math-inline {
     max-width: 100%;
     margin-bottom: -12px;
