@@ -49,6 +49,7 @@ a {
   src: url('./../resources/fonts/JetBrainsMono-Light.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -56,6 +57,7 @@ a {
   src: url('./../resources/fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -63,6 +65,7 @@ a {
   src: url('./../resources/fonts/IBMPlexSansKR-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -70,5 +73,6 @@ a {
   src: url('./../resources/fonts/IBMPlexSansKR-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
+  font-display: swap;
 }
 
