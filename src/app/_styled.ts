@@ -149,7 +149,7 @@ export const TitleContent = styled.div`
 
 export const ContentHeader = styled.div`
   font-size: 12px;
-  opacity: 0.45;
+  opacity: 0.75;
   margin-bottom: 15px;
 
   ${WhenWidthLeast(1350)} {

@@ -44,7 +44,7 @@ export default function Home() {
           </ReadMe>
           <ContentHeader>오늘의 아무말</ContentHeader>
           <MotdContent>
-            <MotdImage src={`dice/${die.image}`} rotate={rotation}/>
+            <MotdImage src={`dice/${die.image}`} rotate={rotation} alt={die.text}/>
             <MotdText>{die.text}</MotdText>
           </MotdContent>
         </TitleContent>
