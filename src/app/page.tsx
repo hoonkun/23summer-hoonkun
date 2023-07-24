@@ -13,6 +13,8 @@ import {
 import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
 import { Background } from "@/components/Background"
 
+export const fetchCache = "force-no-store"
+
 export default function Home() {
   const die = dice()
   const rotation = dateBasedRandom() % 10 - 5

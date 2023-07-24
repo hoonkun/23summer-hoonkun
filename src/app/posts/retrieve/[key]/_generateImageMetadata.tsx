@@ -11,6 +11,7 @@ export const contentType = "image/png"
 
 export const runtime = "edge"
 
+/* eslint-disable @next/next/no-img-element */
 export default async function MetadataImage({ params }: { params: PostParams }): Promise<ImageResponse> {
   const post = Posts.retrieve<Post>(params.key, false)
 

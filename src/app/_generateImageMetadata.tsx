@@ -24,6 +24,7 @@ const IBMPlexSansKR = fetch(
   `${config.deploy}/fonts/IBMPlexSansKR-Regular.woff`
 ).then((res) => res.arrayBuffer())
 
+/* eslint-disable @next/next/no-img-element */
 export default async function MetadataImage(): Promise<ImageResponse> {
   const die = dice()
 
