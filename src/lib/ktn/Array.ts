@@ -78,12 +78,12 @@ Array.prototype.associate = function <T, R>(this: T[], transform: (it: T) => R) 
 }
 
 definePropertyIfNotExists(Array.prototype, "isEmpty", {
-  configurable: false, enumerable: false,
+  configurable: true, enumerable: false,
   get: function () { return this.length === 0 }
 })
 
 definePropertyIfNotExists(Array.prototype, "lastIndex", {
-  configurable: false, enumerable: false,
+  configurable: true, enumerable: false,
   get: function () { return this.length - 1 }
 })
 
