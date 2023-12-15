@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server"
+import { ImageResponse } from "next/og"
 import { PostParams } from "@/app/posts/retrieve/[key]/page"
 import { Post, Posts } from "@/lib/23summer/post"
 import config from "@/config"

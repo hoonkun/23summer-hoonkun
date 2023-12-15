@@ -1,4 +1,5 @@
-import React, { createElement, Fragment } from "react"
+import React from "react"
+import * as ProductionReact from "react/jsx-runtime"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -44,6 +45,9 @@ import rehypeRaw from "rehype-raw"
 import rehypeStringify from "rehype-stringify"
 import rehypeReact from "rehype-react"
 
+// @ts-expect-error: the React types are missing.
+const { jsx, jsxs, Fragment } = ProductionReact
+
 export type PostParams = { key: string }
 
 const BaseProcessor = () => unified()
@@ -51,7 +55,7 @@ const BaseProcessor = () => unified()
   .use(remarkGfm, { stringLength: stringWidth })
   .use(remarkMath)
   .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeKatex, { strict: false, displayMode: true })
+  .use(rehypeKatex, { strict: false })
   .use(rehypeRaw)
   .use(rehypeStringify)
 
@@ -78,7 +82,7 @@ export default async function Page({ params }: { params: PostParams }) {
     .process(post.content)
 
   const content = await BaseProcessor()
-    .use(rehypeReact, { createElement, Fragment, components: {
+    .use(rehypeReact, { jsx, jsxs, Fragment, components: {
         img: (props: any) => <ContentImage src={props.src} alt={props.alt} postId={params.key}/>,
         code: (props: any) => props.className ?
           <CodeHighlighter className={props.className}>{props.children}</CodeHighlighter> :
