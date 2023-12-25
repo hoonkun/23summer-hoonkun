@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react"
-import MainBackground from "@/resources/main_bg_crop.jpg"
+import MainBackground from "@/resources/main_bg.jpg"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
 
@@ -11,7 +11,7 @@ export const Background: React.FC<{ darker?: boolean, overlay?: boolean }> = ({ 
       <BackgroundImage
         src={MainBackground.src}
         alt={"Minecraft screenshot with moon setting in y=-59"}
-        darker={`${darker}`}
+        $darker={`${darker}`}
       />
       {overlay && <BackgroundOverlay/>}
     </>
@@ -27,7 +27,7 @@ export const BackgroundOverlay = styled.div`
   background: linear-gradient(to bottom, #00000000 0%, #00000000 45%, #00000080 55%, #00000080 100%);
 `
 
-export const BackgroundImage = styled.img<{ darker?: string }>`
+export const BackgroundImage = styled.img<{ $darker?: string }>`
   position: fixed;
   width: 100vw; height: 100vh;
 
@@ -38,7 +38,7 @@ export const BackgroundImage = styled.img<{ darker?: string }>`
   object-position: 30% 50%;
   image-rendering: pixelated;
   
-  ${({ darker }) => darker === "true" ? css`
+  ${({ $darker }) => $darker === "true" ? css`
     ${WhenWidthMost(1150)} {
       filter: brightness(0.3);
     }

@@ -12,6 +12,7 @@ import {
 
 import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
 import { Background } from "@/components/Background"
+import { WinterOverlay } from "@/components/WinterOverlay"
 
 export const fetchCache = "force-no-store"
 
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <HomeRoot>
       <Background darker/>
+      <WinterOverlay/>
       <ContentArea>
         <TitleArea>
           <TitleText>
