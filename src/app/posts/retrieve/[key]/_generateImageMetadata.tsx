@@ -24,7 +24,7 @@ export default async function MetadataImage({ params }: { params: PostParams }):
     return new ImageResponse(
       <div style={{ width: "100%", height: "100%", display: "flex" }}>
         <img
-          src={`${config.deploy}${(await import(`$/__posts__/${params.key}/preview.png`)).default.src}`}
+          src={`${config.deploy}${(await import(`$/__posts__/${params.key}/preview.jpg`)).default.src}`}
           alt={`preview image of post '${post.data.title}' in hoonkun.kiwi`}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />

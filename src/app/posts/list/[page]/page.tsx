@@ -102,7 +102,7 @@ export const metadata = {
 }
 
 const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, priority }) => {
-  const preview = await import(`$/__posts__/${post.key}/preview.png`)
+  const preview = await import(`$/__posts__/${post.key}/preview.jpg`)
 
   return (
     <PostItemRoot
@@ -126,7 +126,7 @@ const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, pri
 }
 
 const PriorityPostItem: React.FC<{ post: Post, type: "latest" | "pinned" }> = async ({ post, type }) => {
-  const preview = await import(`$/__posts__/${post.key}/preview.png`)
+  const preview = await import(`$/__posts__/${post.key}/preview.jpg`)
 
   return (
     <PriorityPostItemRoot

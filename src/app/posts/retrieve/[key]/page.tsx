@@ -114,7 +114,7 @@ export default async function Page({ params }: { params: PostParams }) {
   const surroundings = [Posts.previous(post.key), Posts.next(post.key)]
   const related = Posts.related(post.key, post.data.categories[0], surroundings)
 
-  const mainImage = await import(`$/__posts__/${post.key}/main.png`)
+  const mainImage = await import(`$/__posts__/${post.key}/main.jpg`)
 
   return (
     <PostRoot>
@@ -216,7 +216,7 @@ const ContentImage: React.FC<{ alt: string, postId: string, src: string }> = asy
 }
 
 const PostItem: React.FC<{ post: Post }> = async ({ post }) => {
-  const preview = await import(`$/__posts__/${post.key}/preview.png`)
+  const preview = await import(`$/__posts__/${post.key}/preview.jpg`)
 
   return (
     <PostItemRoot href={`/posts/retrieve/${post.key}`}>

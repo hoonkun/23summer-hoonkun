@@ -316,7 +316,7 @@ data class TerrainResponse(
 
 그래서 결과물은?
 
-![결과물](...image_base.../result.png)
+![결과물](...image_base.../result.jpg)
 > 와! 벚꽃 색 너무 예쁘게 나왔다!
 
 
