@@ -1,83 +1,134 @@
 'use client'
 
-import styled, { css } from "styled-components"
+import Image from "next/image"
+import styled, { css, keyframes } from "styled-components"
 
 import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import { PostExpand } from "@/lib/23summer/post"
 
 import {
   BlogFooterAreaBase,
-  PostItemExcerptBase, PostItemImageContainerBase,
-  PostItemRootBase, PostItemTitleBase
+  BlogFooterDescriptionBase,
+  PostItemExcerptBase,
+  PostItemImageContainerBase,
+  PostItemRootBase,
+  PostItemTitleBase
 } from "@/app/posts/_styled"
+import Link from "next/link"
+import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 
 export const PostsRoot = styled.div`
   position: relative;
   width: 100%;
+  min-width: 350px;
   z-index: 0;
 `
 
-export const PostsTitle = styled.div`
-  position: sticky; top: 0;
-  height: 375px;
-  z-index: 0;
-  padding: 10px calc(17% + 15px) 10px;
-  /*background-color: #00000040;*/
-  
-  transform: translateY(-60px);
+export const StickyArea = styled.div`
+  position: sticky; left: 0; top: 0;
+  z-index: 100; 
   
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: stretch;
+  
+  width: calc(45vw - 1%);
+  height: 100svh;
+  overflow: hidden;
+  
+  padding: 40px 60px 0 60px;
+  
+  ${WhenWidthMost(1210)} {
+    width: 45vw;
+  }
+  
+  ${WhenWidthMost(990)} {
+    position: relative;
+    min-width: 350px;
+    width: 100vw;
+  }
+  
+  ${WhenWidthMost(650)} {
+    padding: 40px 25px 15px 25px;
+  }
+`
+
+export const PostsTitle = styled.div`
+  position: relative;
+  z-index: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
   
   font-size: 40px;
   font-weight: bold;
   text-shadow: #ffffff60 0 0 10px;
   
-  ${WhenWidthMost(1100)} {
-    padding: 10px calc(10% + 15px);
+  & > div {
+    word-break: keep-all;
+    line-height: 125%;
+    margin-bottom: 8px;
+  }
+  
+  ${WhenWidthMost(1210)} {
+    padding: 10px 0;
+  }
+  
+  ${WhenWidthMost(990)} {
+    font-size: 33px;
+    padding: 10px 25px 10px 0;
+    margin-bottom: 40px;
+    
+    & > div {
+      font-size: 60px;
+    }
   }
   
   ${WhenWidthMost(650)} {
-    height: 350px;
-    font-size: 33px;
-    padding: 10px 25px 10px 0;
+    margin-bottom: 16px;
+    & > div {
+      font-size: 40px;
+    }
   }
-  
-  ${WhenWidthMost(450)} {
-    height: 315px;
-  }
-  
   ${WhenWidthLeast(900)} {
     font-size: 50px;
   }
-  ${WhenWidthLeast(1150)} {
+  ${WhenWidthLeast(1211)} {
     font-size: 60px;
   }
 `
 
 export const PostsCategories = styled.ul`
   list-style-type: none;
-  font-size: 14px;
   font-weight: normal;
   opacity: 0.75;
   color: white;
   
-  ${WhenWidthMost(450)} {
-    font-size: 12px;
-  }
-
-  ${WhenWidthLeast(900)} {
-    font-size: 16px;
-  }
-  ${WhenWidthLeast(1150)} {
-    font-size: 20px;
-  }
+  font-size: 14px;
   
   & > li {
     display: inline-block;
     padding-inline-start: 0;
+    
+    font-size: 14px;
+    
+    ${WhenWidthMost(990)} {
+      font-size: 18px;
+    }
+    
+    ${WhenWidthMost(650)} {
+      font-size: 14px;
+    }
+    
+    ${WhenWidthMost(450)} {
+      font-size: 12px;
+    }
+
+    ${WhenWidthLeast(1211)} {
+      font-size: 16px;
+    }
   }
   & > li:nth-of-type(n+2):before {
     content: "|";
@@ -95,122 +146,81 @@ export const PostsGrid = styled.div`
   flex-grow: 1;
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 100%;
+  grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   position: relative;
   z-index: 2;
-
-  width: 100%;
   
-  background-color: #0c0e11;
+  margin-top: -100vh;
   
-  padding: 80px 17% 30px 17%;
-  ${WhenWidthMost(1150)} {
-    padding: 80px 10% 30px 10%;
+  padding: 100px 60px 30px calc(45vw + 1%);
+  
+  ${WhenWidthMost(1210)} {
+    padding: 100px 6% 30px 45vw;
+  }
+  ${WhenWidthMost(990)} {
+    padding: 0 60px 15px 60px;
+    margin-top: 0;
   }
   ${WhenWidthMost(650)} {
-    padding: 0 15px 15px 15px;
-    margin-top: -125px;
-    background: linear-gradient(to bottom, #0c0e1100 0, #0c0e1100 125px, #0c0e11 125px, #0c0e11 100%);
-  }
-  ${WhenWidthMost(450)} {
     padding: 20px 15px;
   }
 
-  ${WhenWidthLeast(650)} {
+  ${WhenWidthLeast(991)} {
     grid-template-rows: unset;
     grid-auto-rows: 200px;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }
   
-  ${WhenWidthLeast(900)} {
-    grid-template-columns: repeat(3, 1fr);
+  ${WhenWidthIn(991, 1210)} {
+    grid-column-gap: 0;
+    grid-template-columns: repeat(1, 1fr);
   }
-  ${WhenWidthIn(650, 900)} {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  
   ${WhenWidthMost(650)} {
     grid-template-columns: repeat(1, 1fr);
   }
 `
 
-// export const PostsGridHeader = styled.div`
-//   display: flex;
-//   align-items: center;
-//
-//   margin: 0 0 20px 0;
-//   font-size: 32px;
-//
-//   font-weight: bold;
-//
-//   ${WhenWidthLeast(900)} {
-//     grid-column: span 3;
-//   }
-//   ${WhenWidthIn(650, 900)} {
-//     grid-column: span 2;
-//   }
-//   ${WhenWidthMost(650)} {
-//     grid-column: span 1;
-//     font-size: 24px;
-//     margin: -10px 0 10px 0;
-//   }
-// `
-//
-// export const PostsGridHeaderIndicator = styled.div`
-//   font-size: 20px;
-//   padding: 0 8px;
-//   background-color: #b8d3ff40;
-//   margin-left: 8px;
-//   border-radius: 4px;
-//   font-weight: normal;
-//
-//   ${WhenWidthMost(650)} {
-//     font-size: 16px;
-//   }
-// `
-
-export const PostItemRoot = styled(PostItemRootBase)<{ expand?: { by2: PostExpand, by3: PostExpand }, priority?: "true" | "false" }>`
-  ${WhenWidthLeast(650)} {
-    ${({ priority }) => priority === "true" ? css`
+export const PostItemRoot = styled(PostItemRootBase)<{ $expand?: { by2: PostExpand, by3: PostExpand }, $priority?: "true" | "false" }>`
+  ${WhenWidthLeast(1211)} {
+    ${({ $priority }) => $priority === "true" ? css`
       height: 400px;
-      transform: translateY(-100px);
     ` : ""}
   }
-  ${WhenWidthIn(450, 650)} {
-    height: 300px;
+  ${WhenWidthIn(450, 990)} {
+    min-height: 300px;
   }
   ${WhenWidthMost(450)} {
-    height: 175px;
+    min-height: 175px;
   }
-  ${WhenWidthLeast(900)} {
-    ${({ expand }) => expand ? css`grid-column: span ${expand.by3.columns};grid-row: span ${expand.by3.rows};` : ""}
+  ${WhenWidthLeast(1211)} {
+    ${({ $expand }) => $expand ? css`grid-column: span ${$expand.by2.columns};grid-row: span ${$expand.by2.rows};` : ""}
   }
-  ${WhenWidthIn(650, 900)} {
-    ${({ expand }) => expand ? css`grid-column: span ${expand.by2.columns};grid-row: span ${expand.by2.rows};` : ""}
+  ${WhenWidthIn(651, 990)} {
+  ${WhenWidthIn(651, 990)} {
+    ${({ $expand }) => $expand ? css`grid-column: span ${$expand.by2.columns};grid-row: span ${$expand.by2.rows};` : ""}
   }
 `
 
 export const PostItemImageContainer = styled(PostItemImageContainerBase)``
 
-export const PostItemTitle = styled(PostItemTitleBase)<{ expand?: { by2: PostExpand, by3: PostExpand } }>`
-  ${WhenWidthLeast(1000)} {
-    font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 18}px;
+export const PostItemTitle = styled(PostItemTitleBase)<{ $expand?: { by2: PostExpand, by3: PostExpand } }>`
+  ${WhenWidthLeast(1210)} {
+    font-size: ${({ $expand }) => ($expand?.by3?.columns ?? 1) >= 2 ? 30 : 18}px;
     margin: 0 25px;
   }
-  ${WhenWidthIn(900, 1000)} {
-    font-size: ${({ expand }) => (expand?.by3?.columns ?? 1) >= 2 ? 30 : 14}px;
+  ${WhenWidthIn(900, 1210)} {
+    font-size: 18px;
     margin: 0 15px;
   }
   ${WhenWidthIn(825, 900)} {
-    font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 18}px;
+    font-size: 18px;
   }
-  ${WhenWidthIn(650, 825)} {
-    font-size: ${({ expand }) => (expand?.by2?.columns ?? 1) >= 2 ? 30 : 14}px;
-  }
-  ${WhenWidthIn(450, 650)} {
-    font-size: 20px;
+  ${WhenWidthIn(450, 825)} {
+    font-size: 14px;
   }
   ${WhenWidthMost(450)} {
     font-size: 16px;
@@ -228,15 +238,7 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
     font-size: 14px;
     margin: 15px 40px 0 40px;
   }
-  ${WhenWidthIn(1000, 1400)} {
-    font-size: 12px;
-    margin: 15px 40px 0 40px;
-  }
-  ${WhenWidthIn(650, 1000)} {
-    font-size: 12px;
-    margin: 15px 20px 0 20px;
-  }
-  ${WhenWidthIn(450, 650)} {
+  ${WhenWidthIn(450, 1400)} {
     font-size: 14px;
     margin: 15px 40px 0 40px;
   }
@@ -247,12 +249,28 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
 `
 
 export const BlogFooterArea = styled(BlogFooterAreaBase)`
-  padding: 0 17%;
-  ${WhenWidthMost(1150)} {
-    padding: 0 10%;
+  position: relative;
+  flex-shrink: 0;
+  min-width: 0;
+
+  ${WhenWidthMost(500)} {
+    height: 70px;
   }
+`
+
+export const BlogFooterDescription = styled(BlogFooterDescriptionBase)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 100%;
+  
+  ${WhenWidthMost(1210)} {
+    font-size: 14px;
+  }
+  
   ${WhenWidthMost(650)} {
-    padding: 20px 15px;
+    font-size: 11px;
   }
 `
 
@@ -261,4 +279,175 @@ export const VerticalDivider = styled.div`
   height: 15px;
   margin: 0 10px;
   border-right: 1px solid #ffffff50;
+`
+
+export const PriorityPostItemRow = styled.div`
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  
+  ${WhenWidthIn(831, 990)} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`
+
+export const PriorityPostItemRoot = styled(Link)<{ $hideWhenNarrow?: boolean }>`
+  position: relative;
+  overflow: hidden;
+  
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  transition: scale 0.25s cubic-bezier(0.33, 1, 0.68, 1);
+  
+  ${({ $hideWhenNarrow }) => $hideWhenNarrow ? css`
+    ${WhenWidthLeast(991)} {
+      display: none;
+    }
+    ${WhenWidthMost(830)} {
+      display: none;
+    }
+  ` : ""}
+  
+  ${PostItemTitle} {
+    font-size: 30px;
+    
+    ${WhenWidthMost(650)} {
+      font-size: 24px;
+    }
+  }
+  
+  ${WhenWidthLeast(750)} {
+    &:hover {
+      scale: 1.05;
+      z-index: 100;
+    }
+  }
+  
+  ${WhenWidthMost(1210)} {
+    height: 275px;
+  }
+  
+  ${WhenWidthMost(650)} {
+    height: 175px;
+  }
+`
+
+export const PriorityPostItemPreview = styled(Image)`
+  position: absolute; top: 0; left: 0;
+  z-index: 0;
+  
+  width: 100%;
+  height: 100%;
+`
+
+export const PriorityPostDescription = styled.p`
+  position: absolute; top: 0; left: 0;
+  
+  margin: 10px;
+  color: white;
+  font-size: 13px;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  opacity: 0.5;
+  
+  ${WhenWidthMost(650)} {
+    font-size: 11px;
+  }
+`
+
+export const PinIcon = styled(Image)`
+  width: 16px;
+  height: 16px;
+  
+  margin-right: 4px;
+`
+
+export const StickyDescription = styled.p`
+  color: white;
+  margin: 8px 0 32px 0;
+  line-height: 200%;
+  font-size: 16px;
+  
+  & > span {
+    margin-bottom: 12px;
+    opacity: 0.65;
+  }
+  
+  ${WhenWidthMost(1210)} {
+    font-size: 13px;
+  }
+  
+  ${WhenWidthMost(990)} {
+    font-size: 18px;
+  }
+  
+  ${WhenWidthMost(650)} {
+    font-size: 14px;
+  }
+`
+
+export const StickyContentPositioner = styled.div<{ $ratio: number }>`
+  flex-grow: ${({ $ratio }) => $ratio};
+`
+
+const ScrollDownTween = keyframes`
+  0% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+`
+
+export const ScrollDown = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 40px;
+  opacity: 0.25;
+  margin: 0 0 0 16px;
+  
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: right;
+  
+  transform: translateY(15px);
+  
+  & > span {
+    font-size: 12px;
+    margin-bottom: -48px;
+    display: block;
+  }
+  
+  ${WhenWidthLeast(991)} {
+    display: none;
+  }
+  
+  /*animation: ${ScrollDownTween} 2s cubic-bezier(0.83, 0, 0.17, 1) infinite;*/
+`
+
+export const DesktopOnlyKiwicraftLogo = styled(KiwicraftLogo)`
+  ${WhenWidthMost(650)} {
+    display: none;
+  }
+`
+
+export const PostsTopDivider = styled.div`
+  height: 0;
+  width: 40px;
+  border-bottom: 1px solid #ffffff30;
+  margin: 4px auto 16px auto;
+  
+  ${WhenWidthLeast(651)} {
+    display: none;
+  }
 `

@@ -85,12 +85,11 @@ export const WinterOverlay: React.FC = () => {
       flakes.forEach(it => {
         context.fillStyle = `rgba(255, 255, 255, ${it.opacity})`
         context.beginPath()
-        context.arc(
+        context.rect(
           it.position[0] * currentCanvas.width,
           it.position[1] * currentCanvas.height,
           it.size * SizeMultiplier,
-          0,
-          2 * Math.PI
+          it.size * SizeMultiplier
         )
         context.fill()
       })

@@ -12,6 +12,7 @@ export type PostMetadata = {
   author: string
   categories: string[]
   expand?: { max_columns: number, max_rows: number }
+  pinned?: boolean
 }
 
 export type RawPost = {
@@ -36,7 +37,7 @@ export class Posts {
   }
 
   static get latest() {
-    return Posts.retrieve(this.queryset[0])
+    return Posts.retrieve(this.queryset[0])!
   }
 
   static get total() {
@@ -56,7 +57,13 @@ export class Posts {
       .let(it => expand ? Posts.withExpand(it) : it)
   }
 
-  private static withExpand(posts: RawPost[]): Post[] {
+  static get pinned(): Post {
+    return Posts.queryset
+      .map(it => Posts.retrieve<RawPost>(it)!)
+      .find(it => it.data.pinned)!
+  }
+
+  static withExpand(posts: RawPost[]): Post[] {
     const buildPostExpander = (GridColumns: number) => {
       const GridRows = (1024 / GridColumns).ceil
       const grid = ArrayK(1024, () => false).chunked(GridColumns)
@@ -76,7 +83,7 @@ export class Posts {
 
         if (index === 0) {
           grid[y + 1][x] = grid[y][x + 1] = grid[y + 1][x + 1] = true
-          return ({ columns: 2, rows: 1 })
+          return ({ columns: 2, rows: 2 })
         }
 
         if (!post.data.expand)
@@ -126,7 +133,7 @@ export class Posts {
       return fs.readFileSync(path.join(process.cwd(), `__posts__/${key}/_post.markdown`), { encoding: "utf8" })
         .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
         .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
-        .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand"))
+        .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand", "pinned"))
         .let(it => ({ ...it, excerpt: it.excerpt?.replace(/^> .+$/gm, ""), key }) as T)
         .let(it => ({
           ...it,

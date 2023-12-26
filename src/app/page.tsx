@@ -5,14 +5,23 @@ import { dateBasedRandom, dice } from "@/lib/23summer/dice"
 
 import {
   Comment,
-  ContentArea, ContentHeader, GlowText,
-  HomeRoot, MotdContent, MotdImage, MotdText, NameDivider, ReadMe,
-  SectionDivider, TitleArea, TitleContent, TitleText
+  ContentArea,
+  ContentHeader,
+  GlowText,
+  HomeRoot,
+  MotdContent,
+  MotdImage,
+  MotdText,
+  NameDivider,
+  ReadMe,
+  SectionDivider,
+  TitleArea,
+  TitleContent,
+  TitleText
 } from "@/app/_styled"
 
 import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
 import { Background } from "@/components/Background"
-import { WinterOverlay } from "@/components/WinterOverlay"
 
 export const fetchCache = "force-no-store"
 
@@ -22,8 +31,7 @@ export default function Home() {
 
   return (
     <HomeRoot>
-      <Background darker/>
-      <WinterOverlay/>
+      <Background dark/>
       <ContentArea>
         <TitleArea>
           <TitleText>

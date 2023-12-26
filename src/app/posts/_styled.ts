@@ -25,6 +25,10 @@ export const BlogFooterAreaBase = styled.div`
 `
 
 export const BlogFooterAreaLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  
   > a {
     font-size: 20px;
     font-weight: bold;
@@ -39,7 +43,7 @@ export const BlogFooterAreaLeft = styled.div`
   }
 `
 
-export const BlogFooterDescription = styled.div`
+export const BlogFooterDescriptionBase = styled.div`
   list-style-type: none;
   font-size: 14px;
   font-weight: normal;

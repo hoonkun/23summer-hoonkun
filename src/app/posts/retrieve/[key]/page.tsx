@@ -11,21 +11,27 @@ import { Categories, Category } from "@/lib/23summer/category"
 import "@/lib/katex/styles.css"
 
 import {
+  BlogFooterArea,
+  DiscussionContainer,
   InlineCode,
-  MainImageContainer, PostBelowArea, PostContainer,
-  PostContent, PostContentDivider, BlogFooterArea,
-  PostMetadata, PostRelated,
-  PostRoot, PostSurroundings, PostTag, PostTags,
-  PostTitleArea,
+  MainImageContainer,
+  PostBelowArea,
+  PostContainer,
+  PostContent,
+  PostContentDivider,
   PostItemExcerpt,
+  PostItemImageContainer,
   PostItemRoot,
   PostItemTitle,
-  PostItemImageContainer, DiscussionContainer,
+  PostMetadata,
+  PostRelated,
+  PostRoot,
+  PostSurroundings,
+  PostTag,
+  PostTags,
+  PostTitleArea,
 } from "@/app/posts/retrieve/_styled"
-import {
-  BlogFooterDescription,
-  BlogFooterAreaLeft
-} from "@/app/posts/_styled"
+import { BlogFooterAreaLeft, BlogFooterDescriptionBase } from "@/app/posts/_styled"
 
 import { CodeHighlighter } from "@/components/CodeHighlighter"
 import { Background } from "@/components/Background"
@@ -157,12 +163,12 @@ export default async function Page({ params }: { params: PostParams }) {
       <BlogFooterArea>
         <BlogFooterAreaLeft>
           <Link href={"/posts/list/1"}>키위새의 아무말 저장소</Link>
-          <BlogFooterDescription as={"ul"}>
+          <BlogFooterDescriptionBase as={"ul"}>
             <li>개발</li>
             <li>마인크래프트</li>
             <li>생명과학II</li>
             <li>아무말</li>
-          </BlogFooterDescription>
+          </BlogFooterDescriptionBase>
         </BlogFooterAreaLeft>
         <KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
       </BlogFooterArea>
