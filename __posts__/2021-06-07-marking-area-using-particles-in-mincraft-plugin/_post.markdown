@@ -76,19 +76,19 @@ parent.server.onlinePlayers.forEach { player ->
 이렇게 하면 대충 원하는 느낌의 경계가 잘 그려지는 듯 하다.   
 
 사진들을 살펴보자. 아래의 세 사진은 모두 같은 영역을 표시하고 있으며 y의 위치만 바뀌었다.   
-![공중](...image_base.../in_air.png)
+![공중](...image_base.../in_air.jpg)
 > 공중에서 지면을 바라보고 찍은 사진
 
-![지면](...image_base.../on_ground.png)
+![지면](...image_base.../on_ground.jpg)
 > 지면에서 찍은 사진
 
-![지하](...image_base.../under_ground.png)
+![지하](...image_base.../under_ground.jpg)
 > 지하에서 찍은 사진
 
 와ㅡ 이 정도면 꽤 잘 한 것 아닌가?
 과연 정말 그런지, 다음 사진을 보자:   
 
-![기대하지 않은](...image_base.../unexpected.png)
+![기대하지 않은](...image_base.../unexpected.jpg)
 > 아래쪽 영역이 보이지 않는다...
 
 알고리즘 상 이런 식으로 배치가 되어있으면 눈에 보이는 곳은 아래쪽임에도 아래쪽에 경계가 표시되지 않는다.   
@@ -139,7 +139,7 @@ player.spawnParticle(
 그리고 위로 2칸 이상 이동하면 쳐다봐봤자 안보이는 위치일 것이므로 해당 위치는 폐기하고 아래로 이동하여 그리도록 변경했다.   
 
 그래서 최종적으로 위와 같은 상황에서도 아래처럼 잘 그린다:   
-![기대한](...image_base.../expected.png)
+![기대한](...image_base.../expected.jpg)
 > 와! 샌...
 
 그래서 일단... 결론적으로 이 정도 결과물이면 딱히 더 불편함은 없지 싶다.   

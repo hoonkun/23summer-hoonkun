@@ -5,9 +5,19 @@ import { dateBasedRandom, dice } from "@/lib/23summer/dice"
 
 import {
   Comment,
-  ContentArea, ContentHeader, GlowText,
-  HomeRoot, MotdContent, MotdImage, MotdText, NameDivider, ReadMe,
-  SectionDivider, TitleArea, TitleContent, TitleText
+  ContentArea,
+  ContentHeader,
+  GlowText,
+  HomeRoot,
+  MotdContent,
+  MotdImage,
+  MotdText,
+  NameDivider,
+  ReadMe,
+  SectionDivider,
+  TitleArea,
+  TitleContent,
+  TitleText
 } from "@/app/_styled"
 
 import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
@@ -21,7 +31,7 @@ export default function Home() {
 
   return (
     <HomeRoot>
-      <Background darker/>
+      <Background dark/>
       <ContentArea>
         <TitleArea>
           <TitleText>

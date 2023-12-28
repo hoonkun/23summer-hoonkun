@@ -74,11 +74,20 @@ export const TitleText = styled.div`
   ${WhenWidthLeast(1350)} {
     font-size: 75px;
   }
-  
 `
 
 export const GlowText = styled.span`
   position: relative;
+  
+  font-size: 40px;
+  
+  ${WhenWidthMost(500)} {
+    font-size: 35px;
+  }
+  
+  ${WhenWidthLeast(1350)} {
+    font-size: 60px;
+  }
   
   &:before, &:after {
     content: '';
@@ -116,8 +125,13 @@ export const NameDivider = styled.div`
   width: 0; height: 25px;
   margin: 0 30px;
   
-  border-right: 2px solid #ffffff;
+  border-right: 1px solid #ffffff;
   opacity: 0.5;
+  rotate: 20deg;
+  
+  ${WhenWidthMost(500)} {
+    height: 18px;
+  }
 `
 
 export const SectionDivider = styled.div`
@@ -164,7 +178,12 @@ export const Comment = styled.b`
 
 export const ReadMe = styled.ul`
   margin: 15px 0 30px 0;
-  padding-inline-start: 20px;
+  
+  list-style-type: none;
+  
+  & a {
+    text-decoration: underline;
+  }
 `
 
 export const MotdContent = styled.div`
