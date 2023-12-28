@@ -233,6 +233,18 @@ export const PostItemTitle = styled(PostItemTitleBase)<{ $expand?: { by2: PostEx
   }
 `
 
+export const PriorityPostItemTitle = styled(PostItemTitle)`
+  ${WhenWidthMost(830)} {
+    text-align: left;
+    margin: 0 12px;
+    font-size: 16px !important;
+    white-space: nowrap;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`
+
 export const PostItemExcerpt = styled(PostItemExcerptBase)`
   ${WhenWidthLeast(1400)} {
     font-size: 14px;
@@ -245,6 +257,14 @@ export const PostItemExcerpt = styled(PostItemExcerptBase)`
   ${WhenWidthMost(450)} {
     font-size: 12px;
     margin: 15px 40px 0 40px;
+  }
+`
+
+export const PriorityPostItemExcerpt = styled(PostItemExcerpt)`
+  ${WhenWidthMost(830)} {
+    text-align: left;
+    margin: 0 12px;
+    font-size: 12px !important;
   }
 `
 
@@ -291,7 +311,7 @@ export const PriorityPostItemRow = styled.div`
   }
 `
 
-export const PriorityPostItemRoot = styled(Link)<{ $hideWhenNarrow?: boolean }>`
+export const PriorityPostItemRoot = styled(Link)<{ $hideWhenWide?: boolean }>`
   position: relative;
   overflow: hidden;
   
@@ -302,11 +322,8 @@ export const PriorityPostItemRoot = styled(Link)<{ $hideWhenNarrow?: boolean }>`
   
   transition: scale 0.25s cubic-bezier(0.33, 1, 0.68, 1);
   
-  ${({ $hideWhenNarrow }) => $hideWhenNarrow ? css`
+  ${({ $hideWhenWide }) => $hideWhenWide ? css`
     ${WhenWidthLeast(991)} {
-      display: none;
-    }
-    ${WhenWidthMost(830)} {
       display: none;
     }
   ` : ""}
@@ -329,9 +346,10 @@ export const PriorityPostItemRoot = styled(Link)<{ $hideWhenNarrow?: boolean }>`
   ${WhenWidthMost(1210)} {
     height: 275px;
   }
-  
-  ${WhenWidthMost(650)} {
-    height: 175px;
+
+  ${WhenWidthMost(830)} {
+    height: 100px;
+    margin-bottom: 8px;
   }
 `
 
@@ -359,13 +377,21 @@ export const PriorityPostDescription = styled.p`
   ${WhenWidthMost(650)} {
     font-size: 11px;
   }
+  
+  ${WhenWidthMost(830)} {
+    position: relative;
+    margin: 0 10px;
+  }
 `
 
 export const PinIcon = styled(Image)`
-  width: 16px;
-  height: 16px;
+  width: 16px; height: 16px;
   
   margin-right: 4px;
+  
+  ${WhenWidthMost(830)} {
+    width: 12px; height: 12px;
+  }
 `
 
 export const StickyDescription = styled.p`
@@ -389,6 +415,10 @@ export const StickyDescription = styled.p`
   
   ${WhenWidthMost(650)} {
     font-size: 14px;
+  }
+  
+  ${WhenWidthMost(830)} {
+    margin: 8px 0 16px 0;
   }
 `
 

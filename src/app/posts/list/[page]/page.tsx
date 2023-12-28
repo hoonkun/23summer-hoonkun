@@ -20,9 +20,11 @@ import {
   PostsTitle,
   PostsTopDivider,
   PriorityPostDescription,
+  PriorityPostItemExcerpt,
   PriorityPostItemPreview,
   PriorityPostItemRoot,
   PriorityPostItemRow,
+  PriorityPostItemTitle,
   ScrollDown,
   StickyArea,
   StickyContentPositioner,
@@ -131,7 +133,7 @@ const PriorityPostItem: React.FC<{ post: Post, type: "latest" | "pinned" }> = as
   return (
     <PriorityPostItemRoot
       href={`/posts/retrieve/${post.key}`}
-      $hideWhenNarrow={type === "latest"}
+      $hideWhenWide={type === "latest"}
     >
       <PriorityPostItemPreview
         src={preview.default}
@@ -145,8 +147,12 @@ const PriorityPostItem: React.FC<{ post: Post, type: "latest" | "pinned" }> = as
         {type === "pinned" ? <PinIcon alt={""} src={Pin}/> : <PinIcon alt={""} src={Latest}/>}
         {type === "pinned" ? "고정된 포스트" : "최신 게시글"}
       </PriorityPostDescription>
-      <PostItemTitle $expand={{ by2: { columns: 2, rows: 2 }, by3: { columns: 2, rows: 2 } }}>{post.data.title}</PostItemTitle>
-      <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
+      <PriorityPostItemTitle
+        $expand={{ by2: { columns: 2, rows: 2 }, by3: { columns: 2, rows: 2 } }}
+      >
+        {post.data.title}
+      </PriorityPostItemTitle>
+      <PriorityPostItemExcerpt>{ post.excerpt }</PriorityPostItemExcerpt>
     </PriorityPostItemRoot>
   )
 }
