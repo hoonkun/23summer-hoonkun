@@ -186,6 +186,11 @@ export const ReadMe = styled.ul`
   }
 `
 
+export const Hidden = styled.span`
+  opacity: 0;
+  user-select: none;
+`
+
 export const MotdContent = styled.div`
   display: flex; align-items: center;
 `

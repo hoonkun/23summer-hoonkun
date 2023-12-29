@@ -8,6 +8,7 @@ import {
   ContentArea,
   ContentHeader,
   GlowText,
+  Hidden,
   HomeRoot,
   MotdContent,
   MotdImage,
@@ -48,11 +49,11 @@ export default function Home() {
           본명은 아니지만 한고훈이라는 이름으로 활동해요.<br/>
           아직 햇병아리 뉴비이지만 열심히 공부하고 있어요.<br/>
           <ReadMe>
-            <li>🔭 현재는 <a href={"https://unstabler.pl"}>팀 언스테이블러즈</a>에 속해있어요!</li>
+            <li>🔭 현재는 <a href={"https://unstabler.pl"}>team unstablers</a> 에 속해있어요!</li>
             <li>🌱 최근에는 Jetpack Compose에 대해 공부 중이에요!</li>
             <li>🥝 주로 개인 프로젝트를 통해 공부하고 있어요.</li>
-            <li>📫 트위터<a href={"https://twitter.com/arctic_apteryx"}>@arctic_apteryx</a>에 주로 상주 중이에요!</li>
-            <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/>&nbsp;&nbsp;&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;</small>같이 할 사람 절찬리에 모집 중! (??)</li>
+            <li>📫 Mastodon <a href={"https://twitter.com/arctic_apteryx"}>kiwi@ppiy.ac</a> 에 주로 상주 중이에요!</li>
+            <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/><Hidden>⚡ </Hidden>같이 할 사람 절찬리에 모집 중! (??)</li>
           </ReadMe>
           <ContentHeader>오늘의 아무말</ContentHeader>
           <MotdContent>
