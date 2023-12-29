@@ -110,5 +110,14 @@
       "dark": "#1565c0",
       "bright": "#1e88e5"
     }
+  },
+  {
+    "name": "restriction-enzyme",
+    "display": "제한효소",
+    "parent": "biology-ii",
+    "color": {
+      "dark": "#fcba03",
+      "bright": "#fcba03"
+    }
   }
 ]

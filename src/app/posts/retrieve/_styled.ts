@@ -6,8 +6,10 @@ import { WhenWidthIn, WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-q
 
 import {
   BlogFooterAreaBase,
-  PostItemExcerptBase, PostItemImageContainerBase,
-  PostItemRootBase, PostItemTitleBase
+  PostItemExcerptBase,
+  PostItemImageContainerBase,
+  PostItemRootBase,
+  PostItemTitleBase
 } from "@/app/posts/_styled"
 
 const ContentPadding = css`padding: 0 max((100% - 700px) / 2, 15px);`
@@ -155,7 +157,7 @@ export const PostContent = styled.div`
   }
 
   ul, ol {
-    padding-inline-start: 20px;
+    padding-inline-start: 24px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -214,8 +216,18 @@ export const PostContent = styled.div`
     font-family: "JetBrains Mono", sans-serif;
     background-color: rgb(43, 43, 43);
   }
+  
+  pre:not(:has(> pre)) {
+    margin: 8px 0;
+    border-radius: 5px;
+    padding: 7px 15px;
+    font-size: 16px;
+    font-family: "JetBrains Mono", sans-serif;
+    background-color: rgb(43, 43, 43);
+    overflow-x: auto;
+  }
 
-  pre:has( > pre) {
+  pre:has(> pre) {
     margin: 20px 0 0 0;
   }
 
@@ -301,6 +313,12 @@ export const PostContent = styled.div`
 
   .hljs-comment, .hljs-deletion, .hljs-meta {
     color: #7f7f7f;
+  }
+  
+  .katex-html {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-top: 4px;
   }
 `
 

@@ -28,7 +28,7 @@ export const PostSummary: React.FC<PostSummaryProps> = ({ summary }) => {
             <SummaryItem
               key={`${it.type}_${it.text}`}
               href={`#${it.text.replaceAll(" ", "_")}`}
-              indent={parseInt(it.type.substring(1)) - minIndent}>
+              $indent={parseInt(it.type.substring(1)) - minIndent}>
               { it.text }
             </SummaryItem>
           ) }
@@ -73,7 +73,7 @@ const Summaries = styled.div`
   line-height: 125%;
 `
 
-const SummaryItem = styled.a<{ indent: number }>`
-  padding: 7.5px 0 7.5px ${({ indent }) => indent * 20}px;
+const SummaryItem = styled.a<{ $indent: number }>`
+  padding: 7.5px 0 7.5px ${({ $indent }) => $indent * 20}px;
   display: block;
 `
