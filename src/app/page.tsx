@@ -52,7 +52,7 @@ export default function Home() {
             <li>🔭 현재는 <a href={"https://unstabler.pl"}>team unstablers</a> 에 속해있어요!</li>
             <li>🌱 최근에는 Jetpack Compose에 대해 공부 중이에요!</li>
             <li>🥝 주로 개인 프로젝트를 통해 공부하고 있어요.</li>
-            <li>📫 Mastodon <a href={"https://twitter.com/arctic_apteryx"}>kiwi@ppiy.ac</a> 에 주로 상주 중이에요!</li>
+            <li>📫 Mastodon <a rel={"me"} href={"https://ppiy.ac/@kiwi"}>kiwi@ppiy.ac</a> 에 주로 상주 중이에요!</li>
             <li>⚡ 마인크래프트는 개발하는것도, 플레이하는것도 좋아해요!<br/><Hidden>⚡ </Hidden>같이 할 사람 절찬리에 모집 중! (??)</li>
           </ReadMe>
           <ContentHeader>오늘의 아무말</ContentHeader>
