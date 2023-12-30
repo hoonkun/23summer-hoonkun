@@ -1,5 +1,4 @@
 import React from "react"
-import Link from "next/link"
 
 import { dateBasedRandom, dice } from "@/lib/23summer/dice"
 
@@ -7,6 +6,7 @@ import {
   Comment,
   ContentArea,
   ContentHeader,
+  FootprintsLink,
   GlowText,
   Hidden,
   HomeRoot,
@@ -14,14 +14,13 @@ import {
   MotdImage,
   MotdText,
   NameDivider,
+  PostsLink,
   ReadMe,
   SectionDivider,
   TitleArea,
   TitleContent,
   TitleText
 } from "@/app/_styled"
-
-import { NewTabLinkIndicator } from "@/components/NewTabLinkIndicator"
 import { Background } from "@/components/Background"
 
 export const fetchCache = "force-no-store"
@@ -40,7 +39,8 @@ export default function Home() {
             <NameDivider />
             <GlowText>훈쿤</GlowText>
           </TitleText>
-          <Link href={"/posts/list/1"}><NewTabLinkIndicator/> 키위새의 아무말 저장소</Link>
+          <PostsLink href={"/posts/list/1"}>키위새의 아무말 저장소</PostsLink>
+          <FootprintsLink href={"/footprints"}>발자취</FootprintsLink>
         </TitleArea>
         <SectionDivider />
         <TitleContent>

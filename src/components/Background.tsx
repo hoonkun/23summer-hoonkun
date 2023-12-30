@@ -6,7 +6,20 @@ import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
 import { WinterOverlay } from "@/components/WinterOverlay"
 
-export const Background: React.FC<{ dark?: boolean, darker?: boolean, overlay?: boolean }> = ({ dark, darker, overlay }) => {
+type BackgroundProps = {
+  dark?: boolean
+  darker?: boolean
+  overlay?: boolean
+}
+
+export const Background: React.FC<BackgroundProps> = props => {
+
+  const {
+    dark,
+    darker,
+    overlay
+  } = props
+
   return (
     <>
       <BackgroundImage

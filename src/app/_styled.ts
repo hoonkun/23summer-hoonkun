@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
+import { ExternalLink } from "@/components/ExternalLink"
 
 export const HomeRoot = styled.div`
   width: 100%; height: 100%;
@@ -24,8 +25,13 @@ export const ContentArea = styled.div`
 `
 
 export const TitleArea = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas: 
+    "     title           title"
+    "posts-link footprints-link";
+  grid-template-columns: 1fr auto;
+  justify-items: end;
+  grid-column-gap: 12px;
 
   & > a {
     align-self: flex-end;
@@ -53,6 +59,8 @@ export const TitleArea = styled.div`
 `
 
 export const TitleText = styled.div`
+  grid-area: title;
+  
   display: flex;
   align-items: center;
   
@@ -76,17 +84,25 @@ export const TitleText = styled.div`
   }
 `
 
+export const PostsLink = styled(ExternalLink)`
+  grid-area: posts-link;
+`
+
+export const FootprintsLink = styled(ExternalLink)`
+  grid-area: footprints-link;
+`
+
 export const GlowText = styled.span`
   position: relative;
   
-  font-size: 40px;
+  font-size: 47.5px;
   
   ${WhenWidthMost(500)} {
-    font-size: 35px;
+    font-size: 42.5px;
   }
   
   ${WhenWidthLeast(1350)} {
-    font-size: 60px;
+    font-size: 67.5px;
   }
   
   &:before, &:after {
