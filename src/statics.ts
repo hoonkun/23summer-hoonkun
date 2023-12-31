@@ -33,7 +33,7 @@ const PostRetrieves = modified.retrieves.map(it => ({
 }))
 
 const PortfolioUpdated = fs.readdirSync(path.join(process.cwd(), `__portfolio__`))
-  .map(it => + new Date(fs.statSync(path.join(process.cwd(), `__portfolio__`, it)).mtime))
+  .map(it => +new Date(fs.statSync(path.join(process.cwd(), `__portfolio__`, it)).mtime))
   .max()
 
 const sitemap = [

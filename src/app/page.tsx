@@ -7,7 +7,6 @@ import {
   ContentArea,
   ContentHeader,
   FootprintsLink,
-  GlowText,
   Hidden,
   HomeRoot,
   MotdContent,
@@ -19,7 +18,9 @@ import {
   SectionDivider,
   TitleArea,
   TitleContent,
-  TitleText
+  TitleText,
+  TitleTextEN,
+  TitleTextKR
 } from "@/app/_styled"
 import { Background } from "@/components/Background"
 
@@ -35,14 +36,14 @@ export default function Home() {
       <ContentArea>
         <TitleArea>
           <TitleText>
-            <span>HoonKun</span>
-            <NameDivider />
-            <GlowText>훈쿤</GlowText>
+            <TitleTextEN>HoonKun</TitleTextEN>
+            <NameDivider/>
+            <TitleTextKR>훈쿤</TitleTextKR>
           </TitleText>
           <PostsLink href={"/posts/list/1"}>키위새의 아무말 저장소</PostsLink>
           <FootprintsLink href={"/footprints"}>발자취</FootprintsLink>
         </TitleArea>
-        <SectionDivider />
+        <SectionDivider/>
         <TitleContent>
           <ContentHeader>방가어요!!</ContentHeader>
           <Comment>재미있어보이는 이것저것을 해보는 햇병아리 멍발자</Comment>

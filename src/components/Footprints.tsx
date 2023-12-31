@@ -59,7 +59,7 @@ export const Document: React.FC<{ identifier: string }> = async props => {
 }
 
 export const PortfolioTagView: React.FC<{ tag: PortfolioTag, small?: boolean }> = props =>
-    <PortfolioTagRoot $color={props.tag.color} $small={props.small}>{props.tag.name}</PortfolioTagRoot>
+  <PortfolioTagRoot $color={props.tag.color} $small={props.small}>{props.tag.name}</PortfolioTagRoot>
 
 export const AsidePreview: React.FC<{ identifier: string }> = props => {
 

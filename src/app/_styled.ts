@@ -12,7 +12,7 @@ export const ContentArea = styled.div`
   position: relative;
   width: 100%; height: 100%;
   z-index: 0;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,17 +42,18 @@ export const TitleArea = styled.div`
     padding: 0 4px;
     margin-right: -4px;
     margin-top: -6px;
-    
+
     color: #ffffff90;
-    
+
     ${WhenWidthMost(500)} {
       font-size: 14px;
     }
+
     ${WhenWidthLeast(1350)} {
       font-size: 20px;
     }
   }
-  
+
   & > a:hover {
     background-color: #ffffff20;
   }
@@ -60,27 +61,27 @@ export const TitleArea = styled.div`
 
 export const TitleText = styled.div`
   grid-area: title;
-  
+
   display: flex;
   align-items: center;
-  
+
   font-size: 50px;
   font-weight: bold;
-  
-  > span {
-    text-shadow: #ffffff80 0 0 10px;
-  }
-  
+
   ${WhenWidthMost(500)} {
     font-size: 40px;
-    
-    > span {
-      text-shadow: #ffffff40 0 0 10px;
-    }
   }
 
   ${WhenWidthLeast(1350)} {
     font-size: 75px;
+  }
+`
+
+export const TitleTextEN = styled.span`
+  text-shadow: #ffffff80 0 0 10px;
+
+  ${WhenWidthMost(500)} {
+    text-shadow: #ffffff40 0 0 10px;
   }
 `
 
@@ -92,31 +93,31 @@ export const FootprintsLink = styled(ExternalLink)`
   grid-area: footprints-link;
 `
 
-export const GlowText = styled.span`
+export const TitleTextKR = styled.span`
   position: relative;
-  
+
   font-size: 47.5px;
-  
+
   ${WhenWidthMost(500)} {
     font-size: 42.5px;
   }
-  
+
   ${WhenWidthLeast(1350)} {
     font-size: 67.5px;
   }
-  
+
   &:before, &:after {
     content: '';
     left: 50%;
     position: absolute;
     filter: blur(45px);
     transform: translateZ(0);
-    
+
     ${WhenWidthMost(1150)} {
       opacity: 0.6;
     }
   }
-  
+
   &:before {
     width: 480px; height: 360px;
     background: linear-gradient(
@@ -140,11 +141,11 @@ export const GlowText = styled.span`
 export const NameDivider = styled.div`
   width: 0; height: 25px;
   margin: 0 30px;
-  
+
   border-right: 1px solid #ffffff;
   opacity: 0.5;
   rotate: 20deg;
-  
+
   ${WhenWidthMost(500)} {
     height: 18px;
   }
@@ -156,10 +157,11 @@ export const SectionDivider = styled.div`
     border-right: 2px solid #ffffff;
     margin: 0 75px;
   }
+
   ${WhenWidthMost(1150)} {
     height: 60px;
   }
-  
+
   opacity: 0.15;
 `
 
@@ -167,7 +169,7 @@ export const TitleContent = styled.div`
   a {
     color: #639aff;
   }
-  
+
   ${WhenWidthMost(500)} {
     font-size: 13px;
   }
@@ -194,9 +196,9 @@ export const Comment = styled.b`
 
 export const ReadMe = styled.ul`
   margin: 15px 0 30px 0;
-  
+
   list-style-type: none;
-  
+
   & a {
     text-decoration: underline;
   }
@@ -215,7 +217,7 @@ export const MotdImage = styled.img<{ rotate: number }>`
   width: 65px; height: 65px;
   border: 3px solid white;
   rotate: ${({ rotate }) => rotate}deg;
-  
+
   ${WhenWidthLeast(1350)} {
     width: 85px; height: 85px;
   }

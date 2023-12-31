@@ -16,7 +16,7 @@ import {
 } from "@/app/footprints/_styled"
 import { Background } from "@/components/Background"
 
-import * as Portfolio from "@/components/portfolio/_Base"
+import * as Portfolio from "@/components/Footprints"
 import { Portfolios } from "@/lib/23summer/portfolio"
 import Link from "next/link"
 import { BlogFooterDescription, VerticalDivider } from "@/app/posts/list/_styled"

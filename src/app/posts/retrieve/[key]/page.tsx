@@ -78,15 +78,26 @@ export default async function Page({ params }: { params: PostParams }) {
     <PostRoot>
       <Background overlay/>
       <PostTitleArea>
-        <PostTags>{ categories.map(it => <PostTag key={it.name} color={it.color.bright}>{ it.display }</PostTag>) }</PostTags>
+        <PostTags>
+          {categories.map(it => <PostTag key={it.name} color={it.color.bright}>{it.display}</PostTag>)}
+        </PostTags>
         {post.data.title}
-        <PostMetadata>{ post.data.date } | { post.data.author.replace("GoHoon", "HoonKun") }</PostMetadata>
+        <PostMetadata>{post.data.date} | {post.data.author.replace("GoHoon", "HoonKun")}</PostMetadata>
       </PostTitleArea>
       <PostContainer>
         <MarkdownContent>
           <PostSummary summary={summary as PostSummary[]}/>
-          <MainImageContainer style={{ width: "min(700px, 100%)", aspectRatio: `${mainImage.default.width / mainImage.default.height}` }}>
-            <Image src={mainImage.default} alt={`${post.data.title}`} priority fill sizes={"(min-width: 850px) 800px, 100vw"} style={{ objectFit: "cover" }}/>
+          <MainImageContainer
+            style={{ width: "min(700px, 100%)", aspectRatio: `${mainImage.default.width / mainImage.default.height}` }}
+          >
+            <Image
+              src={mainImage.default}
+              alt={`${post.data.title}`}
+              priority
+              fill
+              sizes={"(min-width: 850px) 800px, 100vw"}
+              style={{ objectFit: "cover" }}
+            />
           </MainImageContainer>
           {content.result}
         </MarkdownContent>
@@ -107,14 +118,14 @@ export default async function Page({ params }: { params: PostParams }) {
         </DiscussionContainer>
         <PostContentDivider/>
         <PostBelowArea>
-          { categories[0].display } 카테고리의 다른 글
+          {categories[0].display} 카테고리의 다른 글
           <PostRelated>
-            { related.map(it => <PostItem key={it.key} post={it}/>) }
+            {related.map(it => <PostItem key={it.key} post={it}/>)}
           </PostRelated>
 
           {[surroundings[0] === null ? null : "이전 글", surroundings[1] === null ? null : "다음 글"].filter(it => !!it).join("과 ")}
           <PostSurroundings>
-            { surroundings.filter(it => !!it).map(it => <PostItem key={it!.key} post={it!}/>) }
+            {surroundings.filter(it => !!it).map(it => <PostItem key={it!.key} post={it!}/>)}
           </PostSurroundings>
         </PostBelowArea>
       </PostContainer>
@@ -137,7 +148,7 @@ export default async function Page({ params }: { params: PostParams }) {
 export async function generateMetadata({ params }: { params: PostParams }): Promise<Metadata> {
   const post = Posts.retrieve<Post>(params.key, false)
 
-  if (!post) return { };
+  if (!post) return {};
 
   const title = `${post.data.title} | 키위새의 아무말 저장소`
 
@@ -186,7 +197,7 @@ const PostItem: React.FC<{ post: Post }> = async ({ post }) => {
         fill
       />
       <PostItemTitle>{post.data.title}</PostItemTitle>
-      <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
+      <PostItemExcerpt>{post.excerpt}</PostItemExcerpt>
     </PostItemRoot>
   )
 }

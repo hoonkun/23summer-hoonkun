@@ -81,16 +81,16 @@ export const PostItemRootBase = styled(Link)`
   height: 100%;
 
   position: relative;
-  
+
   overflow: hidden;
-  
+
   transition: scale 0.25s cubic-bezier(0.33, 1, 0.68, 1);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   ${WhenWidthLeast(750)} {
     &:hover {
       scale: 1.05;
@@ -103,7 +103,7 @@ export const PostItemImageContainerBase = styled(Image)`
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 0;
-  
+
   overflow: hidden;
 `
 

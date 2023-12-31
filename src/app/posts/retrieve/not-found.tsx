@@ -13,7 +13,9 @@ export default async function NotFound() {
       <h1>404</h1>
       <h2>Not Found</h2>
       <p>이 포스트는 존재하지 않아요... 링크가 잘못된 것 같아요.</p>
-      <NotFoundKiwicraftLogo href={"/posts/list/1"}><KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/></NotFoundKiwicraftLogo>
+      <NotFoundKiwicraftLogo href={"/posts/list/1"}>
+        <KiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
+      </NotFoundKiwicraftLogo>
     </NotFoundRoot>
   )
 }

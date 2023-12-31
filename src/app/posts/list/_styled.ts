@@ -26,28 +26,28 @@ export const PostsRoot = styled.div`
 
 export const StickyArea = styled.div`
   position: sticky; left: 0; top: 0;
-  z-index: 100; 
-  
+  z-index: 100;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  
+
   width: calc(45vw - 1%);
   height: 100svh;
   overflow: hidden;
-  
+
   padding: 40px 60px 0 60px;
-  
+
   ${WhenWidthMost(1210)} {
     width: 45vw;
   }
-  
+
   ${WhenWidthMost(990)} {
     position: relative;
     min-width: 350px;
     width: 100vw;
   }
-  
+
   ${WhenWidthMost(650)} {
     padding: 40px 25px 15px 25px;
   }
@@ -284,11 +284,11 @@ export const BlogFooterDescription = styled(BlogFooterDescriptionBase)`
   text-overflow: ellipsis;
   min-width: 0;
   max-width: 100%;
-  
+
   ${WhenWidthMost(1210)} {
     font-size: 14px;
   }
-  
+
   ${WhenWidthMost(650)} {
     font-size: 11px;
   }
@@ -314,35 +314,34 @@ export const PriorityPostItemRow = styled.div`
 export const PriorityPostItemRoot = styled(Link)<{ $hideWhenWide?: boolean }>`
   position: relative;
   overflow: hidden;
-  
+
   height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
   transition: scale 0.25s cubic-bezier(0.33, 1, 0.68, 1);
-  
+
   ${({ $hideWhenWide }) => $hideWhenWide ? css`
     ${WhenWidthLeast(991)} {
       display: none;
     }
   ` : ""}
-  
   ${PostItemTitle} {
     font-size: 30px;
-    
+
     ${WhenWidthMost(650)} {
       font-size: 24px;
     }
   }
-  
+
   ${WhenWidthLeast(750)} {
     &:hover {
       scale: 1.05;
       z-index: 100;
     }
   }
-  
+
   ${WhenWidthMost(1210)} {
     height: 275px;
   }

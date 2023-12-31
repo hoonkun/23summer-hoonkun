@@ -24,14 +24,14 @@ export const PostSummary: React.FC<PostSummaryProps> = ({ summary }) => {
       <Sticky>
         <SummaryTitle>이 페이지의 내용</SummaryTitle>
         <Summaries>
-          { summary.map(it =>
+          {summary.map(it =>
             <SummaryItem
               key={`${it.type}_${it.text}`}
               href={`#${it.text.replaceAll(" ", "_")}`}
               $indent={parseInt(it.type.substring(1)) - minIndent}>
-              { it.text }
+              {it.text}
             </SummaryItem>
-          ) }
+          )}
         </Summaries>
       </Sticky>
     </Root>

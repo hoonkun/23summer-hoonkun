@@ -122,7 +122,7 @@ const PostItem: React.FC<{ post: Post, priority: boolean }> = async ({ post, pri
         fill
       />
       <PostItemTitle $expand={post.expand}>{post.data.title}</PostItemTitle>
-      <PostItemExcerpt>{ post.excerpt }</PostItemExcerpt>
+      <PostItemExcerpt>{post.excerpt}</PostItemExcerpt>
     </PostItemRoot>
   )
 }
@@ -152,7 +152,7 @@ const PriorityPostItem: React.FC<{ post: Post, type: "latest" | "pinned" }> = as
       >
         {post.data.title}
       </PriorityPostItemTitle>
-      <PriorityPostItemExcerpt>{ post.excerpt }</PriorityPostItemExcerpt>
+      <PriorityPostItemExcerpt>{post.excerpt}</PriorityPostItemExcerpt>
     </PriorityPostItemRoot>
   )
 }
