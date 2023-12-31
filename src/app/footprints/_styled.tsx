@@ -243,6 +243,11 @@ export const PortfolioTagRoot = styled.div<{ $color: string, $small?: boolean }>
   margin-right: 8px;
   font-size: ${({ $small }) => $small ? 13 : 16}px;
   margin-top: 8px;
+  
+  ${WhenWidthMost(450)} {
+    font-size: ${({ $small }) => $small ? 12 : 13}px;
+    border-radius: 2px;
+  }
 `
 
 export const FootprintTitleDecorationRoot = styled.div`
