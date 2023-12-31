@@ -4,9 +4,10 @@ description: Kotlin(JetpackCompose) 를 사용해 작성한, Minecraft Dungeons 
 tags: [KotlinMultiplatform, Compose]
 type: playground
 datetime: 2023
+image: dungeons-editor.jpg
 ---
 
-2023년에 진행한 프로젝트로, 저장소는 [이쪽](https://github.com/hoonkun/DungeonsEditor) 입니다.  
+2023년에 진행한 개인 프로젝트로, 저장소는 [이쪽](https://github.com/hoonkun/DungeonsEditor) 입니다.  
 기존에 다른 사람이 개발해놓은 에디터가 마음에 들지 않아 독자적으로 다시 개발한 프로그램입니다.  
 
 Jetpack Compose 를 사용하여 반응형 UI로 구성했으며, 그것이 제공하는 구성 가능 함수인 AnimatedContent 등을 사용하여 화면 전환에 신경을 쓴 프로젝트입니다.  

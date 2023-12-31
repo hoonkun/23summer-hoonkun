@@ -216,6 +216,12 @@ export const DocumentRoot = styled.div`
   }
 `
 
+export const DocumentImage = styled(Image)`
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+`
+
 export const DocumentDivider = styled.div`
   width: 48px;
   height: 0;

@@ -4,6 +4,7 @@ description: Java 로 작성된, Deemo 플레이에 사용 되는 종이 가리�
 tags: [Java, Android]
 type: playground
 datetime: 2017
+image: deemo-cover.jpg
 ---
 
 2017년에 진행한 개인 프로젝트로, Java 로 작성되었으며 Android 의 Service 와 WindowManager 를 사용하여 항상 화면에 표시되는 화면 가리개 어플리케이션입니다.  

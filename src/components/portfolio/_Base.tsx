@@ -6,6 +6,7 @@ import {
   AsidePreviewRoot,
   DocumentDescription,
   DocumentDivider,
+  DocumentImage,
   DocumentRoot,
   DocumentTitle,
   PortfolioContent,
@@ -24,7 +25,8 @@ export const Document: React.FC<{ identifier: string }> = async props => {
     data: {
       name,
       description,
-      tags
+      tags,
+      image
     },
     content
   } = portfolio
@@ -46,6 +48,7 @@ export const Document: React.FC<{ identifier: string }> = async props => {
         <PortfolioTagsRow>
           {mappedTags.map((it, index) => <PortfolioTagView key={index} tag={it}/>)}
         </PortfolioTagsRow>
+        {image && <DocumentImage src={(await import(`$/__portfolio__/${image}`)).default} alt={name}/>}
         <PortfolioContent>
           {children}
         </PortfolioContent>

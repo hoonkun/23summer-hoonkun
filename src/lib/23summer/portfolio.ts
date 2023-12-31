@@ -30,7 +30,8 @@ export const PortfolioTags: Readonly<{ [key: string]: PortfolioTag }> = {
   GraphqlClient: { name: "GraphQL Client", color: "#3d04b6" },
   WebSocket: { name: "WebSocket", color: "#424242" },
   WebRTC: { name: "WebRTC", color: "#c22b00" },
-  Java: { name: "Java", color: "#c22b00" }
+  Java: { name: "Java", color: "#c22b00" },
+  Csharp: { name: "C#", color: "#0055c4" }
 } as const
 
 type PortfolioType = "official" | "playground"

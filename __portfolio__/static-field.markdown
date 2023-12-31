@@ -1,9 +1,10 @@
 ---
 name: Unity 엔진 기반 2D 리듬게임
 description: 판정선을 포함한 필드가 제한없이 이동하고, 판정선의 위/아래에서 각각 노트가 출현하는 2D 리듬게임을 개발했습니다.
-tags: [Unity, TwoDimensional]
+tags: [Unity, TwoDimensional, Csharp]
 type: playground
 datetime: 2019
+image: static-field.jpg
 ---
 
 Static Field 라는 이름의, Unity 엔진 기반 필드 이동 상하 비대칭 건반형 리듬게임을 개발했습니다.  

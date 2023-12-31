@@ -4,6 +4,7 @@ description: Kotlin 으로 작성된, 마인크래프트 월드를 git을 통해
 tags: [Kotlin, MinecraftServerPlugin]
 type: playground
 datetime: 2022
+image: block-pixel.jpg
 ---
 
 2022년에 진행한 개인 프로젝트로, 저장소는 [이쪽](https://github.com/hoonkun/block-pixel) 입니다.

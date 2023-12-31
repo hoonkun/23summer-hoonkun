@@ -4,6 +4,7 @@ description: Kotlin 으로 작성된, Midi 파일을 읽어 반복 커맨드블�
 tags: [KotlinConsole, MinecraftCommands]
 type: playground
 datetime: 2022
+image: arctic.jpg
 ---
 
 2023년에 진행한 개인 프로젝트로, 저장소는 [이쪽](https://github.com/hoonkun/arctic-midi2mcfunction)입니다.  
