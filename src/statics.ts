@@ -7,6 +7,11 @@ import config from "./config"
 
 const base = "https://hoonkun.kiwi"
 
+// ___PostRegistry___
+
+const postKeys = fs.readdirSync(path.join(process.cwd(), "__posts__")).filter(it => !it.startsWith("_") && !it.startsWith(".")).sort().reverse()
+fs.writeFileSync(path.join(process.cwd(), "__posts__/_registry.json"), JSON.stringify(postKeys, null, 2), { encoding: "utf-8" })
+
 // ___SITEMAP___
 
 const retrieves = Posts.queryset.map(it => {
@@ -54,9 +59,3 @@ Allow: /
 Sitemap: ${base}/sitemap.xml
 `
 fs.writeFileSync(path.join(process.cwd(), "src/app/robots.txt"), robots, { encoding: "utf-8" })
-
-
-// ___PostRegistry___
-
-const postKeys = fs.readdirSync(path.join(process.cwd(), "__posts__")).filter(it => !it.startsWith("_") && !it.startsWith(".")).sort().reverse()
-fs.writeFileSync(path.join(process.cwd(), "__posts__/_registry.json"), JSON.stringify(postKeys, null, 2), { encoding: "utf-8" })

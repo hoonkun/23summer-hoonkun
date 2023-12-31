@@ -122,7 +122,7 @@ export const PostContainer = styled.div`
   flex-direction: column;
 `
 
-export const PostContent = styled.div`
+export const MarkdownContent = styled.div`
   line-height: 225%;
   
   ${ContentPadding};

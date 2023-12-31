@@ -120,6 +120,8 @@ const Canvas = styled.canvas`
   left: 0; top: 0;
   animation: ${CanvasFadeIn} 2s linear;
   
+  pointer-events: none;
+  
   -webkit-mask-image: url("${Mask.src}");
   mask-image: url("${Mask.src}");
   mask-mode: luminance;
@@ -141,6 +143,7 @@ const OverlayWrapper = styled.div`
   width: 100vw; height: 100vh;
   opacity: 0.05;
   animation: ${OverlayAnimation} 10s linear infinite;
+  pointer-events: none;
 `;
 
 const Overlay = styled.img<{ darker?: string }>`
