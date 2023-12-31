@@ -3,7 +3,7 @@
 import styled, { css, keyframes } from "styled-components"
 import { MarkdownContent } from "@/app/posts/retrieve/_styled"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
-import React, { PropsWithChildren, useState } from "react"
+import React, { PropsWithChildren, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
 import MenuOpenIcon from "@/resources/icons/menu_open.svg"
@@ -33,11 +33,14 @@ export const FootprintTitle = styled.div`
 
   ${WhenWidthMost(950)} {
     max-width: 750px;
-    padding: 0 40px;
+    padding-right: 40px;
+    padding-left: 40px;
   }
   
   ${WhenWidthMost(450)} {
-    padding: 0 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: calc(100vh - 100svh);
   }
 `
 
@@ -73,6 +76,11 @@ export const Documents = styled.div`
 
   ${WhenWidthMost(450)} {
     margin: 20px 0;
+  }
+  
+  transition: opacity .15s linear;
+  &:has(+ div[data-open="true"]) {
+    opacity: 0.1;
   }
 `
 
@@ -124,16 +132,33 @@ export const AsidePreviewsRoot = styled.div`
 
 export const AsidePreviews: React.FC<PropsWithChildren> = ({ children }) => {
 
+  const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const currentRef = ref.current
+    if (!currentRef) return
+
+    const handler = () => setOpen(false)
+
+    const anchors = currentRef.querySelectorAll("a")
+    anchors.forEach(it => it.addEventListener("click", handler))
+
+    return () => anchors.forEach(it => it.removeEventListener("click", handler))
+  }, []);
 
   return (
     <>
+      <AsidePreviewsRoot
+        ref={ref}
+        className={open ? "open" : ""}
+        data-open={open ? "true" : "false"}
+      >
+        {children}
+      </AsidePreviewsRoot>
       <AsideOpener onClick={() => setOpen(prev => !prev)}>
         <Image src={open ? CloseIcon : MenuOpenIcon} alt={""} style={{ width: 32, height: 32 }}/>
       </AsideOpener>
-      <AsidePreviewsRoot className={open ? "open" : ""}>
-        {children}
-      </AsidePreviewsRoot>
     </>
   )
 }
@@ -216,8 +241,8 @@ export const PortfolioTagRoot = styled.div<{ $color: string, $small?: boolean }>
 
 export const FootprintTitleDecorationRoot = styled.div`
   position: absolute; 
-  height: 86vh;
-  top: 7vh; left: 0; right: 0;
+  height: calc(100svh * 0.86);
+  top: calc(100svh * 0.14 / 2); left: 0; right: 0;
   z-index: 0;
   overflow-x: hidden;
 `
@@ -254,7 +279,7 @@ export const FootprintDecorationPulse = styled.div`
 
 const Line = keyframes`
   0% { transform: translateY(64px) }
-  100% { transform: translateY(calc(86vh - 64px)) }
+  100% { transform: translateY(calc(86svh - 64px)) }
 `
 
 export const FootprintDecorationLine = styled.div`
@@ -274,7 +299,12 @@ export const BackNavigator = styled.div`
   }
 
   ${WhenWidthMost(450)} {
-    padding: 0 25px;
+    padding: 0;
+    position: relative;
+    left: unset;
+    bottom: unset;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
   
   > a {

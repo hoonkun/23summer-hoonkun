@@ -56,7 +56,7 @@ export const BackgroundImage = styled.img<{ $dark?: string, $darker?: string }>`
   
   ${({ $dark, $darker }) => $dark === "true" ? css`
     ${WhenWidthMost(1150)} {
-      filter: brightness(0.3);
+      filter: brightness(0.5);
     }
     ${WhenWidthLeast(1150)} {
       filter: brightness(0.75);

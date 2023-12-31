@@ -28,7 +28,7 @@ export default async function Page() {
   return (
     <>
       <FootprintTitleDecoration/>
-      <Background overlay/>
+      <Background overlay dark/>
       <FootprintsRoot>
         <Documents>
           <FootprintTitle>
