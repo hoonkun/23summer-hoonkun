@@ -1,6 +1,6 @@
 ---
 name: NextJS 기반 WebRTC 통신 웹 어플리케이션
-description: WebRTC 기술을 사용해 P2P 통신을 구현하고, 기타 관리자 페이지 및 친구 시스템을 포함한 웹 어플리케이션의 개발, 유지보수했습니다.  
+description: WebRTC 기술을 사용해 P2P 음성/영상 통신을 구현하고, 기타 관리자 페이지 및 친구 시스템을 포함한 웹 어플리케이션의 개발, 유지보수했습니다.  
 tags: [Typescript, NextJS, WebRTC]
 type: official
 datetime: 2022-now
