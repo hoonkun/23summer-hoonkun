@@ -32,10 +32,18 @@ const PostRetrieves = modified.retrieves.map(it => ({
   url: `${base}/posts/retrieve/${it.key}`, lastModified: it.lastModified
 }))
 
+const PortfolioUpdated = fs.readdirSync(path.join(process.cwd(), `__portfolio__`))
+  .map(it => + new Date(fs.statSync(path.join(process.cwd(), `__portfolio__`, it)).mtime))
+  .max()
+
 const sitemap = [
   {
     url: base,
     lastModified: new Date()
+  },
+  {
+    url: `${base}/footprints`,
+    lastModified: new Date(PortfolioUpdated)
   },
   ...PostLists,
   ...PostRetrieves
