@@ -66,6 +66,6 @@ const Randoms: Die[] = [
   { text: "Miner 말고 다른 건 생각할 수 없어.", image: "ck-worldmap.jpg", alt: "원형 파이차트 처럼 생긴, 2d 오픈월드의 지도 스크린샷. 푸른 색, 주황 색, 초록 색, 모래 색 등의 지역이 보인다." }
 ]
 
-export const dateBasedRandom = () => `${new Date()}`.replace(/[0-9]{2}:[0-9]{2}:[0-9]{2}/, "").split("").map(it => it.charCodeAt(0)).sum() ^ 2
+export const dateBasedRandom = () => `${new Date().toLocaleDateString('ko-KR', { timeZone: "Asia/Seoul" })}`.split("").map(it => it.charCodeAt(0)).sum() ** 2
 
 export const dice = () => Randoms[dateBasedRandom() % Randoms.length];
