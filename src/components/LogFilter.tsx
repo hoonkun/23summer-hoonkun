@@ -20,10 +20,10 @@ export const LogFilter: React.FC = () => {
     return original(...args)
   }, [])
 
-  const log = useCallback(() => filterer(_log.current), [filterer])
-  const error = useCallback(() => filterer(_error.current), [filterer])
-  const warn = useCallback(() => filterer(_warn.current), [filterer])
-  const debug = useCallback(() => filterer(_debug.current), [filterer])
+  const log = useCallback((...args: any[]) => filterer(_log.current, ...args), [filterer])
+  const error = useCallback((...args: any[]) => filterer(_error.current, ...args), [filterer])
+  const warn = useCallback((...args: any[]) => filterer(_warn.current, ...args), [filterer])
+  const debug = useCallback((...args: any[]) => filterer(_debug.current, ...args), [filterer])
 
   useEffect(() => {
     console.log = log
