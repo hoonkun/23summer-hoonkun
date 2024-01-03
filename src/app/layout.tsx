@@ -2,6 +2,7 @@ import "./../lib/ktn"
 import './globals.css'
 import React from "react"
 import StyledComponentsRegistry from "@/lib/styled/styled-registry"
+import { LogFilter } from "@/components/LogFilter"
 
 const title = 'HoonKun | 훈쿤'
 const description = '23년 여름의, 훈쿤 개인 페이지.'
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
     <body>
+    <LogFilter/>
     <StyledComponentsRegistry>
       {children}
     </StyledComponentsRegistry>
