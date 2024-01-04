@@ -12,6 +12,7 @@ const Randoms: Die[] = [
   { text: "난 네가 싫어.", image: "dungeons-i-hate-you-3.jpg", alt: "마인크래프트 던전스의 진로방해 공격을 사용하는 마법사가 보이는 스크린샷" },
   { text: "마인크래프트 던전스 복귀했습니다!", image: "dungeons-1.jpg", alt: "마인크래프트 던전스의 '간수의 낫' 아이템 슬롯에 초점이 맞춰진 스크린샷, 힘 250에 마법부여는 36이 붙어있다." },
   { text: "마인크래프트 던전스 복귀했습니다!", image: "dungeons-2.jpg", alt: "마인크래프트 던전스의 코스메틱인 검은 염소와 평균 힘 250 표시에 초점이 맞춰진 스크린샷" },
+  { text: "이 놈을 두방컷 낸 사람이 있다던데...", image: "dungeons-mushroom.jpg", alt: "'새로운 목표: 음메'라는 텍스트와 붉은색으로 81,027,952 대미지가 표시된 스크린샷" },
   { text: "수능 과탐은 생물 I과 생물 II를 봤습니다.\n그치만 생물이 재미있는걸요!", image: "sat-biology.jpg", alt: "수능 응시과목에 생명과학 I과 생명과학 II라고 표시된 사진" },
   { text: "실물 마인크래프트 블럭을 만드는 취미가 있습니다.", image: "real-block.jpg", alt: "현실의 실물 마인크래프트의 커멘드블럭이 찍힌 사진" },
   { text: "카메라에 취미를 두었던 친구가 있었습니다.\n잘 지내고 있었으면 좋겠네요.", image: "friend.jpg", alt: "Leica 스토어의 바닥이 찍힌 사진, 'UR-LEICA' 와 'ENTER AND VISIONARY OSKAR BARNACK' 라는 문구가 보인다." },
