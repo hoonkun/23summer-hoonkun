@@ -24,7 +24,7 @@ import {
 } from "@/app/_styled"
 import { Background } from "@/components/Background"
 
-export const fetchCache = "force-no-store"
+export const dynamic = "force-dynamic"
 
 export default function Home() {
   const die = dice()
