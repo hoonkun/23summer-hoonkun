@@ -51,6 +51,7 @@ export const FootprintHello = styled.h1`
 
   ${WhenWidthMost(450)} {
     font-size: 35px;
+    text-shadow: #ffffff66 0 0 10px, #000000 0 0 10px;
   }
 `
 
@@ -326,4 +327,24 @@ export const BackNavigator = styled.div`
     display: flex;
     align-items: center;
   }
+`
+
+export const EmailContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 4px;
+  
+  ${WhenWidthMost(450)} {
+    opacity: 0.85;
+    font-size: 12px;
+  }
+  
+  ${WhenWidthLeast(450)} {
+    opacity: 0.65;
+  }
+`
+
+export const Email = styled.a`
+  display: block;
+  text-decoration: underline;
 `

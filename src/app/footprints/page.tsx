@@ -5,6 +5,8 @@ import {
   AsidePreviewScroller,
   BackNavigator,
   Documents,
+  Email,
+  EmailContainer,
   FootprintDecorationLine,
   FootprintDecorationPulse,
   FootprintDecorationPulseHolder,
@@ -36,6 +38,9 @@ export default async function Page() {
               안녕하세요!<br/>
               김영웅이라고 합니다.
             </FootprintHello>
+            <EmailContainer>
+              이메일:&nbsp;<Email href={"mailto:herokun.user@gmail.com"}>herokun.user@gmail.com</Email>
+            </EmailContainer>
             <FootprintDescription>
               주로 가명인 한고훈이라는 이름으로 활동합니다.<br/>
               이 곳에서는 제가 진행했던, 혹은 참여했던 프로젝트의 간략한 기록을 확인하실 수 있습니다.<br/><br/>
