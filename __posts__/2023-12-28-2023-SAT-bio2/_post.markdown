@@ -72,8 +72,7 @@ ebsi 홈페이지에서 내려받을 수 있으니 그것을 같이 참고하자
 <style>span.sep1 { display: inline-block; width: 0; height: 28px; transform: translateY(8px); border-left: 1px solid #AACCffC0; }</style>
 <style>span.sep2 { display: inline-block; width: 0; height: 28px; transform: translateY(8px); border-left: 1px solid #ffCCaaC0; }</style>
 <style>span.sep3 { display: inline-block; width: 0; height: 28px; transform: translateY(8px); border-left: 1px solid #f4ffaaC0; }</style>
-<pre>5'-AAC____A_______<span class="sep1"></span>___TAC__________GAC-3'</pre>
-<pre>5'-AAC____A__________T<span class="sep1"></span>AC__________GAC-3'</pre>
+<pre>5'-AAC____A_______<span class="sep1"></span>___T<span class="sep1"></span>AC__________GAC-3'</pre>
 위에서 `|` 로 표시한 위치를 중심으로 Kpn I 의 인식범위가 존재하는지 확인해보자.  
 일단 두 번째 상황도, 세 번째 상황도 현재까지 주어진 단서로는 성립 가능하다.  
 즉, 둘 다 해보고 모순을 찾아야한다.  

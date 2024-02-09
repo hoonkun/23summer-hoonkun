@@ -210,6 +210,13 @@ export const MarkdownContent = styled.div`
     line-height: 150%;
   }
   
+  pre:not(:has(> div, > pre)) {
+    background-color: rgb(30, 31, 34);
+    border-radius: 5px;
+    overflow-x: auto;
+    padding: 2px 15px 3px 15px;
+  }
+  
   ${CodeStyle} {
     pre {
       margin: 0 !important;
