@@ -393,14 +393,13 @@ export const PinIcon = styled(Image)`
   }
 `
 
-export const StickyDescription = styled.p`
+export const StickyDescription = styled.div`
   color: white;
   margin: 8px 0 32px 0;
   line-height: 200%;
   font-size: 16px;
   
-  & > span {
-    margin-bottom: 12px;
+  & > div {
     opacity: 0.65;
   }
   
@@ -420,6 +419,35 @@ export const StickyDescription = styled.p`
     margin: 8px 0 16px 0;
   }
 `
+
+export const Description = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 12px;
+  
+  ${WhenWidthMost(650)} {
+    font-size: 12px;
+  }
+`
+
+export const SlashKey = styled.div`
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-family: "JetBrains Mono", sans-serif;
+  margin-left: 8px;
+  margin-right: 2px;
+  background-color: #ffffff25;
+`
+SlashKey.defaultProps = {
+  children: "/"
+}
 
 export const StickyContentPositioner = styled.div<{ $ratio: number }>`
   flex-grow: ${({ $ratio }) => $ratio};

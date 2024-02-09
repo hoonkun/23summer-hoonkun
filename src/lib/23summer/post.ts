@@ -28,6 +28,14 @@ export type Post = RawPost & { expand?: { by2: PostExpand, by3: PostExpand } }
 
 export type PostWithContent = Post & { content: string }
 
+export type PostSummary = {
+  title: string
+  categories: [string, string][]
+  excerpt: string
+  key: string
+  headers: string[]
+}
+
 export class Posts {
 
   static get queryset() {
@@ -55,6 +63,18 @@ export class Posts {
       .let(it => page ? it.slice((page - 1) * config.blog.page_size, page * config.blog.page_size) : it)
       .map(key => Posts.retrieve<RawPost>(key)!)
       .let(it => expand ? Posts.withExpand(it) : it)
+  }
+
+  static summaries(): PostSummary[] {
+    return Posts.queryset
+      .map(key => Posts.retrieve<PostWithContent>(key, true)!)
+      .map(it => ({
+      title: it.data.title,
+      categories: it.data.categories.map(it => Categories.retrieve(it)!.let(category => [category.display, category.color.bright] as const)),
+      excerpt: it.excerpt,
+      key: it.key,
+      headers: it.content.split("\n").filter(it => it.startsWith("#"))
+    }))
   }
 
   static get pinned(): Post {

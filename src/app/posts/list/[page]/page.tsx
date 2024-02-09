@@ -8,6 +8,7 @@ import { Post, Posts } from "@/lib/23summer/post"
 import {
   BlogFooterArea,
   BlogFooterDescription,
+  Description,
   DesktopOnlyKiwicraftLogo,
   PinIcon,
   PostItemExcerpt,
@@ -37,8 +38,10 @@ import { Background } from "@/components/Background"
 
 import Pin from "@/resources/icons/pin.svg"
 import Latest from "@/resources/icons/latest.svg"
+import { SearchBar, SearchBarActivator } from "@/components/SearchBar"
 
-export default async function Page({ params }: { params: { page: string } }) {
+type PageProps = { params: { page: string } }
+export default async function Page({ params }: PageProps) {
   const page = parseInt(params.page)
   if (page <= 0 || page > Posts.pages) notFound()
 
@@ -46,6 +49,8 @@ export default async function Page({ params }: { params: { page: string } }) {
   const postsCount = Posts.total
   const pinned = Posts.pinned
   const latest = Posts.latest
+
+  const summaries = Posts.summaries()
 
   return (
     <PostsRoot>
@@ -62,7 +67,11 @@ export default async function Page({ params }: { params: { page: string } }) {
           </PostsCategories>
         </PostsTitle>
         <StickyDescription>
-          <span>전체 {postsCount} 게시글</span><br/>
+          <Description>
+            전체 {postsCount} 게시글
+            <VerticalDivider/>
+            <SearchBarActivator/>
+          </Description>
           생각 날 때마다 가끔씩 들러서 아무말을 합니다!<br/>
           저도 웹 페이지 디자인을 좀 잘 하고 싶네요.<br/>
         </StickyDescription>
@@ -84,6 +93,7 @@ export default async function Page({ params }: { params: { page: string } }) {
       <PostsGrid>
         {posts.map(it => <PostItem key={it.key} priority={false} post={it}/>)}
       </PostsGrid>
+      <SearchBar summaries={summaries}/>
     </PostsRoot>
   )
 }
