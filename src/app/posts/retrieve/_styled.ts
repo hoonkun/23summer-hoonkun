@@ -11,6 +11,7 @@ import {
   PostItemRootBase,
   PostItemTitleBase
 } from "@/app/posts/_styled"
+import { CodeStyle } from "@/components/CodeHighlighter"
 
 const ContentPadding = css`padding: 0 max((100% - 700px) / 2, 15px);`
 
@@ -208,39 +209,29 @@ export const MarkdownContent = styled.div`
     font-size: 13px;
     line-height: 150%;
   }
-
-  pre:has(+ blockquote) > pre {
-    margin: 0 !important;
-    border-radius: 5px 5px 0 0;
-    overflow-x: auto;
-    font-family: "JetBrains Mono", sans-serif;
-    background-color: rgb(43, 43, 43);
+  
+  ${CodeStyle} {
+    pre {
+      margin: 0 !important;
+      border-radius: 5px;
+      padding: 7px 15px;
+      overflow-x: visible !important;
+      width: auto !important;
+    }
+    pre > code {
+      width: auto !important;
+    }
   }
   
-  pre:not(:has(> pre)) {
-    margin: 8px 0;
-    border-radius: 5px;
-    padding: 7px 15px;
-    font-size: 16px;
-    font-family: "JetBrains Mono", sans-serif;
-    background-color: rgb(43, 43, 43);
-    overflow-x: auto;
+  pre:not(:has(+ blockquote)) {
+    margin: 15px 0;
   }
-
-  pre:has(> pre) {
-    margin: 20px 0 0 0;
+  
+  pre:has(+ blockquote) > ${CodeStyle} > pre {
+    border-radius: 5px 5px 0 0;
   }
-
-  pre:has(> pre):not(:has(+ blockquote)) > pre {
-    margin: 0 !important;
-    border-radius: 5px;
-    padding: 7px 15px;
-    font-size: 16px;
-    font-family: "JetBrains Mono", sans-serif;
-    background-color: rgb(43, 43, 43);
-  }
-
-  pre + blockquote {
+  
+  pre:has(> ${CodeStyle}) + blockquote {
     margin: 0 0 0 0;
     font-size: 13px;
     background-color: #00000040;
@@ -262,9 +253,9 @@ export const MarkdownContent = styled.div`
     }
     margin: 0;
     background-color: #FFFFFF10;
-    padding: 15px 25px;
-    border-left: 5px solid #78a718;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-left: 5px solid #56A8F5;
+    line-height: 175%;
   }
 
   .hljs {

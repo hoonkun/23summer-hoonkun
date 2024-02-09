@@ -30,12 +30,12 @@ async 가 필요한 초기화 목적으로 사용되는, 단 한번만 실행되
 사실 이 내용은 기존에 웹에서 코딩할 때도 준수하던 사항이기는 하지만, 같이 적어두면 좋을 것 같아서 남긴다.
 
 예를 들어 아래와 같은 코드는,
-```typescript jsx
+```typescript
 const [state, setState] = useState("")
 const [formattedState, setFormattedState] = useState("")
 
 useEffect(() => {
-    setFormattedState(FormatState(state))
+  setFormattedState(FormatState(state))
 }, [state])
 ```
 - state 의 변경에 대해 추가적인 리렌더 한 번(setFormattedState)이 뒤따른다.
@@ -46,7 +46,7 @@ useEffect(() => {
 와 같은 문제가 있다.  
 
 따라서 아래처럼 변경해야한다.
-```typescript jsx
+```typescript
 const [state, setState] = useState("")
 const formattedState = useMemo(() => FormatState(state), [state])
 ```
@@ -71,40 +71,38 @@ mobx 를 사용하지 못하므로 모든 상태가 컴포넌트 라이프사이
 아래 커스텀 훅을 보자.  
 ```typescript
 const useRefState = <T>(initialValue: T | (() => T)) => {
-    const ref = useRef(initialValue instanceof Function ? initialValue() : initialValue)
-    const [state, setState] = useState(initialValue)
+  const ref = useRef(initialValue instanceof Function ? initialValue() : initialValue)
+  const [state, setState] = useState(initialValue)
 
-    const setter = useCallback<Dispatch<SetStateAction<T>>>(arg => {
-        ref.current = arg instanceof Function ? arg(ref.current) : arg
-        setState(ref.current)
-    }, [])
+  const setter = useCallback<Dispatch<SetStateAction<T>>>(arg => {
+    ref.current = arg instanceof Function ? arg(ref.current) : arg
+    setState(ref.current)
+  }, [])
 
-    return [ref, state, setter] as const
+  return [ref, state, setter] as const
 }
 ```
-> utils/hooks/React.ts
 
 만약 이 문제를 해결하기 reference를 사용하려면 하나의 값(데이터 원천)에 훅을 두 번 작성해야하고, 항상 일관성을 맞춰야한다.  
 매번 `setState` 와 `reference.current = value` 를 써주기는 쉽지 않으므로, 커스텀 훅으로 분리했다.  
 
 이렇게 하면, 아래와 같은 코드가 가능해진다:
 
-```typescript jsx
+```typescript
 const ArcticContext: React.FC = props => {
-    // ...
-    const [userRef, user, setUser] = useRefState<User | null>(null)
+  // ...
+  const [userRef, user, setUser] = useRefState<User | null>(null)
 
-    const fetchUserRelatedData = useCallback(async () => {
-        await BackendApiFetcher.fetch(userRef.current.id).then() // Do some stuff!
-    }, [userRef])
-    const login = useCallback(async (id: string, password: string) => {
-        setUser(await BackendApiFetcher.login(id, password))
-        await fetchUserRelatedData()
-    }, [setUser, fetchUserRelatedData])
-    // ...
+  const fetchUserRelatedData = useCallback(async () => {
+    await BackendApiFetcher.fetch(userRef.current.id).then() // Do some stuff!
+  }, [userRef])
+  const login = useCallback(async (id: string, password: string) => {
+    setUser(await BackendApiFetcher.login(id, password))
+    await fetchUserRelatedData()
+  }, [setUser, fetchUserRelatedData])
+  // ...
 }
 ```
-> context/ArcticContext.tsx
 
 즉, login 로직에서 `fetchUserRelatedData()` 를 호출할 때 
 - 함수의 재사용성을 위해 아무런 인수도 전달하고 싶지는 않고
@@ -200,10 +198,10 @@ const useSavedState = <T>(key: string, initialValue: T | (() => T)) => {
 
 아래와 같은 상황을 보자.
 
-```typescript jsx
+```tsx
 const Default = { mutate: EmptyFunction, value: null }
 const SomeContext = createContext(Default)
-export const useSomeContext = () => usecontext(SomeContext)
+export const useSomeContext = () => useContext(SomeContext)
 
 export const SomeContextProvier: React.FC<PropsWithChildren> = props => {
   const valueRef = useRef<string | null>(null)
@@ -214,10 +212,10 @@ export const SomeContextProvier: React.FC<PropsWithChildren> = props => {
     setValue(valueRef.current)
   }, [])
 
-  const ContextValue = {mutate, value}
+  const ContextValue = { mutate, value }
 
   return (
-      <SomeContext.Provider value={ContextValue}>{props.children}</SomeContext.Provider>
+    <SomeContext.Provider value={ContextValue}>{props.children}</SomeContext.Provider>
   )
 }
 ```
@@ -230,19 +228,16 @@ React는 소비자 컴포넌트가 `useContext` 를 통해 어떤 값을 사용�
 
 이럴 때는 아래와 같은 코드를 사용하면 이런 문제를 회피할 수 있다:
 
-```typescript jsx
+```typescript
 // ...
-
 let CachedContext = Default
 export const CachedSomeContext = (): Readonly<SomeContextType> => CachedContext
 
 export const SomeContextProvier: React.FC<PropsWithChildren> = props => {
-    // ...
-    
-    const ContextValue = { mutate, value }
-    CachedContext = ContextValue
-  
-    return //...
+  // ...
+  const ContextValue = { mutate, value }
+  CachedContext = ContextValue
+  //...
 }
 ```
 
@@ -271,15 +266,15 @@ export const SomeContextProvier: React.FC<PropsWithChildren> = props => {
 
 아래와 같은 예시를 보자. producedSome 은 오브젝트이고 이 값을 prop 으로 전달받는 컴포넌트가 있다고 가정해보자.
 
-```typescript jsx
+```tsx
 const SomeItemComponent: React.FC = () => {
-    const context = useContext(SomeContext)
-    const producedSome = useMemo<ProducedSomeObjectInstance>(() => 
-        context.produceSomeObject(context.valueSet.filtered), 
-        [context.valueSet.filtered, context.produceSomeValue]
-    )
-    
-    return <ProducedSomeView produced={producedSome}/>
+  const context = useContext(SomeContext)
+  const producedSome = useMemo<ProducedSomeObjectInstance>(() => 
+    context.produceSomeObject(context.valueSet.filtered), 
+    [context.valueSet.filtered, context.produceSomeValue]
+  )
+  
+  return <ProducedSomeView produced={producedSome}/>
 }
 ```
 
@@ -294,12 +289,12 @@ Context 에서 `useMemo` 와 `useCallback` 을 열심히 사용했다면 분명 
 
 이럴 땐 아래처럼 해주자:
 
-```typescript jsx
+```tsx
 const SomeItemComponent: React.FC = () => {
   const { valueSet: { filtered }, produceSomeValue } = useContext(SomeContext)
   const producedSome = useMemo<ProducedSomeObjectInstance>(() =>
-      produceSomeObject(filtered),
-      [filtered, produceSomeValue]
+    produceSomeObject(filtered),
+    [filtered, produceSomeValue]
   )
 
   return <ProducedSomeView produced={producedSome}/>
@@ -322,15 +317,15 @@ const SomeItemComponent: React.FC = () => {
 가상리스트의 `renderItem` prop 에 전달하는 컴포넌트는 거의 필수적으로 얘를 넣지 않으면 나중에 화를 면치 못한다.
 `React.memo` 는 컴포넌트 함수와 props 비교 함수를 인수로 받는 함수인데, 대충 아래와 같은 형태로 사용한다:
 
-```typescript jsx
+```tsx
 type MemoizedComponentProps = { /* some props */ }
 const MemoizedComponentPropsComparator = (
-    a: MemoizedComponentProps,
-    b: MemoizedComponentProps
+  a: MemoizedComponentProps,
+  b: MemoizedComponentProps
 ): boolean => { /* some compare logic */ }
 
 const MemoizedComponent: React.FC<MemoizedComponentProps> =
-    React.memo(props => <>{ /*some content*/ }</>, MemoizedComponentPropsComparator)
+  React.memo(props => <>{ /*some content*/ }</>, MemoizedComponentPropsComparator)
 ```
 기본적으로는, 이 함수를 붙혀서 만든 컴포넌트가 React 가 prop 하나하나에 대해(props 오브젝트 자체가 아니다) Object.is 를 통해 비교하여 모든 prop 이 변화가 없었으면 리렌더를 스킵한다.  
 즉, 부모 컴포넌트가 리렌더될 때 항상 자식 컴포넌트로 리렌더하게 되지만 이걸 붙히면 prop 이 변하지 않았다면 리렌더를 스킵한다.  
