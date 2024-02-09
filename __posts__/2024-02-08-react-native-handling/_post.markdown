@@ -291,7 +291,7 @@ Context 에서 `useMemo` 와 `useCallback` 을 열심히 사용했다면 분명 
 
 ```tsx
 const SomeItemComponent: React.FC = () => {
-  const { valueSet: { filtered }, produceSomeValue } = useContext(SomeContext)
+  const { valueSet: { filtered }, produceSomeObject } = useContext(SomeContext)
   const producedSome = useMemo<ProducedSomeObjectInstance>(() =>
     produceSomeObject(filtered),
     [filtered, produceSomeObject]
