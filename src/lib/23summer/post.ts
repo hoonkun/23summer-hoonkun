@@ -69,7 +69,7 @@ export class Posts {
       const grid = ArrayK(1024, () => false).chunked(GridColumns)
       let index = 0
 
-      return (post: RawPost): PostExpand | undefined => {
+      return (post: RawPost, arrayIndex: number): PostExpand | undefined => {
         let x = index % GridColumns
         let y = (index / GridColumns).floor
 
@@ -89,7 +89,9 @@ export class Posts {
         if (!post.data.expand)
           return undefined
 
-        const { max_columns, max_rows } = post.data.expand
+        let { max_columns, max_rows } = post.data.expand
+        if (arrayIndex === 1)
+          max_columns = 1
 
         let columns = 1, rows = 1
 
@@ -116,9 +118,9 @@ export class Posts {
     const by2ExpandBuilder = buildPostExpander(2)
     const by3ExpandBuilder = buildPostExpander(3)
 
-    const postsMapper = (it: RawPost): Post => {
-      const by2 = by2ExpandBuilder(it)
-      const by3 = by3ExpandBuilder(it)
+    const postsMapper = (it: RawPost, index: number): Post => {
+      const by2 = by2ExpandBuilder(it, index)
+      const by3 = by3ExpandBuilder(it, index)
 
       if (by2 === undefined || by3 === undefined) return it
       else return ({ ...it, expand: { by2, by3 } })
