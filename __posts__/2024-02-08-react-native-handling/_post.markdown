@@ -271,7 +271,7 @@ const SomeItemComponent: React.FC = () => {
   const context = useContext(SomeContext)
   const producedSome = useMemo<ProducedSomeObjectInstance>(() => 
     context.produceSomeObject(context.valueSet.filtered), 
-    [context.valueSet.filtered, context.produceSomeValue]
+    [context.valueSet.filtered, context.produceSomeObject]
   )
   
   return <ProducedSomeView produced={producedSome}/>
@@ -294,7 +294,7 @@ const SomeItemComponent: React.FC = () => {
   const { valueSet: { filtered }, produceSomeValue } = useContext(SomeContext)
   const producedSome = useMemo<ProducedSomeObjectInstance>(() =>
     produceSomeObject(filtered),
-    [filtered, produceSomeValue]
+    [filtered, produceSomeObject]
   )
 
   return <ProducedSomeView produced={producedSome}/>
