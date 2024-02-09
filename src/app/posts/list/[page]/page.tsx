@@ -76,9 +76,7 @@ export default async function Page({ params }: { params: { page: string } }) {
             <Link href={"/"}>HoonKun <VerticalDivider/> 훈쿤</Link>
             <BlogFooterDescription>재미있어 보이는 이것저것을 살피는 햇병아리 멍발자</BlogFooterDescription>
           </BlogFooterAreaLeft>
-          <ScrollDown>
-            <span>스크롤하여 더보기</span><br/>︾
-          </ScrollDown>
+          <ScrollDown>스크롤해서 더보기</ScrollDown>
           <DesktopOnlyKiwicraftLogo src={(await import("@/resources/logo.png")).default.src}/>
         </BlogFooterArea>
       </StickyArea>

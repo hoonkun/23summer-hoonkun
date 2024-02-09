@@ -441,21 +441,14 @@ export const ScrollDown = styled.button`
   background: none;
   border: none;
   color: white;
-  font-size: 40px;
+  font-size: 12px;
+  display: block;
   opacity: 0.25;
   margin: 0 0 0 16px;
   
   flex-grow: 1;
   flex-shrink: 0;
   text-align: right;
-  
-  transform: translateY(15px);
-  
-  & > span {
-    font-size: 12px;
-    margin-bottom: -48px;
-    display: block;
-  }
   
   ${WhenWidthLeast(991)} {
     display: none;
