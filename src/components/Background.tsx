@@ -4,7 +4,6 @@ import React from "react"
 import MainBackground from "@/resources/main_bg.jpg"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
-import { WinterOverlay } from "@/components/WinterOverlay"
 
 type BackgroundProps = {
   dark?: boolean
@@ -29,7 +28,7 @@ export const Background: React.FC<BackgroundProps> = props => {
         $darker={`${darker}`}
       />
       {overlay && <BackgroundOverlay/>}
-      <WinterOverlay/>
+      {/*<WinterOverlay/>*/}
     </>
   )
 }
