@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useMemo } from "react"
+import "@/lib/ktn"
 
 export const Highlighted: React.FC<{ children: string, highlight: RegExp | string, highlighter: React.FC<PropsWithChildren>, className?: string, caseSensitive?: boolean }> = props => {
   if (props.highlight instanceof RegExp)
@@ -62,7 +63,7 @@ const HighlightedText: React.FC<{ children: string, text: string, highlighter: R
       index++;
     }
     return result;
-  }, [children, _highlight]);
+  }, [_highlight, children, caseSensitive]);
 
   const Highlighted = highlighter
 

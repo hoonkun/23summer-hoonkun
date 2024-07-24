@@ -147,7 +147,7 @@ const SearchBarContent: React.FC<{ summaries: PostSummary[], requestClose: () =>
         {useRegex && <SearchDescription>**정규식을 사용하면 검색 결과의 검색어 하이라이팅이 제대로 동작하지 않을 수 있습니다.</SearchDescription>}
         <InputContainer onClick={TerminateEvent}>
           <Suffix>in:</Suffix>
-          <At kor>&nbsp;키위새의 아무말 저장소&nbsp;</At>
+          <At $kor>&nbsp;키위새의 아무말 저장소&nbsp;</At>
           {!!filters.length &&
             <>
               <Suffix onClick={() => setFilters([])}>where:</Suffix>
@@ -372,8 +372,8 @@ const Suffix = styled.div`
   display: block;
   margin-bottom: 6px;
 `
-const At = styled.div<{ kor?: boolean }>`
-  font-family: ${({ kor }) => kor ? "\"IBM Plex Sans KR\"" : "\"JetBrains Mono\""}, sans-serif;
+const At = styled.div<{ $kor?: boolean }>`
+  font-family: ${({ $kor }) => $kor ? "\"IBM Plex Sans KR\"" : "\"JetBrains Mono\""}, sans-serif;
   flex-shrink: 0;
   color: #56A8F5;
   background-color: #56A8F520;
@@ -382,7 +382,7 @@ const At = styled.div<{ kor?: boolean }>`
   display: flex;
   align-items: center;
   margin-bottom: 6px;
-  padding: ${({ kor }) => kor ? "0 2px" : "0 4px"};
+  padding: ${({ $kor }) => $kor ? "0 2px" : "0 4px"};
   height: 24px;
 `
 

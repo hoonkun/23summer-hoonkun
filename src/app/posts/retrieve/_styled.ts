@@ -135,6 +135,13 @@ export const MarkdownContent = styled.div`
   font-size: 16px;
   
   overflow-wrap: break-word;
+  
+  hr {
+    border-color: white;
+    border-width: 1px;
+    opacity: 0.25;
+    margin: 32px;
+  }
 
   p {
     margin: 20px 0;
