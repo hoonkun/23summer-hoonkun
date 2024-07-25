@@ -88,15 +88,15 @@ export default async function Page({ params }: { params: PostParams }) {
         <MarkdownContent>
           <PostSummary summary={summary as PostSummary[]}/>
           <MainImageContainer
-            style={{ width: "min(700px, 100%)", aspectRatio: `${mainImage.default.width / mainImage.default.height}` }}
+            style={{ width: "min(925px, 100%)", aspectRatio: `2.25 / 1`, objectFit: "cover" }}
           >
             <Image
               src={mainImage.default}
               alt={`${post.data.title}`}
-              priority
-              fill
               sizes={"(min-width: 850px) 800px, 100vw"}
               style={{ objectFit: "cover" }}
+              priority
+              fill
             />
           </MainImageContainer>
           {content.result}

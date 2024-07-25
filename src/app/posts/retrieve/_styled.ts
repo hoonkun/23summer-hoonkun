@@ -13,7 +13,36 @@ import {
 } from "@/app/posts/_styled"
 import { CodeStyle } from "@/components/CodeHighlighter"
 
-const ContentPadding = css`padding: 0 max((100% - 700px) / 2, 15px);`
+const WideCriteria = 1400
+const ExtraWideCriteria = 1500
+
+const NormalMaxWidth = 700
+const WideMaxWidth = 850
+const ExtraWideMaxWidth = 925
+
+const ContentPadding = css`
+  padding: 0 max((100% - ${NormalMaxWidth}px) / 2, 15px);
+  
+  ${WhenWidthLeast(WideCriteria)} {
+    padding: 0 max((100% - ${WideMaxWidth}px) / 2, 15px);
+  }
+  
+  ${WhenWidthLeast(ExtraWideCriteria)} {
+    padding: 0 max((100% - ${ExtraWideMaxWidth}px) / 2, 15px);
+  }
+`
+
+export const SummaryTranslation = css`
+  transform: translateX(calc(${(NormalMaxWidth + 50) / 2}px + 100%));
+  
+  ${WhenWidthLeast(WideCriteria)} {
+    transform: translateX(calc(${(WideMaxWidth + 50) / 2}px + 100%));
+  }
+  
+  ${WhenWidthLeast(ExtraWideCriteria)} {
+    transform: translateX(calc(${(ExtraWideMaxWidth + 50) / 2}px + 100%));
+  }
+`
 
 export const PostRoot = styled.div`
   display: flex;
@@ -25,7 +54,7 @@ export const PostRoot = styled.div`
 
 export const PostTitleArea = styled.div`
   position: sticky; top: 0;
-  height: 325px; width: calc(100%); max-width: 700px;
+  height: 325px; width: calc(100%); max-width: ${NormalMaxWidth}px;
   z-index: 0;
 
   text-align: right;
@@ -56,6 +85,13 @@ export const PostTitleArea = styled.div`
   ${WhenWidthLeast(1150)} {
     font-size: 40px;
     height: 350px;
+  }
+  
+  ${WhenWidthLeast(WideCriteria)} {
+    max-width: ${WideMaxWidth}px;
+  }
+  ${WhenWidthLeast(ExtraWideCriteria)} {
+    max-width: ${ExtraWideMaxWidth}px;
   }
 `
 
