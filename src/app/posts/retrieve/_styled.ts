@@ -175,6 +175,9 @@ export const MarkdownContent = styled.div`
   hr {
     border-color: white;
     border-width: 1px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
     opacity: 0.25;
     margin: 32px;
   }
