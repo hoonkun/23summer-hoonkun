@@ -10,7 +10,7 @@ const base = "https://hoonkun.kiwi"
 // ___PostRegistry___
 
 const postKeys = fs.readdirSync(path.join(process.cwd(), "__posts__")).filter(it => !it.startsWith("_") && !it.startsWith(".")).sort().reverse()
-fs.writeFileSync(path.join(process.cwd(), "__posts__/_registry.json"), JSON.stringify(postKeys, null, 2), { encoding: "utf-8" })
+fs.writeFileSync(path.join(process.cwd(), "__posts__/-registry.json"), JSON.stringify(postKeys, null, 2), { encoding: "utf-8" })
 
 // ___SITEMAP___
 

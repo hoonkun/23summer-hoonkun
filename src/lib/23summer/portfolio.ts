@@ -62,7 +62,7 @@ export type PortfolioWithContent = {
 
 export class Portfolios {
   static get queryset(): string[] {
-    return fs.readFileSync(path.join(process.cwd(), "__portfolio__/_registry.json"))
+    return fs.readFileSync(path.join(process.cwd(), "__portfolio__/-registry.json"))
       .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
   }

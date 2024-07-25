@@ -13,7 +13,7 @@ import {
   PostItemImageContainerBase,
   PostItemRootBase,
   PostItemTitleBase
-} from "@/app/posts/_styled"
+} from "@/app/posts/-styled"
 import Link from "next/link"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 

@@ -8,7 +8,7 @@ import rehypeKatex from "rehype-katex"
 import rehypeRaw from "rehype-raw"
 import rehypeStringify from "rehype-stringify"
 import { CodeHighlighter } from "@/components/CodeHighlighter"
-import { InlineCode } from "@/app/posts/retrieve/_styled"
+import { InlineCode } from "@/app/posts/retrieve/-styled"
 import Link from "next/link"
 
 import * as ProductionReact from "react/jsx-runtime"

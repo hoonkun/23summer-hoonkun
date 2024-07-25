@@ -31,8 +31,8 @@ import {
   StickyContentPositioner,
   StickyDescription,
   VerticalDivider
-} from "@/app/posts/list/_styled"
-import { BlogFooterAreaLeft } from "@/app/posts/_styled"
+} from "@/app/posts/list/-styled"
+import { BlogFooterAreaLeft } from "@/app/posts/-styled"
 
 import { Background } from "@/components/Background"
 

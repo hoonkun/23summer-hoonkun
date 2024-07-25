@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { PostSummary } from "@/lib/23summer/post"
 import { Highlighted } from "@/components/Highlighter"
 import Link from "next/link"
-import { SlashKey } from "@/app/posts/list/_styled"
+import { SlashKey } from "@/app/posts/list/-styled"
 import EventEmitter from "events"
 import { WhenWidthMost } from "@/lib/styled/media-queries"
 

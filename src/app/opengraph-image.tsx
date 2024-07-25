@@ -1,8 +1,8 @@
-import Image from "@/app/_generateImageMetadata"
+import Image from "@/app/-generateImageMetadata"
 
 export {
   alt, size, contentType, metadata
-} from "./_generateImageMetadata"
+} from "./-generateImageMetadata"
 
 export const runtime = "edge"
 

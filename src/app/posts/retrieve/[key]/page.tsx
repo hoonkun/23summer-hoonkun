@@ -28,8 +28,8 @@ import {
   PostTag,
   PostTags,
   PostTitleArea,
-} from "@/app/posts/retrieve/_styled"
-import { BlogFooterAreaLeft, BlogFooterDescriptionBase } from "@/app/posts/_styled"
+} from "@/app/posts/retrieve/-styled"
+import { BlogFooterAreaLeft, BlogFooterDescriptionBase } from "@/app/posts/-styled"
 
 import { Background } from "@/components/Background"
 import { PostSummary } from "@/components/PostSummary"

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { NotFoundKiwicraftLogo, NotFoundRoot } from "@/app/_styled_not_found"
+import { NotFoundKiwicraftLogo, NotFoundRoot } from "@/app/-styled_not_found"
 import { NotFoundBackground } from "@/components/NotFoundBackground"
 import { KiwicraftLogo } from "@/components/KiwicraftLogo"
 

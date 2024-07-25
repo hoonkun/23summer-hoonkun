@@ -15,13 +15,13 @@ import {
   FootprintsRoot,
   FootprintTitle,
   FootprintTitleDecorationRoot
-} from "@/app/footprints/_styled"
+} from "@/app/footprints/-styled"
 import { Background } from "@/components/Background"
 
 import * as Portfolio from "@/components/Footprints"
 import { Portfolios } from "@/lib/23summer/portfolio"
 import Link from "next/link"
-import { BlogFooterDescription, VerticalDivider } from "@/app/posts/list/_styled"
+import { BlogFooterDescription, VerticalDivider } from "@/app/posts/list/-styled"
 
 export default async function Page() {
 
