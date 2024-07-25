@@ -14,6 +14,7 @@ export type Category = {
 export class Categories {
 
   static list() {
+    console.log(process.cwd())
     return fs.readFileSync(path.join(process.cwd(), "__posts__/_categories.json"), { encoding: "utf8" })
       .let(it => JSON.parse(it) as unknown as Category[])
   }
