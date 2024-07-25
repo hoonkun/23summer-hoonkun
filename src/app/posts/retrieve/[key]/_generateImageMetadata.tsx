@@ -21,7 +21,7 @@ export default async function MetadataImage({ params }: { params: PostParams }):
       <img
         src={`${config.deploy}${(await import("@/resources/logo.png")).default.src}`}
         alt={"logo"}
-        style={{ width: "125px", height: "125px", margin: "25px", position: "absolute", left: "0", bottom: "0" }}
+        style={{ width: "125px", height: "125px", margin: "25px", position: "absolute", right: "0", bottom: "0" }}
       />
     </div>,
     { ...size, headers: ImageMetadataHeaders() }
