@@ -39,7 +39,7 @@ export type PostSummary = {
 export class Posts {
 
   static get queryset() {
-    return fs.readFileSync(path.join(process.cwd(), "__posts__/_registry.json"))
+    return fs.readFileSync(path.join("__posts__/_registry.json"))
       .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
   }
@@ -152,7 +152,7 @@ export class Posts {
     const categories = Categories.list()
 
     try {
-      return fs.readFileSync(path.join(process.cwd(), `__posts__/${key}/_post.markdown`), { encoding: "utf8" })
+      return fs.readFileSync(path.join(`__posts__/${key}/_post.markdown`), { encoding: "utf8" })
         .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
         .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
         .also(it => it.data = it.data.pick("title", "date", "author", "categories", "expand", "pinned"))

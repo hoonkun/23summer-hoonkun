@@ -62,13 +62,13 @@ export type PortfolioWithContent = {
 
 export class Portfolios {
   static get queryset(): string[] {
-    return fs.readFileSync(path.join(process.cwd(), "__portfolio__/_registry.json"))
+    return fs.readFileSync(path.join("__portfolio__/_registry.json"))
       .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
   }
 
   static retrieve<T extends Portfolio>(key: string, content: boolean = false): T {
-    return fs.readFileSync(path.join(process.cwd(), `__portfolio__/${key}.markdown`), { encoding: "utf8" })
+    return fs.readFileSync(path.join(`__portfolio__/${key}.markdown`), { encoding: "utf8" })
       .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
       .let(it => content ? it.pick("data", "content") : it.pick("data"))
       .also(it => it.data = it.data.pick("name", "description", "tags", "type", "datetime", "image"))
