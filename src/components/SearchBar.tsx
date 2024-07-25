@@ -258,7 +258,7 @@ const SearchSuggestion = styled.button<{ color: string }>`
   border: none;
   border-radius: 4px;
   display: block;
-  font-family: "IBM Plex Sans KR", sans-serif;
+  font-family: inherit;
   cursor: pointer;
   outline: none;
   color: #dedede;
@@ -373,7 +373,7 @@ const Suffix = styled.div`
   margin-bottom: 6px;
 `
 const At = styled.div<{ $kor?: boolean }>`
-  font-family: ${({ $kor }) => $kor ? "\"IBM Plex Sans KR\"" : "\"JetBrains Mono\""}, sans-serif;
+  font-family: ${({ $kor }) => $kor ? "inherit" : "\"JetBrains Mono\", sans-serif"};
   flex-shrink: 0;
   color: #56A8F5;
   background-color: #56A8F520;
@@ -452,7 +452,7 @@ const Input = styled.input`
   flex: 1;
   display: block;
 
-  font-family: "IBM Plex Sans KR", sans-serif;
+  font-family: inherit;
   margin-bottom: 6px;
 `
 const InputWrapper = styled.div`

@@ -36,7 +36,7 @@ const reset: Record<string, CSSProperties> = {
     "hyphens": "none",
     "margin": ".5em 0",
     "overflow": "auto",
-    "background": "rgb(30, 31, 34)"
+    "background": "rgb(39,40,44)"
   },
   "pre[class*=\"language-\"]::-moz-selection": {
     "color": "inherit",
@@ -71,7 +71,7 @@ const reset: Record<string, CSSProperties> = {
     "background": "rgba(33, 66, 131, .85)"
   },
   ":not(pre) > code[class*=\"language-\"]": {
-    "background": "rgb(30, 31, 34)",
+    "background": "rgb(39,40,44)",
     "padding": ".1em",
     "borderRadius": ".3em"
   }

@@ -20,8 +20,6 @@ export const PostRoot = styled.div`
   flex-direction: column;
   align-items: center;
   
-  font-family: "IBM Plex Sans KR", sans-serif;
-  
   position: relative;
 `
 
@@ -124,9 +122,11 @@ export const PostContainer = styled.div`
 `
 
 export const MarkdownContent = styled.div`
-  line-height: 225%;
+  line-height: 185%;
   
   ${ContentPadding};
+  
+  color: #ffffffe0;
   
   position: relative;
   width: 100%;
@@ -218,7 +218,6 @@ export const MarkdownContent = styled.div`
   }
   
   pre:not(:has(> div, > pre)) {
-    background-color: rgb(30, 31, 34);
     border-radius: 5px;
     overflow-x: auto;
     padding: 2px 15px 3px 15px;
@@ -271,54 +270,6 @@ export const MarkdownContent = styled.div`
     border-left: 5px solid #56A8F5;
     line-height: 175%;
   }
-
-  .hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 10px 15px;
-    border-radius: 5px 5px 0 0;
-    background: #00000020;
-  }
-
-  .hljs {
-    color: #bababa;
-  }
-
-  .hljs-strong, .hljs-emphasis {
-    color: #a8a8a2;
-  }
-
-  .hljs-bullet, .hljs-quote, .hljs-link, .hljs-number, .hljs-regexp, .hljs-literal {
-    color: #6896ba;
-  }
-
-  .hljs-code, .hljs-selector-class {
-    color: #a6e22e;
-  }
-
-  .hljs-emphasis {
-    font-style: italic;
-  }
-
-  .hljs-keyword, .hljs-selector-tag, .hljs-section, .hljs-attribute, .hljs-name, .hljs-variable {
-    color: #cb7832;
-  }
-
-  .hljs-params {
-    color: #b9b9b9;
-  }
-
-  .hljs-string {
-    color: #6a8759;
-  }
-
-  .hljs-subst, .hljs-type, .hljs-built_in, .hljs-builtin-name, .hljs-symbol, .hljs-selector-id, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-template-tag, .hljs-template-variable, .hljs-addition {
-    color: #e0c46c;
-  }
-
-  .hljs-comment, .hljs-deletion, .hljs-meta {
-    color: #7f7f7f;
-  }
   
   .katex-html {
     overflow-x: auto;
@@ -329,7 +280,7 @@ export const MarkdownContent = styled.div`
 
 export const InlineCode = styled.code`
   padding: 2px 5px;
-  background-color: #00000040;
+  background-color: rgb(39,40,44);
   border-radius: 4px;
 `
 
