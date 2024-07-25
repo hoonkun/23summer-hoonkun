@@ -1,5 +1,5 @@
-import Image from "./-generateImageMetadata"
+import Image from "./_generateImageMetadata"
 
-export { alt, size, contentType } from "./-generateImageMetadata"
+export { alt, size, contentType } from "./_generateImageMetadata"
 
 export default Image;

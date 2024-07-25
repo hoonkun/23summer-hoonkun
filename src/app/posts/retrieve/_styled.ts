@@ -10,7 +10,7 @@ import {
   PostItemImageContainerBase,
   PostItemRootBase,
   PostItemTitleBase
-} from "@/app/posts/-styled"
+} from "@/app/posts/_styled"
 import { CodeStyle } from "@/components/CodeHighlighter"
 
 const WideCriteria = 1400

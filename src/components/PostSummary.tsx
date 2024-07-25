@@ -4,7 +4,7 @@ import React, { useMemo } from "react"
 import styled from "styled-components"
 import { WhenWidthMost } from "@/lib/styled/media-queries"
 import "@/lib/ktn"
-import { SummaryTranslation } from "@/app/posts/retrieve/-styled"
+import { SummaryTranslation } from "@/app/posts/retrieve/_styled"
 
 export type PostSummary = {
   type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"

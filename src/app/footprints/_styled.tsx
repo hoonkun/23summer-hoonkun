@@ -1,7 +1,7 @@
 'use client'
 
 import styled, { css, keyframes } from "styled-components"
-import { MarkdownContent } from "@/app/posts/retrieve/-styled"
+import { MarkdownContent } from "@/app/posts/retrieve/_styled"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import React, { PropsWithChildren, useEffect, useRef, useState } from "react"
 import Image from "next/image"

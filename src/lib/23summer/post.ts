@@ -39,7 +39,7 @@ export type PostSummary = {
 export class Posts {
 
   static get queryset() {
-    return fs.readFileSync(path.join(process.cwd(), "__posts__/-registry.json"))
+    return fs.readFileSync(path.join(process.cwd(), "__posts__/_registry.json"))
       .let(it => JSON.parse(it.toString("utf-8")) as string[])
       .filter(it => !it.startsWith("_"))
   }

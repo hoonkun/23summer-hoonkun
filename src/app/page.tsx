@@ -21,7 +21,7 @@ import {
   TitleText,
   TitleTextEN,
   TitleTextKR
-} from "@/app/-styled"
+} from "@/app/_styled"
 import { Background } from "@/components/Background"
 
 export const dynamic = "force-dynamic"

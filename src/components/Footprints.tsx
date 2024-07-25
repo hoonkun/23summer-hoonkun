@@ -12,7 +12,7 @@ import {
   PortfolioContent,
   PortfolioTagRoot,
   PortfolioTagsRow
-} from "@/app/footprints/-styled"
+} from "@/app/footprints/_styled"
 import Link from "next/link"
 
 
