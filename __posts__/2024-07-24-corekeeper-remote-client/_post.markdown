@@ -10,7 +10,7 @@ Compose(Jetpack, Multiplatform) 빠돌이의 좌충우돌 SwiftUI 도전기
 <!-- Excerpt -->
 
 ## 서론
-은 [이 게시글](/posts/retrieve/2024-07-24-corekeeper-remote) 에서 좀 더 자세히 확인하실 수 있다.
+은 [이 게시글](/posts/retrieve/2024-07-25-corekeeper-remote) 에서 좀 더 자세히 확인하실 수 있다.
 여기서는 클라이언트의 개발에 대한 후기를 중점적으로 작성하므로, 서버가 궁금하다면 [여기](/posts/retrieve/2024-07-24-corekeeper-remote-server)로 가보자!
 
 대략, **Windows 와 Linux 만 지원하는 Core Keeper 라는 게임을 휴대폰에서 플레이하고 싶어서 만든, 리모트 플레이어 앱의 클라이언트 개발 후기** 이다.
