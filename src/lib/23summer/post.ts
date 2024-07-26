@@ -53,7 +53,8 @@ export class Posts {
   }
 
   static get pages() {
-    return Math.ceil(Posts.queryset.length / config.blog.page_size)
+    try { return Math.ceil(Posts.queryset.length / config.blog.page_size) }
+    catch (e) { return -1 }
   }
 
   static list(page?: number, expand?: boolean): Post[] {
@@ -149,9 +150,9 @@ export class Posts {
   }
 
   static retrieve<T extends RawPost>(key: string, content: boolean = false): T | null {
-    const categories = Categories.list()
-
     try {
+      const categories = Categories.list()
+
       return fs.readFileSync(path.join(`__posts__/${key}/_post.markdown`), { encoding: "utf8" })
         .let(it => matter(it, { excerpt: true, excerpt_separator: config.blog.excerpt_separator }))
         .let(it => content ? it.pick("data", "excerpt", "content") : it.pick("data", "excerpt"))
