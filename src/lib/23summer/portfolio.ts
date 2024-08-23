@@ -31,7 +31,10 @@ export const PortfolioTags: Readonly<{ [key: string]: PortfolioTag }> = {
   WebSocket: { name: "WebSocket", color: "#424242" },
   WebRTC: { name: "WebRTC", color: "#c22b00" },
   Java: { name: "Java", color: "#c22b00" },
-  Csharp: { name: "C#", color: "#0055c4" }
+  Csharp: { name: "C#", color: "#0055c4" },
+  SwiftUI: { name: "SwiftUI", color: "#248bff" },
+  Ktor: { name: "Ktor", color: "#ff6a00" },
+  GStreamer: { name: "GStreamer", color: "#c22b00" },
 } as const
 
 type PortfolioType = "official" | "playground"

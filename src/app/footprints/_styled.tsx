@@ -235,6 +235,8 @@ export const PortfolioTagsRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 6px;
+  margin-bottom: 8px;
 `
 
 export const PortfolioTagRoot = styled.div<{ $color: string, $small?: boolean }>`
