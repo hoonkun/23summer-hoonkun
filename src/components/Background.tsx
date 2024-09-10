@@ -1,14 +1,16 @@
 'use client'
 
 import React from "react"
-import MainBackground from "@/resources/main_bg.jpg"
+import MainBackground from "@/resources/main_bg_rev2.jpg"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
+import { Kiwi } from "@/components/KiwiSpineView"
 
 type BackgroundProps = {
   dark?: boolean
   darker?: boolean
   overlay?: boolean
+  kiwi?: boolean
 }
 
 export const Background: React.FC<BackgroundProps> = props => {
@@ -16,7 +18,8 @@ export const Background: React.FC<BackgroundProps> = props => {
   const {
     dark,
     darker,
-    overlay
+    overlay,
+    kiwi
   } = props
 
   return (
@@ -27,6 +30,7 @@ export const Background: React.FC<BackgroundProps> = props => {
         $dark={`${dark}`}
         $darker={`${darker}`}
       />
+      {kiwi && <Kiwi/>}
       {overlay && <BackgroundOverlay/>}
       {/*<WinterOverlay/>*/}
     </>
@@ -50,15 +54,17 @@ export const BackgroundImage = styled.img<{ $dark?: string, $darker?: string }>`
   display: block;
   
   object-fit: cover;
-  object-position: 30% 50%;
+  object-position: 100% 50%;
   image-rendering: pixelated;
+  
+  transform: scaleX(-1);
   
   ${({ $dark, $darker }) => $dark === "true" ? css`
     ${WhenWidthMost(1150)} {
-      filter: brightness(0.5);
+      filter: brightness(0.3);
     }
     ${WhenWidthLeast(1150)} {
-      filter: brightness(0.75);
+      filter: brightness(0.5);
     }
   ` : $darker === "true" ? css`
     ${WhenWidthMost(1150)} {

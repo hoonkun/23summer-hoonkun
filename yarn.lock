@@ -10,6 +10,7 @@ __metadata:
   resolution: "23summer-hoonkun.kiwi@workspace:."
   dependencies:
     "@emotion/is-prop-valid": "npm:^1.2.1"
+    "@esotericsoftware/spine-webgl": "npm:^4.2.59"
     "@giscus/react": "npm:^2.3.0"
     "@types/node": "npm:20.10.4"
     "@types/react": "npm:18.2.45"
@@ -147,6 +148,22 @@ __metadata:
   version: 8.55.0
   resolution: "@eslint/js@npm:8.55.0"
   checksum: 34b001a95b16501fd64f525b1de3ab0e4c252e5820b74069004934cb13977fc04ba4522a3e8f8074bd6af49da10d3444cd49fa711819f425ad73d6bf46eea82d
+  languageName: node
+  linkType: hard
+
+"@esotericsoftware/spine-core@npm:4.2.59":
+  version: 4.2.59
+  resolution: "@esotericsoftware/spine-core@npm:4.2.59"
+  checksum: 759a8e5d7163265666cc9d2a00810bcabd7c62fbbc2736d1f9178fd85e7e41450c5df74369d63d071714170c688dd9aef046c8859a74641f29bb3a36b512a006
+  languageName: node
+  linkType: hard
+
+"@esotericsoftware/spine-webgl@npm:^4.2.59":
+  version: 4.2.59
+  resolution: "@esotericsoftware/spine-webgl@npm:4.2.59"
+  dependencies:
+    "@esotericsoftware/spine-core": "npm:4.2.59"
+  checksum: 8f510d175e15f62e632a2a55a45a84a1def77f0658fe359dedc8dda6345a64c2be92893bc16236af715abf1bd4fbec676c882bf2f8849da9d6836ec50d332bf3
   languageName: node
   linkType: hard
 

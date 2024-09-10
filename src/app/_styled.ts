@@ -18,6 +18,11 @@ export const ContentArea = styled.div`
   justify-content: center;
 
   overflow-x: hidden;
+  pointer-events: none;
+  
+  & > div {
+    pointer-events: auto;
+  }
 
   ${WhenWidthMost(1150)} {
     flex-direction: column;
@@ -78,6 +83,8 @@ export const TitleText = styled.div`
 `
 
 export const TitleTextEN = styled.span`
+  position: relative;
+  
   text-shadow: #ffffff80 0 0 10px;
 
   ${WhenWidthMost(500)} {
@@ -97,9 +104,12 @@ export const TitleTextKR = styled.span`
   position: relative;
 
   font-size: 47.5px;
+  
+  text-shadow: #ffffff80 0 0 10px;
 
   ${WhenWidthMost(500)} {
     font-size: 42.5px;
+    text-shadow: #ffffff40 0 0 10px;
   }
 
   ${WhenWidthLeast(1350)} {
@@ -128,6 +138,7 @@ export const TitleTextKR = styled.span`
     );
     border-radius: 50%;
     margin: -200px 0 0 -450px;
+    pointer-events: none;
   }
 
   &:after {
@@ -135,6 +146,7 @@ export const TitleTextKR = styled.span`
     background: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     z-index: -1;
     margin: -100px 0 0 -50px;
+    pointer-events: none;
   }
 `
 
@@ -211,6 +223,7 @@ export const Hidden = styled.span`
 
 export const MotdContent = styled.div`
   display: flex; align-items: center;
+  position: relative;
 `
 
 export const MotdImage = styled.img<{ rotate: number }>`

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
+    "@esotericsoftware/spine-webgl": "^4.2.59",
     "@giscus/react": "^2.3.0",
     "@types/node": "20.10.4",
     "@types/react": "18.2.45",
