@@ -73,7 +73,7 @@ const Randoms: Die[] = [
 export const dateBasedRandom = () => {
   const date = new Date().toLocaleDateString('ko-KR', { timeZone: "Asia/Seoul" })
 
-  if (date === "2024. 9. 10.") return 60
+  if (date === "2024. 9. 11.") return 60
   return Random.Seeded(date).range(0, Randoms.length)
 }
 
