@@ -32,11 +32,12 @@ const KiwiContent = () => {
 
     if (!renderTarget.current) return
 
-    KiwiRenderer(renderTarget.current)
-      .then(it => {
-        renderer.current = it
-        forceRender(Date.now())
-      })
+    const initialize = async (target: HTMLCanvasElement) => {
+      // TODO: react mouse move and move skeleton to animate Head and Eyes
+      renderer.current = await KiwiRenderer(target)
+      forceRender(Date.now())
+    }
+    initialize(renderTarget.current).then()
 
     return () => renderer.current?.cleanup()
   }, [])
