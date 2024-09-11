@@ -182,7 +182,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
 
     states.eye.looper.cancel = loopRandomEyeAnimation()
 
-    setTimeout(setAnimationStateAsIdle, 5000 + Math.random() * 5000)
+    setTimeout(setAnimationStateAsIdle, 1250 + Math.random() * 750)
   }
 
   const asSpineCoordinate = (x: number, y: number) => {
