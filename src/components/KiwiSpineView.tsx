@@ -7,7 +7,7 @@ import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import Image from "next/image"
 
 import KiwiImage from "@/resources/kiwi.png"
-import { KiwiRenderer } from "@/lib/23summer/KiwiRenderer"
+import { KiwiRenderer } from "@/lib/23summer/kiwi/KiwiRenderer"
 
 export const Kiwi = () => {
   const { mounted } = useKiwi()
@@ -27,14 +27,16 @@ const KiwiContent = () => {
   const renderTarget = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    if (initializationBreaker.current) return
+    if (initializationBreaker.current)
+      return () => renderer.current?.cleanup()
+
     initializationBreaker.current = true
 
     if (!renderTarget.current) return
 
     const initialize = async (target: HTMLCanvasElement) => {
-      // TODO: react mouse move and move skeleton to animate Head and Eyes
       renderer.current = await KiwiRenderer(target)
+      renderer.current.enableMouseGazing()
       forceRender(Date.now())
     }
     initialize(renderTarget.current).then()
@@ -117,8 +119,8 @@ const KiwiContext = React.createContext<KiwiContext>({
 const useKiwi = () => useContext(KiwiContext)
 
 export const KiwiContextProvider: React.FC<PropsWithChildren> = props => {
-  const [enabled, setEnabled] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [enabled, setEnabled] = useState(true)
+  const [mounted, setMounted] = useState(true)
 
   useEffect(() => {
     if (enabled) setMounted(true)

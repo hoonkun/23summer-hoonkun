@@ -4,6 +4,7 @@ import {
   AnimationStateListener,
   AssetManager,
   AtlasAttachmentLoader,
+  BoundingBoxAttachment,
   ManagedWebGLRenderingContext,
   Matrix4,
   Physics,
@@ -16,6 +17,8 @@ import {
   Vector2
 } from "@esotericsoftware/spine-webgl"
 import { EmptyFunction } from "@/lib/ktn"
+import { Vectors } from "@/lib/23summer/kiwi/VectorUtils"
+import { Polygons } from "@/lib/23summer/kiwi/PolygonUtils"
 
 export type KiwiRenderer = Awaited<ReturnType<typeof KiwiRenderer>>
 
@@ -48,12 +51,16 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     setAnimationStateAsIdle: () => Promise<void> = EmptyFunction
     setAnimationStateAsExtra: () => Promise<void> = EmptyFunction
 
+    enableMouseGazing: () => void = EmptyFunction
+
     cleanup = () => {
       this.active = false
 
       this.assetManager.dispose()
       this.shader.dispose()
       this.worker.dispose()
+
+      document.removeEventListener("mousemove", onMouseMove)
     }
   }
 
@@ -63,28 +70,31 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     lookAt: { looper: { cancel: EmptyFunction }, animating: false }
   }
   let lastFrameTime = Date.now()
-  let lookAtAnimated = false
+  let scale = 1
+  let cameraWidth = 0
+  let cameraHeight = 0
+  let requestedInterpolateLookAt: [number, number, Vector2, Vector2, Vector2, Vector2] | null | undefined = undefined
 
   const ActiveBreaker = () => !renderer.active
 
   const resize = () => {
-    let w = renderTarget.clientWidth;
-    let h = renderTarget.clientHeight;
+    const w = renderTarget.clientWidth;
+    const h = renderTarget.clientHeight;
     if (renderTarget.width != w || renderTarget.height != h) {
       renderTarget.width = w * 2;
       renderTarget.height = h * 2;
     }
 
-    let centerX = offset.x + size.x / 2;
-    let centerY = offset.y + size.y / 2;
-    let scaleX = size.x / renderTarget.width;
-    let scaleY = size.y / renderTarget.height;
-    let scale = Math.max(scaleX, scaleY) // * 2;
+    const centerX = offset.x + size.x / 2;
+    const centerY = offset.y + size.y / 2;
+    const scaleX = size.x / renderTarget.width;
+    const scaleY = size.y / renderTarget.height;
+    scale = Math.max(scaleX, scaleY) // * 2;
     if (scale < 1) scale = 1;
-    let width = renderTarget.width * scale;
-    let height = renderTarget.height * scale;
+    cameraWidth = renderTarget.width * scale;
+    cameraHeight = renderTarget.height * scale;
 
-    mvp.ortho2d(centerX - width / 2, centerY - height / 2, width, height);
+    mvp.ortho2d(centerX - cameraWidth / 2, centerY - cameraHeight / 2, cameraWidth, cameraHeight);
     renderContext.gl.viewport(0, 0, renderTarget.width, renderTarget.height);
   }
 
@@ -94,6 +104,8 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     const now = Date.now()
     const deltaTime = (now - lastFrameTime) / 1000
     lastFrameTime = now
+
+    interpolateLookAt()
 
     resize()
 
@@ -137,39 +149,16 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     return () => eyeLooping = false
   }
 
-  const loopRandomLookAtAnimation = () => {
-    states.lookAt.looper.cancel()
-
-    let lookAtLooping = true
-
-    const animateLookAt = async () => {
-      if (!lookAtLooping) return
-
-      if (lookAtAnimated)
-        animator.setEmptyAnimation(2, 0.25)
-      else
-        animator.setAnimation(2, "LookAt", false)
-
-      setTimeout(
-        animateLookAt,
-        lookAtAnimated ? (3000 + Math.random() * 7000) : (1000 + Math.random() * 3000)
-      )
-
-      lookAtAnimated = !lookAtAnimated
-    }
-
-    setTimeout(animateLookAt, 3000 + Math.random() * 7000)
-
-    return () => lookAtLooping = false
-  }
-
   const setAnimationStateAsIdle = async () => {
     if (states.phase === "Idle") return
+
+    document.removeEventListener("mousemove", onMouseMove)
+    document.addEventListener("mousemove", onMouseMove)
+    requestedInterpolateLookAt = undefined
 
     animator.setAnimation(0, "Idle", true)
 
     states.eye.looper.cancel = loopRandomEyeAnimation()
-    states.lookAt.looper.cancel = loopRandomLookAtAnimation()
   }
 
   const setAnimationStateAsExtra = async () => {
@@ -180,6 +169,8 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
 
     await waitUntil(() => !states.eye.animating, ActiveBreaker)
     if (!renderer.active) return
+
+    document.removeEventListener("mousemove", onMouseMove)
 
     animator.setAnimation(0, "Extra", false)
     animator.setEmptyAnimation(1, 0.25)
@@ -192,6 +183,115 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     states.eye.looper.cancel = loopRandomEyeAnimation()
 
     setTimeout(setAnimationStateAsIdle, 5000 + Math.random() * 5000)
+  }
+
+  const asSpineCoordinate = (x: number, y: number) => {
+    const canvasRectInPage: Vector2Rect = [
+      new Vector2(renderTarget.offsetLeft, renderTarget.offsetTop),
+      new Vector2(renderTarget.clientWidth, renderTarget.clientHeight)
+    ]
+
+    const spineCoordinateMultiplierX = cameraWidth / canvasRectInPage[1].x * -1 // x is inverted in ui
+    const spineCoordinateMultiplierY = cameraHeight / canvasRectInPage[1].y
+
+    const spineOriginInPageLT = new Vector2(
+      canvasRectInPage[0].x + canvasRectInPage[1].x / (cameraWidth / (cameraWidth - size.x + (-offset.x))),
+      canvasRectInPage[0].y + canvasRectInPage[1].y / (cameraHeight / (cameraHeight - size.y + (cameraHeight + offset.y))),
+    )
+
+    return new Vector2(
+      (x - spineOriginInPageLT.x) * spineCoordinateMultiplierX,
+      (window.innerWidth - (y + (window.innerWidth - spineOriginInPageLT.y))) * spineCoordinateMultiplierY
+    )
+  }
+
+  const onMouseMove = (event: MouseEvent) => {
+    const { pageX, pageY } = event
+
+    const mousePositionInSpine = asSpineCoordinate(pageX, pageY)
+    let headPosition = Vectors.copy(mousePositionInSpine)
+    let eyePosition = Vectors.copy(mousePositionInSpine)
+
+    const [isHeadInPolygon] = Polygons.findContainingOrNearest(HeadRangePolygons, headPosition)
+    if (!isHeadInPolygon) {
+      const limitedHeadPosition = Polygons.intersection(HeadRangePoints, HeadRangeCenter, headPosition)
+
+      if (limitedHeadPosition)
+        headPosition = limitedHeadPosition
+    }
+
+    const [isEyeInPolygon] = Polygons.findContainingOrNearest(EyeRangePolygons, eyePosition)
+    if (!isEyeInPolygon) {
+      const limitedEyePosition = Polygons.intersection(EyeRangePoints, EyeRangeCenter, eyePosition)
+
+      if (limitedEyePosition)
+        eyePosition = limitedEyePosition
+    }
+
+    const lEyeMix = Math.sqrt(Vectors.distance(FacePosition, eyePosition)) / 2800
+    const rEyeMix = lEyeMix / 2
+
+    if (requestedInterpolateLookAt === null) {
+      headPosition = HeadLookAt.parent!.worldToLocal(headPosition)
+      HeadLookAt.x = headPosition.x
+      HeadLookAt.y = headPosition.y
+
+      eyePosition = EyeLookAt.parent!.worldToLocal(eyePosition)
+      EyeLookAt.x = eyePosition.x
+      EyeLookAt.y = eyePosition.y
+    } else if (requestedInterpolateLookAt === undefined) {
+      const now = Date.now()
+      requestedInterpolateLookAt = [
+        now,
+        now + 250,
+        Vectors.fromBone(HeadLookAt),
+        HeadLookAt.parent!.worldToLocal(headPosition),
+        Vectors.fromBone(EyeLookAt),
+        EyeLookAt.parent!.worldToLocal(eyePosition)
+      ]
+    } else {
+      const now = Date.now()
+      requestedInterpolateLookAt = [
+        now,
+        requestedInterpolateLookAt[1] + (requestedInterpolateLookAt[0] - now) / 4,
+        Vectors.fromBone(HeadLookAt),
+        HeadLookAt.parent!.worldToLocal(headPosition),
+        Vectors.fromBone(EyeLookAt),
+        EyeLookAt.parent!.worldToLocal(eyePosition)
+      ]
+    }
+
+    LeftEyeLookAtConstraint.mixX = lEyeMix
+    LeftEyeLookAtConstraint.mixY = lEyeMix / 2
+
+    RightEyeLookAtConstraint.mixX = rEyeMix
+    RightEyeLookAtConstraint.mixY = rEyeMix
+  }
+
+  const interpolateLookAt = () => {
+    if (!requestedInterpolateLookAt) return
+
+    const [from, until, headA, headB, eyeA, eyeB] = requestedInterpolateLookAt
+
+    const now = Date.now()
+    const t = (now - from) / (until - from)
+
+    if (now >= until || t < 0 || t === Infinity) {
+      requestedInterpolateLookAt = null
+      return
+    }
+
+    const headInterpolated = Vectors.cubicInterpolation(headA, headB, t)
+    HeadLookAt.x = headInterpolated.x
+    HeadLookAt.y = headInterpolated.y
+
+    const eyeInterpolated = Vectors.linearInterpolation(eyeA, eyeB, t)
+    EyeLookAt.x = eyeInterpolated.x
+    EyeLookAt.y = eyeInterpolated.y
+  }
+
+  const enableMouseGazing = () => {
+    document.addEventListener("mousemove", onMouseMove)
   }
 
   const shader = Shader.newTwoColoredTextured(renderContext)
@@ -248,9 +348,38 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     complete = this.end
   })
 
-  await setAnimationStateAsIdle()
+  const HeadLookAt = skeleton.findBone("LookAt-Head")!
+  const EyeLookAt = skeleton.findBone("LookAt-Eye")!
 
-  render()
+  const LeftEyeLookAtConstraint = skeleton.findTransformConstraint("LeftEyeLookAtDirection")!
+  const RightEyeLookAtConstraint = skeleton.findTransformConstraint("RightEyeLookAtDirection")!
+
+  const HeadLookAtRange = skeleton.findSlot("LookAtRange-Head")!.getAttachment()
+  const EyeLookAtRange = skeleton.findSlot("LookAtRange-Eye")!.getAttachment()
+
+  const Face = skeleton.findBone("Face")!
+  const FacePosition = new Vector2(Face.worldX, Face.worldY)
+
+  if (!(EyeLookAtRange instanceof BoundingBoxAttachment) || !(HeadLookAtRange instanceof BoundingBoxAttachment))
+    throw Error("invalid skeleton data")
+
+  const { vertices: headVertices } = HeadLookAtRange
+  const { vertices: eyeVertices } = EyeLookAtRange
+
+  const HeadRangePoints = Array.from(headVertices).chunked(2)
+    .map(it => new Vector2(it[0], it[1]))
+  const EyeRangePoints = Array.from(eyeVertices).chunked(2)
+    .map(it => new Vector2(it[0], it[1]))
+
+  const HeadRangePolygons = Polygons.fromVertices(headVertices)
+  const EyeRangePolygons = Polygons.fromVertices(eyeVertices)
+
+  const HeadRangeCenter = HeadRangePoints
+    .reduce((acc, curr) => new Vector2(acc.x + curr.x, acc.y + curr.y), new Vector2(0, 0))
+    .let(it => new Vector2(it.x / HeadRangePoints.length, it.y / HeadRangePoints.length))
+  const EyeRangeCenter = EyeRangePoints
+    .reduce((acc, curr) => new Vector2(acc.x + curr.x, acc.y + curr.y), new Vector2(0, 0))
+    .let(it => new Vector2(it.x / EyeRangePoints.length, it.y / EyeRangePoints.length))
 
   renderer.renderTarget = renderTarget
   renderer.shader = shader
@@ -265,6 +394,11 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
 
   renderer.setAnimationStateAsIdle = setAnimationStateAsIdle
   renderer.setAnimationStateAsExtra = setAnimationStateAsExtra
+
+  renderer.enableMouseGazing = enableMouseGazing
+
+  await setAnimationStateAsIdle()
+  render()
 
   return renderer
 }
@@ -308,3 +442,4 @@ type KiwiAnimatingStateElement = {
   animating: boolean
 }
 
+type Vector2Rect = [offset: Vector2, size: Vector2]

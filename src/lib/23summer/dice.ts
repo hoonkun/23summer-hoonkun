@@ -67,13 +67,13 @@ const Randoms: Die[] = [
   { text: "내가 너 찾으려고 얼마나 많은\n고생을 했는지 아냐 이말이야!!", image: "ck-valuable-1.jpg", alt: "8-bit 도트 그래픽으로 거대한 호박석 안에 애벌레가 화석으로 남아있는 것이 보이는 스크린샷." },
   { text: "이 아래에 뭐가 있을까? (기쁘다!)", image: "ck-valuable-2.jpg", alt: "8-bit 도트 그래픽으로 푸른색 땅 위에 신비롭게 생긴 나무가 한 그루 서있고, 그 옆에 플레이어가 곡괭이를 들고 서있는 것이 보이는 스크린샷." },
   { text: "Miner 말고 다른 건 생각할 수 없어.", image: "ck-worldmap.jpg", alt: "원형 파이차트 처럼 생긴, 2d 오픈월드의 지도 스크린샷. 푸른 색, 주황 색, 초록 색, 모래 색 등의 지역이 보인다." },
-  { text: "Spine 툴을 찍먹해봤습니다.\n옆의 네모네모한 키위새를 한 번 눌러보세요!", image: "spine-1.jpg", alt: "Spine 에디터의 키프레임 애니메이션 타임라인의 도프시트가 표시되고 있는 스크린샷." }
+  { text: "Spine 툴을 찍먹해봤습니다.\n레이어 나누는게 지옥이었습니다.", image: "spine-1.jpg", alt: "Spine 에디터의 키프레임 애니메이션 타임라인의 도프시트가 표시되고 있는 스크린샷." }
 ]
 
 export const dateBasedRandom = () => {
   const date = new Date().toLocaleDateString('ko-KR', { timeZone: "Asia/Seoul" })
 
-  if (date === "2024. 9. 11.") return 60
+  if (date === "2024. 9. 12.") return 60
   return Random.Seeded(date).range(0, Randoms.length)
 }
 
