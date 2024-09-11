@@ -58,7 +58,7 @@ const RenderTarget = styled.canvas`
   aspect-ratio: 1 / 2;
   position: absolute;
   left: 0;
-  bottom: -48px;
+  bottom: 0;
   transform: scaleX(-1) translateX(max(0px, (600px - 100vw) / 3));
   transition: opacity 0.2s linear;
 
