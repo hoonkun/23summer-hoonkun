@@ -59,12 +59,13 @@ const KiwiContent = () => {
 }
 
 const RenderTargetContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   position: absolute;
   left: 0;
   bottom: 0;
-  transform: scaleX(-1) translateX(max(0px, (600px - 100vw) / 3));
   transition: opacity 0.2s linear;
-  display: flex;
 
   ${WhenWidthMost(1150)} {
     filter: brightness(0.3);
@@ -77,15 +78,22 @@ const RenderTargetContainer = styled.div`
 const CheeseImage = styled(Image)`
   height: 48vh;
   width: auto;
+  position: absolute;
+  left: calc(88vh / 2);
+  bottom: 0;
   align-self: flex-end;
   object-position: 0 40px;
-  transform: translateX(50px);
   filter: brightness(0.75);
+  transform: scaleX(-1) translateX(calc(max(0px, (600px - 100vw) / 3) + 30px));
 `
 
 const RenderTarget = styled.canvas`
+  position: absolute;
+  left: 0;
+  bottom: 0;
   height: 88vh;
   aspect-ratio: 1 / 2;
+  transform: scaleX(-1) translateX(max(0px, (600px - 100vw) / 3));
 `
 
 const KiwiActivatorImage = styled(Image)`
