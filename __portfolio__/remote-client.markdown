@@ -25,4 +25,4 @@ GStreamer 나 uinput, TURN 서버 구성 등에서 여러 쉽지 않은 문제�
 
 개발 후 남긴 기록으로는 [서버의 개발](/posts/retrieve/2024-07-24-corekeeper-remote-server)에 대한 게시글, 
 [클라이언트의 개발](/posts/retrieve/2024-07-24-corekeeper-remote-client)에 대한 게시글, 
-[총 후기](/posts/retrieve/2024-07-24-corekeeper-remote) 게시글이 있습니다.
+[총 후기](/posts/retrieve/2024-07-25-corekeeper-remote) 게시글이 있습니다.
