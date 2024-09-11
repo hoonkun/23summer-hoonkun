@@ -78,7 +78,8 @@ const CheeseImage = styled(Image)`
   height: 48vh;
   width: auto;
   align-self: flex-end;
-  transform: translate(50px, 40px);
+  object-position: 0 40px;
+  transform: translateX(50px);
   filter: brightness(0.75);
 `
 
