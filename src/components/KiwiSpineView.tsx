@@ -5,9 +5,10 @@ import styled from "styled-components"
 import { EmptyFunction } from "@/lib/ktn"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import Image from "next/image"
+import { KiwiRenderer } from "@/lib/23summer/kiwi/KiwiRenderer"
 
 import KiwiImage from "@/resources/kiwi.png"
-import { KiwiRenderer } from "@/lib/23summer/kiwi/KiwiRenderer"
+import CheeseImageResource from "@/resources/cheese.png"
 
 export const Kiwi = () => {
   const { mounted } = useKiwi()
@@ -45,22 +46,25 @@ const KiwiContent = () => {
   }, [])
 
   return (
-    <RenderTarget
-      ref={renderTarget}
-      onClick={renderer.current?.setAnimationStateAsExtra}
+    <RenderTargetContainer
       style={{ opacity: !!renderer.current && enabled ? 1 : 0 }}
-    />
+    >
+      <CheeseImage src={CheeseImageResource} alt={"cheese!"}/>
+      <RenderTarget
+        ref={renderTarget}
+        onClick={renderer.current?.setAnimationStateAsExtra}
+      />
+    </RenderTargetContainer>
   )
 }
 
-const RenderTarget = styled.canvas`
-  height: 88vh;
-  aspect-ratio: 1 / 2;
+const RenderTargetContainer = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
   transform: scaleX(-1) translateX(max(0px, (600px - 100vw) / 3));
   transition: opacity 0.2s linear;
+  display: flex;
 
   ${WhenWidthMost(1150)} {
     filter: brightness(0.3);
@@ -68,6 +72,19 @@ const RenderTarget = styled.canvas`
   ${WhenWidthLeast(1150)} {
     filter: brightness(0.5);
   }
+`
+
+const CheeseImage = styled(Image)`
+  height: 48vh;
+  width: auto;
+  align-self: flex-end;
+  transform: translate(50px, 40px);
+  filter: brightness(0.75);
+`
+
+const RenderTarget = styled.canvas`
+  height: 88vh;
+  aspect-ratio: 1 / 2;
 `
 
 const KiwiActivatorImage = styled(Image)`
