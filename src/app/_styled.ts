@@ -212,7 +212,44 @@ export const ReadMe = styled.ul`
   list-style-type: none;
 
   & a {
-    text-decoration: underline;
+    position: relative;
+    color: white;
+    font-weight: bold;
+
+    &:after {
+      content: "";
+      height: 1px;
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      bottom: 4px;
+      background-color: rgb(193, 211, 31);
+      z-index: -1;
+
+      ${WhenWidthLeast(1350)} {
+        left: -2px;
+        right: -2px;
+        height: 1px;
+        bottom: 5px;
+      }
+    }
+
+    &:before {
+      content: "";
+      height: 7px;
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      bottom: 2px;
+      background-color: rgba(193, 211, 31, 0.35);
+      z-index: -1;
+
+      ${WhenWidthLeast(1350)} {
+        left: -4px;
+        right: -4px;
+        height: 13px;
+      }
+    }
   }
 `
 
