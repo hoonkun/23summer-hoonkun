@@ -60,7 +60,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
       this.shader.dispose()
       this.worker.dispose()
 
-      document.removeEventListener("mousemove", onMouseMove)
+      document.removeEventListener("pointermove", onMouseMove)
     }
   }
 
@@ -152,8 +152,8 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
   const setAnimationStateAsIdle = async () => {
     if (states.phase === "Idle") return
 
-    document.removeEventListener("mousemove", onMouseMove)
-    document.addEventListener("mousemove", onMouseMove)
+    document.removeEventListener("pointermove", onMouseMove)
+    document.addEventListener("pointermove", onMouseMove)
     requestedInterpolateLookAt = undefined
 
     animator.setAnimation(0, "Idle", true)
@@ -170,7 +170,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     await waitUntil(() => !states.eye.animating, ActiveBreaker)
     if (!renderer.active) return
 
-    document.removeEventListener("mousemove", onMouseMove)
+    document.removeEventListener("pointermove", onMouseMove)
 
     animator.setAnimation(0, "Extra", false)
     animator.setEmptyAnimation(1, 0.25)
@@ -205,7 +205,9 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     )
   }
 
-  const onMouseMove = (event: MouseEvent) => {
+  const onMouseMove = (event: PointerEvent) => {
+    if (event.pointerType !== "mouse") return
+
     const { pageX, pageY } = event
 
     const mousePositionInSpine = asSpineCoordinate(pageX, pageY)
@@ -291,7 +293,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
   }
 
   const enableMouseGazing = () => {
-    document.addEventListener("mousemove", onMouseMove)
+    document.addEventListener("pointermove", onMouseMove)
   }
 
   const shader = Shader.newTwoColoredTextured(renderContext)
