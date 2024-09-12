@@ -33,6 +33,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
   const renderer = new class KiwiRenderer {
     active = true
 
+    renderContext: ManagedWebGLRenderingContext = renderContext
     renderTarget: HTMLCanvasElement = renderTarget
     shader: Shader = null!
     worker: PolygonBatcher = null!
