@@ -95,7 +95,7 @@ export const KiwiRenderer = async (renderTarget: HTMLCanvasElement) => {
     cameraWidth = renderTarget.width * scale;
     cameraHeight = renderTarget.height * scale;
 
-    mvp.ortho2d(centerX - cameraWidth / 2, centerY - cameraHeight / 2 + 96, cameraWidth, cameraHeight);
+    mvp.ortho2d(centerX - cameraWidth / 2, centerY - cameraHeight / 2, cameraWidth, cameraHeight);
     renderContext.gl.viewport(0, 0, renderTarget.width, renderTarget.height);
   }
 

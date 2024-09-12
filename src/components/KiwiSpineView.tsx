@@ -108,6 +108,7 @@ const KiwiStyle = css`
   bottom: 0;
   height: 88vh;
   aspect-ratio: 1 / 2;
+  object-position: 50% 35px;
   transform: scaleX(-1) translateX(max(0px, (600px - 100vw) / 3));
 `
 
@@ -116,7 +117,6 @@ const KiwiPreviewImage = styled.img`
   
   width: unset;
   object-fit: contain;
-  object-position: 50% 35px;
   filter: grayscale(0.5);
   transition: opacity 0.6s linear;
 `
