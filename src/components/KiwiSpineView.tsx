@@ -75,9 +75,9 @@ const KiwiContent = () => {
 
 const RenderTargetContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
 
