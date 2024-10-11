@@ -177,8 +177,8 @@ const KiwiContext = React.createContext<KiwiContext>({
 const useKiwi = () => useContext(KiwiContext)
 
 export const KiwiContextProvider: React.FC<PropsWithChildren> = props => {
-  const [enabled, setEnabled] = useState(true)
-  const [mounted, setMounted] = useState(true)
+  const [enabled, setEnabled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [ready, setReady] = useState(true)
 
   useEffect(() => {
