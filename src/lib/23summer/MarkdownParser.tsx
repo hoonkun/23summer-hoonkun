@@ -33,7 +33,7 @@ const NodeTextRetriever = (node: any): string => {
   return ""
 }
 
-const SpaceReplacer = (input: string): string => input.replaceAll(" ", "_")
+const InvalidCharReplacer = (input: string): string => input.replaceAll(" ", "_").replaceAll(":", "")
 
 export const GlobalMarkdownComponents = {
   code: (props: any) => props.className ?
@@ -42,12 +42,12 @@ export const GlobalMarkdownComponents = {
   a: (props: any) => props.href.startsWith("/") ?
     <Link href={props.href}>{props.children}</Link> :
     <a {...props}>{props.children}</a>,
-  h1: (props: any) => <h1 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h1>,
-  h2: (props: any) => <h2 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h2>,
-  h3: (props: any) => <h3 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h3>,
-  h4: (props: any) => <h4 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h4>,
-  h5: (props: any) => <h5 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h5>,
-  h6: (props: any) => <h6 id={SpaceReplacer(NodeTextRetriever(props.children))}>{props.children}</h6>
+  h1: (props: any) => <h1 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h1>,
+  h2: (props: any) => <h2 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h2>,
+  h3: (props: any) => <h3 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h3>,
+  h4: (props: any) => <h4 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h4>,
+  h5: (props: any) => <h5 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h5>,
+  h6: (props: any) => <h6 id={InvalidCharReplacer(NodeTextRetriever(props.children))}>{props.children}</h6>
 }
 
 export const GlobalRehypeReactOptions = { jsx, jsxs, Fragment }
