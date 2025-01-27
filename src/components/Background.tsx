@@ -1,10 +1,10 @@
 'use client'
 
 import React from "react"
-import MainBackground from "@/resources/main_bg_rev2.jpg"
+import MainBackground from "@/resources/main_bg.jpg"
 import { WhenWidthLeast, WhenWidthMost } from "@/lib/styled/media-queries"
 import styled, { css } from "styled-components"
-import { Kiwi } from "@/components/KiwiSpineView"
+import { WinterOverlay } from "@/components/WinterOverlay"
 
 type BackgroundProps = {
   dark?: boolean
@@ -30,9 +30,9 @@ export const Background: React.FC<BackgroundProps> = props => {
         $dark={`${dark}`}
         $darker={`${darker}`}
       />
-      {kiwi && <Kiwi/>}
+      {/*{kiwi && <Kiwi/>}*/}
       {overlay && <BackgroundOverlay/>}
-      {/*<WinterOverlay/>*/}
+      <WinterOverlay/>
     </>
   )
 }
