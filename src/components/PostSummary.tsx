@@ -72,6 +72,8 @@ const SummaryTitle = styled.div`
 const Summaries = styled.div`
   font-size: 14px;
   line-height: 125%;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
 `
 
 const SummaryItem = styled.a<{ $indent: number }>`
