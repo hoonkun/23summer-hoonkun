@@ -39,9 +39,10 @@ export type PostSummary = {
 export class Posts {
 
   static get queryset() {
-    return fs.readFileSync(path.join("__posts__/_registry.json"))
-      .let(it => JSON.parse(it.toString("utf-8")) as string[])
-      .filter(it => !it.startsWith("_"))
+    return fs.readdirSync(path.join("__posts__")).filter(it => !it.startsWith("_") && !it.startsWith(".")).sort().reverse()
+    // return fs.readFileSync(path.join("__posts__/_registry.json"))
+    //   .let(it => JSON.parse(it.toString("utf-8")) as string[])
+    //   .filter(it => !it.startsWith("_"))
   }
 
   static get latest() {

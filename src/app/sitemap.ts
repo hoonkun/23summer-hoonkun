@@ -8,7 +8,6 @@ const base = "https://hoonkun.kiwi"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const postKeys = fs.readdirSync(path.join("__posts__")).filter(it => !it.startsWith("_") && !it.startsWith(".")).sort().reverse()
-  fs.writeFileSync(path.join("__posts__/_registry.json"), JSON.stringify(postKeys, null, 2), { encoding: "utf-8" })
 
   const retrieves = Posts.queryset.map(it => {
     const basePath = path.join(`__posts__/${it}`)
