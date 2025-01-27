@@ -250,6 +250,14 @@ export const MarkdownContent = styled.div`
     padding: 0;
   }
 
+  pre {
+    font-family: "JetBrains Mono", sans-serif !important;
+  }
+  
+  pre.c {
+    text-align: center;
+  }
+  
   code {
     font-family: "JetBrains Mono", sans-serif !important;
     font-size: 13px;
