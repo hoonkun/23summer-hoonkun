@@ -54,7 +54,7 @@ export const BackgroundImage = styled.img<{ $dark?: string, $darker?: string }>`
   display: block;
   
   object-fit: cover;
-  object-position: 100% 50%;
+  object-position: 0 50%;
   image-rendering: pixelated;
   
   transform: scaleX(-1);
