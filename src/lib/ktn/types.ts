@@ -56,6 +56,9 @@ declare global {
     get floor(): number
     get ceil(): number
   }
+  interface Date {
+    simpleFormat(this: Date): string
+  }
 }
 
 export {}

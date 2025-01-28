@@ -164,7 +164,7 @@ export class Posts {
           category: [categories.find(category => it.data.categories[0] === category.name), categories.find(category => it.data.categories[1] === category.name)]
         }))
     } catch (e) {
-      console.error(e)
+      console.error(`[${new Date().simpleFormat()}] [E] Tried to find un-existing post: ${key}`)
       return null
     }
   }

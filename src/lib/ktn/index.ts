@@ -13,4 +13,4 @@ export * from "./Number"
 export * from "./Function"
 export * from "./Random"
 export * from "./String"
-
+export * from "./Date"
