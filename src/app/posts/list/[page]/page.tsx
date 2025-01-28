@@ -52,6 +52,8 @@ export default async function Page({ params }: PageProps) {
 
   const summaries = Posts.summaries()
 
+  console.log(`[${new Date().simpleFormat()}] [D] Rendered /posts/list/${params.page}`)
+
   return (
     <PostsRoot>
       <Background darker overlay/>

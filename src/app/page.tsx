@@ -31,6 +31,8 @@ export default function Home() {
   const die = dice()
   const rotation = dateBasedRandom() % 10 - 5
 
+  console.log(`[${new Date().simpleFormat()}] [D] Rendered /`)
+
   return (
     <KiwiContextProvider>
       <HomeRoot>

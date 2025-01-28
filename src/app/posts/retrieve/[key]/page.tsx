@@ -74,6 +74,8 @@ export default async function Page({ params }: { params: PostParams }) {
 
   const mainImage = await import(`$/__posts__/${post.key}/main.jpg`)
 
+  console.log(`[${new Date().simpleFormat()}] [D] Rendered /posts/retrieve/${params.key}`)
+
   return (
     <PostRoot>
       <Background overlay/>

@@ -27,6 +27,8 @@ export default async function Page() {
 
   const all = Portfolios.queryset
 
+  console.log(`[${new Date().simpleFormat()}] [D] Rendered /footprints`)
+
   return (
     <>
       <FootprintTitleDecoration/>
