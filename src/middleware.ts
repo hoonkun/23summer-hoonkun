@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 
 const Excluded = [
   /^\/_next\/.+/,
-  /\.(js|png|jpg|css|ico)$/,
+  /\.(js|png|jpg|css|ico|woff|ttf|woff2)$/,
 ]
