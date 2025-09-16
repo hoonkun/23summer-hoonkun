@@ -23,7 +23,8 @@ import {
   TitleTextKR
 } from "@/app/_styled"
 import { Background } from "@/components/Background"
-import { KiwiActivator, KiwiContextProvider } from "@/components/KiwiSpineView"
+import { KiwiContextProvider } from "@/components/KiwiSpineView"
+import { AnimatedKiwiFrame } from "@/components/AnimatedKiwiFrame"
 
 export const dynamic = "force-dynamic"
 
@@ -61,7 +62,7 @@ export default function Home() {
             <ContentHeader>오늘의 아무말</ContentHeader>
             <MotdContent>
               <MotdImage src={`dice/${die.image}`} rotate={rotation} alt={die.alt}/>
-              <KiwiActivator/>
+              <AnimatedKiwiFrame/>
               <MotdText>{die.text}</MotdText>
             </MotdContent>
           </TitleContent>
